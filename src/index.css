@@ -1,0 +1,87 @@
+@import "tailwindcss";
+@theme {
+  /* Surfaces (from Modal's depth system) */
+  --color-void: #000000;
+  --color-ground: #101112;
+  --color-carbon: #1c1e1f;
+  --color-border: #2a2d2e;
+
+  /* Text */
+  --color-text-primary: #f5f7f7;
+  --color-text-body: #9aa3a3;
+  --color-text-muted: #6b7373;
+
+  /* Accent — Neon Cyan, rationed to one glowing element per section */
+  --color-cyan: #52e1fe;
+  --color-cyan-glow: rgba(82, 225, 254, 0.15);
+
+  /* Typography */
+  --font-display: 'Space Grotesk', 'Inter Tight', sans-serif;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'CommitMono', ui-monospace, Menlo, Consolas, monospace;
+
+  /* Type scale (Modal's) */
+  --text-caption: 12px;
+  --text-body-sm: 14px;
+  --text-body: 16px;
+  --text-subheading: 20px;
+  --text-heading-sm: 24px;
+  --text-heading: 30px;
+  --text-heading-lg: 42px;
+  --text-display: 64px;
+
+  /* Spacing (Modal's scale) */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-96: 96px;
+
+  /* Radius (Modal's) */
+  --radius-cards: 8px;
+  --radius-buttons: 12px;
+  --radius-pills: 9999px;
+
+  /* Shadow */
+  --shadow-nav: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -4px;
+}
+
+body {
+  background: var(--color-void);
+  color: var(--color-text-primary);
+  font-family: var(--font-inter);
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+.animate-marquee-left {
+  animation: marquee-left 30s linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marquee-right 30s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-left,
+  .animate-marquee-right {
+    animation-duration: 30s;
+  }
+}
