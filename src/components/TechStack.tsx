@@ -1,10 +1,22 @@
+import * as SimpleIcons from "react-icons/si";
+import * as FaIcons from "react-icons/fa";
 import { techRowOne, techRowTwo } from "../data/techStack";
 import type { TechStackItem } from "../types";
 
+
+const iconMap: Record<string, React.ComponentType<{ size?: number; color?: string }>> = {
+  ...SimpleIcons,
+  ...FaIcons,
+};
 function Pill({ item }: { item: TechStackItem }) {
+  const Icon = iconMap[item.icon];
+
   return (
-    <span className="shrink-0 rounded-[var(--radius-cards)] border border-[var(--color-border)] bg-[var(--color-carbon)] px-[var(--spacing-12)] py-[var(--spacing-4)] font-[var(--font-mono)] text-[var(--text-body-sm)] text-[var(--color-text-body)]">
-      {item.name}
+    <span
+      title={item.name}
+      className="flex h-[88px] w-[88px] shrink-0 items-center justify-center rounded-[var(--radius-cards)] border border-[var(--color-border)] bg-[var(--color-carbon)]"
+    >
+      {Icon && <Icon size={44} color={item.color} />}
     </span>
   );
 }
@@ -21,8 +33,8 @@ function MarqueeRow({
 
   return (
     <div className="overflow-hidden">
-      <div className={`flex w-max gap-[var(--spacing-12)] ${animClass}`}>
-        {[...items, ...items].map((item, i) => (
+      <div className={`flex w-max gap-[var(--spacing-16)] ${animClass}`}>
+        {[...items, ...items, ...items, ...items].map((item, i) => (
           <Pill key={`${item.name}-${i}`} item={item} />
         ))}
       </div>

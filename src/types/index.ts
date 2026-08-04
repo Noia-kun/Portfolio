@@ -1,6 +1,8 @@
 export interface TechStackItem {
   name: string;
   category: "language" | "framework" | "tool" | "database";
+  icon: string;
+  color: string;
 }
 
 export interface WorkExperience {
