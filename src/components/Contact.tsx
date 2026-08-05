@@ -92,8 +92,7 @@ export default function Contact() {
       {/* Form */}
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-[var(--spacing-16)] rounded-[var(--radius-cards)] bg-[var(--color-ground)] p-[var(--spacing-32)]"
-      >
+        className="flex flex-col gap-[var(--spacing-16)] rounded-[var(--radius-cards)] bg-[var(--color-ground)] p-[var(--spacing-32)]">
         <input
           type="text"
           placeholder="Your name"
@@ -116,21 +115,20 @@ export default function Contact() {
           onChange={(e) => setMessage(e.target.value)}
           required
           rows={5}
-          className="resize-none rounded-[var(--radius-cards)] border border-[var(--color-border)] bg-[var(--color-carbon)] px-[var(--spacing-16)] py-[var(--spacing-12)] font-[var(--font-inter)] text-[var(--text-body)] text-[var(--color-text-primary)] outline-none focus:border-[var(--color-cyan)]"
-        />
+          className="resize-none rounded-[var(--radius-cards)] border border-[var(--color-border)] bg-[var(--color-carbon)] px-[var(--spacing-16)] py-[var(--spacing-12)] font-[var(--font-inter)] text-[var(--text-body)] text-[var(--color-text-primary)] outline-none focus:border-[var(--color-cyan)]"/>
 
+      <div className="origin-left scale-90 sm:scale-100">
         <ReCAPTCHA
           ref={recaptchaRef}
           sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
-          theme="dark"
-        />
+          theme="dark"/>
+      </div>
 
         <button
           type="submit"
           disabled={status === "sending"}
           style={{ backgroundColor: "var(--color-cyan)", color: "var(--color-void)" }}
-          className="rounded-[var(--radius-pills)] px-[var(--spacing-24)] py-[var(--spacing-12)] font-[var(--font-inter)] text-[var(--text-body)] font-medium transition-opacity hover:opacity-90 disabled:opacity-50"
-        >
+          className="rounded-[var(--radius-pills)] px-[var(--spacing-24)] py-[var(--spacing-12)] font-[var(--font-inter)] text-[var(--text-body)] font-medium transition-opacity hover:opacity-90 disabled:opacity-50">
           {status === "sending" ? "Sending..." : "Send Message"}
         </button>
 
