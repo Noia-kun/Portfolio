@@ -1,5 +1,7 @@
 import { useState } from "react";
 import logo from "../assets/logo.png";
+import { FaSun, FaMoon } from "react-icons/fa";
+import { useTheme } from "../hooks/useTheme";
 
 const links = [
   { label: "Home", href: "#home" },
@@ -11,6 +13,7 @@ const links = [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-carbon)]/80 backdrop-blur-md">
@@ -36,6 +39,12 @@ export default function Navbar() {
         <a href="#contact" style={{ backgroundColor: "var(--color-cyan)", color: "var(--color-void)" }} className="hidden rounded-[var(--radius-pills)] px-[var(--spacing-16)] py-[var(--spacing-8)] font-[var(--font-inter)] text-[var(--text-body-sm)] font-medium transition-opacity hover:opacity-90 md:block">Contact
         </a>
 
+        {/* Theme toggle */}
+        <button onClick={toggleTheme} aria-label="Toggle theme"
+            className="hidden text-[var(--color-text-body)] transition-colors hover:text-[var(--color-cyan)] md:block">
+            {theme === "dark" ? <FaSun size={18} /> : <FaMoon size={18} />}
+        </button>
+
         {/* Mobile menu toggle */}
         <button onClick={() => setMenuOpen(!menuOpen)}
           className="text-[var(--color-text-primary)] md:hidden"
@@ -56,6 +65,13 @@ export default function Navbar() {
           ))}
           <a href="#contact" onClick={() => setMenuOpen(false)} style={{backgroundColor: "var(--color-cyan)", color: "var(--color-void)" }} className="rounded-[var(--radius-pills)] px-[var(--spacing-16)] py-[var(--spacing-8)] text-center font-[var(--font-inter)] text-[var(--text-body-sm)] font-medium">Contact
           </a>
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            className="flex items-center gap-[var(--spacing-8)] font-[var(--font-inter)] text-[var(--text-body)] text-[var(--color-text-body)]"
+            >
+            {theme === "dark" ? <FaSun size={18} /> : <FaMoon size={18} />} Toggle theme
+          </button>
         </div>
       )}
     </nav>

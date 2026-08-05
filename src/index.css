@@ -54,6 +54,17 @@
   --shadow-nav: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -4px;
 }
 
+.light {
+  --color-void: #ffffff;
+  --color-ground: #f5f7f7;
+  --color-carbon: #eceeee;
+  --color-border: #d9dcdc;
+
+  --color-text-primary: #101112;
+  --color-text-body: #4a5252;
+  --color-text-muted: #7c8484;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
