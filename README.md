@@ -1,75 +1,32 @@
-# React + TypeScript + Vite
+# Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+My personal developer portfolio — built to showcase my work as I transition from PHP/Laravel toward React, TypeScript, and modern front-end development.
 
-Currently, two official plugins are available:
+**Live Demo:** _Coming soon (deploying to Vercel)_
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Sections
 
-## React Compiler
+- **Hero** — intro, tagline, and quick links
+- **Tech Stack** — animated dual-row marquee of languages, frameworks, and tools I use, rendered with real brand logos
+- **Work Experience** — IT Assistant/Programmer role at Caritas Don Bosco School, styled as a code-window card
+- **Projects** — MIS Office Inventory System, Vehicle Parking System, Weather App, Restaurant Page
+- **Education** — BS Computer Science, NU Laguna
+- **Contact** — working contact form (EmailJS + reCAPTCHA), plus phone and social links
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- **React 19** + **TypeScript**
+- **Tailwind CSS v4**
+- **Vite**
+- **EmailJS** — contact form email delivery
+- **Google reCAPTCHA v2** — spam protection on the contact form
+- **react-icons** — brand/tech logos (Simple Icons + Font Awesome sets)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Design
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Visual direction is a mix of two references: a dark obsidian/cyan aesthetic and Modal.com's phosphor-terminal component system (code-window cards, hairline borders, rationed accent color). Neon Cyan (`#52e1fe`) is the single accent color throughout, used sparingly per Modal's "one glowing element per section" principle.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Author
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+**Richwelle Rod Roxas Remetio | Noia-kun**
+[GitHub](https://github.com/Noia-kun) · [LinkedIn](https://www.linkedin.com/in/richwellerodremetiorr/)
