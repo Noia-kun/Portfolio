@@ -2,7 +2,7 @@ import logo from "../assets/logo.png";
 
 export default function Hero() {
   return (
-    <section className="flex flex-col items-center justify-center gap-[var(--spacing-24)] px-[var(--spacing-24)] py-[var(--spacing-96)] text-center">
+    <section id="home" className="flex flex-col items-center justify-center gap-[var(--spacing-24)] px-[var(--spacing-24)] py-[var(--spacing-96)] text-center">
       <img
         src={logo}
         alt="NoiA logo"
