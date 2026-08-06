@@ -7,6 +7,7 @@ import Projects from './components/Projects'
 import Education from './components/Education'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import RevealOnScroll from './components/RevealOnScroll'
 
 
 function App() {
@@ -15,11 +16,11 @@ function App() {
       <Navbar />
       <div className="pt-[64px]">
         <Hero />
-        <TechStack />
-        <WorkExperience />
-        <Projects />
-        <Education />
-        <Contact />
+        <RevealOnScroll><TechStack /></RevealOnScroll>
+        <RevealOnScroll><WorkExperience /></RevealOnScroll>
+        <RevealOnScroll><Projects /></RevealOnScroll>
+        <RevealOnScroll><Education /></RevealOnScroll>
+        <RevealOnScroll><Contact /></RevealOnScroll>
         <Footer />
       </div>
     </div>
