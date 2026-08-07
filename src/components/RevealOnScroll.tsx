@@ -1,14 +1,31 @@
 import type { ReactNode } from "react";
 import { useInView } from "../hooks/useInView";
 
-export default function RevealOnScroll({ children }: { children: ReactNode }) {
+type Direction = "left" | "right" | "up";
+
+export default function RevealOnScroll({
+  children,
+  direction = "up",
+}: {
+  children: ReactNode;
+  direction?: Direction;
+}) {
   const { ref, isInView } = useInView();
+
+  const hiddenTransform =
+    direction === "left"
+      ? "-translate-x-[40px]"
+      : direction === "right"
+      ? "translate-x-[40px]"
+      : "translate-y-[24px]";
 
   return (
     <div
       ref={ref}
       className={`transition-all duration-700 ease-out ${
-      isInView ? "translate-y-0 opacity-100" : "translate-y-[24px] opacity-0"
+        isInView
+          ? "translate-x-0 translate-y-0 opacity-100 blur-none"
+          : `${hiddenTransform} opacity-0 blur-sm`
       }`}>
       {children}
     </div>

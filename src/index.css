@@ -65,17 +65,12 @@
   --color-text-muted: #7c8484;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
-}
-
 body {
   background: var(--color-void);
   color: var(--color-text-primary);
   font-family: var(--font-inter);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 @keyframes marquee-left {

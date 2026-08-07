@@ -8,19 +8,21 @@ import Education from './components/Education'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import RevealOnScroll from './components/RevealOnScroll'
+import { useLenis } from "./hooks/useLenis";
 
 
 function App() {
+  useLenis();
   return (
     <div>
       <Navbar />
       <div className="pt-[64px]">
         <Hero />
-        <RevealOnScroll><TechStack /></RevealOnScroll>
-        <RevealOnScroll><WorkExperience /></RevealOnScroll>
-        <RevealOnScroll><Projects /></RevealOnScroll>
-        <RevealOnScroll><Education /></RevealOnScroll>
-        <RevealOnScroll><Contact /></RevealOnScroll>
+        <RevealOnScroll direction="left"><TechStack /></RevealOnScroll>
+        <RevealOnScroll direction="right"><WorkExperience /></RevealOnScroll>
+        <RevealOnScroll direction="left"><Projects /></RevealOnScroll>
+        <RevealOnScroll direction="right"><Education /></RevealOnScroll>
+        <RevealOnScroll direction="left"><Contact /></RevealOnScroll>
         <Footer />
       </div>
     </div>
