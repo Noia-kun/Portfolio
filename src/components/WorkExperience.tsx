@@ -5,7 +5,7 @@ export default function WorkExperience() {
 
   return (
     <section id="experience" className="mx-auto flex min-h-[100dvh] max-w-[720px] flex-col justify-center px-[var(--spacing-24)] py-[var(--spacing-80)]">
-      <h2 className="mb-[var(--spacing-40)] text-center font-[family-name:var(--font-display)] text-[var(--text-heading-lg)] font-medium text-[var(--color-text-primary)]">
+      <h2 className="mb-[var(--spacing-40)] text-center font-[family-name:var(--font-display)] text-[36px] sm:text-[48px] md:text-[56px] font-bold text-[var(--color-text-primary)]">
         Work Experience
       </h2>
 
@@ -50,7 +50,7 @@ export default function WorkExperience() {
             {bullets.map((bullet, i) => (
               <li
                 key={i}
-                className="flex gap-[var(--spacing-8)] font-[var(--font-inter)] text-[var(--text-body-sm)] leading-[1.55] text-[var(--color-text-body)]"
+                className="flex gap-[var(--spacing-8)] font-[var(--font-body)] text-[var(--text-body-sm)] leading-[1.55] text-[var(--color-text-body)]"
               >
                 <span style={{ color: "var(--color-cyan)" }}>→</span>
                 {bullet}

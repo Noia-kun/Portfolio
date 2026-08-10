@@ -3,13 +3,13 @@ import { education } from "../data/education";
 export default function Education() {
   return (
     <section id="education" className="mx-auto flex min-h-[100dvh] max-w-[720px] flex-col justify-center px-[var(--spacing-24)] py-[var(--spacing-80)]">
-      <h2 className="mb-[var(--spacing-40)] text-center font-[family-name:var(--font-display)] text-[var(--text-heading-lg)] font-medium text-[var(--color-text-primary)]">Education</h2>
+      <h2 className="mb-[var(--spacing-40)] text-center font-[family-name:var(--font-display)] text-[36px] sm:text-[48px] md:text-[56px] font-bold text-[var(--color-text-primary)]">Education</h2>
 
       <div className="rounded-[var(--radius-cards)] bg-[var(--color-ground)] p-[var(--spacing-32)]">
         <h3 className="font-[family-name:var(--font-display)] text-[var(--text-heading-sm)] font-medium text-[var(--color-text-primary)]">
           {education.degree}
         </h3>
-        <p className="mt-[var(--spacing-8)] font-[var(--font-inter)] text-[var(--text-body)] text-[var(--color-text-body)]">
+        <p className="mt-[var(--spacing-8)] font-[var(--font-body)] text-[var(--text-body)] text-[var(--color-text-body)]">
           {education.school} · {education.period}
         </p>
 

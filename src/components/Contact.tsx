@@ -70,12 +70,12 @@ export default function Contact() {
 
   return (
     <section id="contact" className="mx-auto flex min-h-[100dvh] max-w-[720px] flex-col justify-center px-[var(--spacing-24)] py-[var(--spacing-80)]">
-      <h2 className="mb-[var(--spacing-40)] text-center font-[family-name:var(--font-display)] text-[var(--text-heading-lg)] font-medium text-[var(--color-text-primary)]">
+      <h2 className="mb-[var(--spacing-40)] text-center font-[family-name:var(--font-display)] text-[36px] sm:text-[48px] md:text-[56px] font-bold text-[var(--color-text-primary)]">
         Contact Me
       </h2>
 
       {/* Phone + socials */}
-      <div className="mb-[var(--spacing-40)] flex flex-wrap justify-center gap-[var(--spacing-16)] font-[var(--font-inter)] text-[var(--text-body-sm)] text-[var(--color-text-body)]">
+      <div className="mb-[var(--spacing-40)] flex flex-wrap justify-center gap-[var(--spacing-16)] font-[var(--font-body)] text-[var(--text-body-sm)] text-[var(--color-text-body)]">
         <a href={`tel:${contactInfo.phone}`} className="hover:text-[var(--color-text-primary)]">
           {contactInfo.phone}
         </a>
@@ -99,7 +99,7 @@ export default function Contact() {
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
-          className="rounded-[var(--radius-cards)] border border-[var(--color-border)] bg-[var(--color-carbon)] px-[var(--spacing-16)] py-[var(--spacing-12)] font-[var(--font-inter)] text-[var(--text-body)] text-[var(--color-text-primary)] outline-none focus:border-[var(--color-cyan)]"
+          className="rounded-[var(--radius-cards)] border border-[var(--color-border)] bg-[var(--color-carbon)] px-[var(--spacing-16)] py-[var(--spacing-12)] font-[var(--font-body)] text-[var(--text-body)] text-[var(--color-text-primary)] outline-none focus:border-[var(--color-cyan)]"
         />
         <input
           type="email"
@@ -107,7 +107,7 @@ export default function Contact() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="rounded-[var(--radius-cards)] border border-[var(--color-border)] bg-[var(--color-carbon)] px-[var(--spacing-16)] py-[var(--spacing-12)] font-[var(--font-inter)] text-[var(--text-body)] text-[var(--color-text-primary)] outline-none focus:border-[var(--color-cyan)]"
+          className="rounded-[var(--radius-cards)] border border-[var(--color-border)] bg-[var(--color-carbon)] px-[var(--spacing-16)] py-[var(--spacing-12)] font-[var(--font-body)] text-[var(--text-body)] text-[var(--color-text-primary)] outline-none focus:border-[var(--color-cyan)]"
         />
         <textarea
           placeholder="Your message"
@@ -115,7 +115,7 @@ export default function Contact() {
           onChange={(e) => setMessage(e.target.value)}
           required
           rows={5}
-          className="resize-none rounded-[var(--radius-cards)] border border-[var(--color-border)] bg-[var(--color-carbon)] px-[var(--spacing-16)] py-[var(--spacing-12)] font-[var(--font-inter)] text-[var(--text-body)] text-[var(--color-text-primary)] outline-none focus:border-[var(--color-cyan)]"/>
+          className="resize-none rounded-[var(--radius-cards)] border border-[var(--color-border)] bg-[var(--color-carbon)] px-[var(--spacing-16)] py-[var(--spacing-12)] font-[var(--font-body)] text-[var(--text-body)] text-[var(--color-text-primary)] outline-none focus:border-[var(--color-cyan)]"/>
 
       <div className="origin-left scale-90 sm:scale-100">
         <ReCAPTCHA
@@ -128,7 +128,7 @@ export default function Contact() {
           type="submit"
           disabled={status === "sending"}
           style={{ backgroundColor: "var(--color-cyan)", color: "var(--color-void)" }}
-          className="rounded-[var(--radius-pills)] px-[var(--spacing-24)] py-[var(--spacing-12)] font-[var(--font-inter)] text-[var(--text-body)] font-medium transition-opacity hover:opacity-90 disabled:opacity-50">
+          className="rounded-[var(--radius-pills)] px-[var(--spacing-24)] py-[var(--spacing-12)] font-[var(--font-body)] text-[var(--text-body)] font-medium transition-opacity hover:opacity-90 disabled:opacity-50">
           {status === "sending" ? "Sending..." : "Send Message"}
         </button>
 

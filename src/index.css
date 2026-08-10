@@ -17,8 +17,8 @@
 
   /* Typography */
   --font-display: 'Space Grotesk', 'Inter Tight', sans-serif;
-  --font-inter: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'CommitMono', ui-monospace, Menlo, Consolas, monospace;
+  --font-body: 'Geist', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', 'CommitMono', ui-monospace, Menlo, Consolas, monospace;
 
   /* Type scale (Modal's) */
   --text-caption: 12px;
@@ -72,7 +72,7 @@ html {
 body {
   background: var(--color-void);
   color: var(--color-text-primary);
-  font-family: var(--font-inter);
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
