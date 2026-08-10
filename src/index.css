@@ -65,6 +65,10 @@
   --color-text-muted: #7c8484;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   background: var(--color-void);
   color: var(--color-text-primary);

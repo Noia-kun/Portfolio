@@ -44,8 +44,8 @@ function MarqueeRow({
 
 export default function TechStack() {
   return (
-    <section id="techstack" className="py-[var(--spacing-80)]">
-      <h2 className="mb-[var(--spacing-40)] text-center font-[family-name:var(--font-display)] text-[var(--text-heading-lg)] font-medium text-[var(--color-text-primary)]">Tech Stack</h2>
+    <section id="techstack" className="flex min-h-[100dvh] flex-col justify-center py-[var(--spacing-80)]">
+      <h2 className="mb-[var(--spacing-40)] text-center font-[family-name:var(--font-display)] text-[var(--text-heading-lg)] font-medium text-[var(--color-text-primary)]">Arsenal - Tech Stack</h2>
       <div className="flex flex-col gap-[var(--spacing-16)]">
         <MarqueeRow items={techRowOne} direction="left" />
         <MarqueeRow items={techRowTwo} direction="right" />

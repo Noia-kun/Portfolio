@@ -69,7 +69,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="mx-auto max-w-[720px] px-[var(--spacing-24)] py-[var(--spacing-80)]">
+    <section id="contact" className="mx-auto flex min-h-[100dvh] max-w-[720px] flex-col justify-center px-[var(--spacing-24)] py-[var(--spacing-80)]">
       <h2 className="mb-[var(--spacing-40)] text-center font-[family-name:var(--font-display)] text-[var(--text-heading-lg)] font-medium text-[var(--color-text-primary)]">
         Contact Me
       </h2>

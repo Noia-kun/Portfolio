@@ -2,7 +2,7 @@ import MagicBento from "./MagicBento";
 
 export default function Projects() {
   return (
-    <section id="projects" className="mx-auto max-w-[1000px] px-[var(--spacing-24)] py-[var(--spacing-80)]">
+    <section id="projects" className="mx-auto flex min-h-[100dvh] max-w-[1000px] flex-col justify-center px-[var(--spacing-24)] py-[var(--spacing-80)]">
       <h2 className="mb-[var(--spacing-40)] text-center font-[family-name:var(--font-display)] text-[var(--text-heading-lg)] font-medium text-[var(--color-text-primary)]">
         Projects
       </h2>
