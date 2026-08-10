@@ -1,13 +1,13 @@
-import * as SimpleIcons from "react-icons/si";
-import * as FaIcons from "react-icons/fa";
+import * as ThesvgIcons from "@thesvg/react";
 import { techRowOne, techRowTwo } from "../data/techStack";
 import type { TechStackItem } from "../types";
 
 
-const iconMap: Record<string, React.ComponentType<{ size?: number; color?: string }>> = {
-  ...SimpleIcons,
-  ...FaIcons,
-};
+const iconMap = ThesvgIcons as unknown as Record<
+  string,
+  React.ForwardRefExoticComponent<React.SVGProps<SVGSVGElement>>
+>;
+
 function Pill({ item }: { item: TechStackItem }) {
   const Icon = iconMap[item.icon];
 
@@ -16,7 +16,7 @@ function Pill({ item }: { item: TechStackItem }) {
       title={item.name}
       className="flex h-[88px] w-[88px] shrink-0 items-center justify-center rounded-[var(--radius-cards)] border border-[var(--color-border)] bg-[var(--color-carbon)]"
     >
-      {Icon && <Icon size={44} color={item.color} />}
+      {Icon && <Icon width={44} height={44} />}
     </span>
   );
 }

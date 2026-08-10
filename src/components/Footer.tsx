@@ -1,4 +1,5 @@
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import Github from "@thesvg/react/github";
+import Linkedin from "@thesvg/react/linkedin";
 import { contactInfo } from "../data/contact";
 
 export default function Footer() {
@@ -18,14 +19,14 @@ export default function Footer() {
             rel="noopener noreferrer"
             aria-label="GitHub"
             className="text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-cyan)]">
-            <FaGithub size={20} />
+            <Github width={20} height={20} />
           </a>
           <a href={contactInfo.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
             className="text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-cyan)]">
-            <FaLinkedin size={20} />
+            <Linkedin width={20} height={20} />
           </a>
         </div>
       </div>

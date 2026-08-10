@@ -1,6 +1,6 @@
 import { useState } from "react";
 import logo from "../assets/logo.png";
-import { FaSun, FaMoon } from "react-icons/fa";
+import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 import { useTheme } from "../hooks/useTheme";
 
 const links = [
@@ -39,10 +39,11 @@ export default function Navbar() {
         <a href="#contact" style={{ backgroundColor: "var(--color-cyan)", color: "var(--color-void)" }} className="hidden rounded-[var(--radius-pills)] px-[var(--spacing-16)] py-[var(--spacing-8)] font-[var(--font-inter)] text-[var(--text-body-sm)] font-medium transition-opacity hover:opacity-90 md:block">Contact
         </a>
 
+        <div className="flex items-center gap-[var(--spacing-16)]">
         {/* Theme toggle */}
         <button onClick={toggleTheme} aria-label="Toggle theme"
-            className="hidden text-[var(--color-text-body)] transition-colors hover:text-[var(--color-cyan)] md:block">
-            {theme === "dark" ? <FaSun size={18} /> : <FaMoon size={18} />}
+            className="flex h-[36px] w-[36px] items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-carbon)] text-[var(--color-text-body)] transition-colors hover:border-[var(--color-cyan)] hover:text-[var(--color-cyan)]">
+            {theme === "dark" ? <SunIcon width={18} height={18} /> : <MoonIcon width={18} height={18} />}
         </button>
 
         {/* Mobile menu toggle */}
@@ -51,6 +52,7 @@ export default function Navbar() {
           aria-label="Toggle menu">
           {menuOpen ? "✕" : "☰"}
         </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
@@ -65,13 +67,6 @@ export default function Navbar() {
           ))}
           <a href="#contact" onClick={() => setMenuOpen(false)} style={{backgroundColor: "var(--color-cyan)", color: "var(--color-void)" }} className="rounded-[var(--radius-pills)] px-[var(--spacing-16)] py-[var(--spacing-8)] text-center font-[var(--font-inter)] text-[var(--text-body-sm)] font-medium">Contact
           </a>
-          <button
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-            className="flex items-center gap-[var(--spacing-8)] font-[var(--font-inter)] text-[var(--text-body)] text-[var(--color-text-body)]"
-            >
-            {theme === "dark" ? <FaSun size={18} /> : <FaMoon size={18} />} Toggle theme
-          </button>
         </div>
       )}
     </nav>
