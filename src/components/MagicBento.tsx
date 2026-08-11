@@ -401,7 +401,6 @@ const useMobileDetection = () => {
 
 export default function MagicBento({
   textAutoHide = true,
-  enableStars = true,
   enableSpotlight = true,
   enableBorderGlow = true,
   disableAnimations = false,
@@ -413,7 +412,6 @@ export default function MagicBento({
   enableMagnetism = true,
 }: {
   textAutoHide?: boolean;
-  enableStars?: boolean;
   enableSpotlight?: boolean;
   enableBorderGlow?: boolean;
   disableAnimations?: boolean;

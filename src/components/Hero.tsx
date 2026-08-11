@@ -94,7 +94,7 @@ export default function Hero() {
             aria-label="GitHub"
             className="flex h-[36px] w-[36px] items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-carbon)] transition-colors hover:border-[var(--color-cyan)]"
           >
-            <Github width={16} height={16} />
+            <Github variant="mono" width={16} height={16} className="text-[var(--color-text-primary)]" />
           </a>
           <a
             href={contactInfo.linkedin}

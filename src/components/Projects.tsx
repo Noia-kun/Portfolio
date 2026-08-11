@@ -9,7 +9,6 @@ export default function Projects() {
 
       <MagicBento
         textAutoHide={true}
-        enableStars={true}
         enableSpotlight={true}
         enableBorderGlow={true}
         enableTilt={true}
