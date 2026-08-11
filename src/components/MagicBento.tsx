@@ -2,6 +2,7 @@ import { useRef, useEffect, useCallback, useState } from "react";
 import { gsap } from "gsap";
 import "./MagicBento.css";
 import { projects } from "../data/projects";
+import RevealOnScroll from "./RevealOnScroll";
 
 const DEFAULT_PARTICLE_COUNT = 12;
 const DEFAULT_SPOTLIGHT_RADIUS = 300;
@@ -445,37 +446,38 @@ export default function MagicBento({
           }`;
 
           return (
-            <ParticleCard
-              key={index}
-              className={baseClassName}
-              style={{ backgroundColor: "var(--color-ground)", ["--glow-color" as string]: glowColor }}
-              disableAnimations={shouldDisableAnimations}
-              particleCount={particleCount}
-              glowColor={glowColor}
-              enableTilt={enableTilt}
-              clickEffect={clickEffect}
-              enableMagnetism={enableMagnetism}
-            >
-              <div className="magic-bento-card__header">
-                <div className="magic-bento-card__label">{project.stack.join(' • ')}</div>
-              </div>
-              <div className="magic-bento-card__content">
-                <h2 className="magic-bento-card__title">{project.title}</h2>
-                <p className="magic-bento-card__description">{project.description}</p>
-                <div className="magic-bento-card__links">
-                  {project.liveUrl && (
-                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" style={{ color: `rgb(${glowColor})` }}>
-                      Live →
-                    </a>
-                  )}
-                  {project.githubUrl && (
-                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="magic-bento-card__github-link">
-                      GitHub →
-                    </a>
-                  )}
+            <RevealOnScroll key={index} direction={index % 2 === 0 ? "left" : "right"}>
+              <ParticleCard
+                className={baseClassName}
+                style={{ backgroundColor: "var(--color-ground)", ["--glow-color" as string]: glowColor }}
+                disableAnimations={shouldDisableAnimations}
+                particleCount={particleCount}
+                glowColor={glowColor}
+                enableTilt={enableTilt}
+                clickEffect={clickEffect}
+                enableMagnetism={enableMagnetism}
+              >
+                <div className="magic-bento-card__header">
+                  <div className="magic-bento-card__label">{project.stack.join(' • ')}</div>
                 </div>
-              </div>
-            </ParticleCard>
+                <div className="magic-bento-card__content">
+                  <h2 className="magic-bento-card__title">{project.title}</h2>
+                  <p className="magic-bento-card__description">{project.description}</p>
+                  <div className="magic-bento-card__links">
+                    {project.liveUrl && (
+                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" style={{ color: `rgb(${glowColor})` }}>
+                        Live →
+                      </a>
+                    )}
+                    {project.githubUrl && (
+                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="magic-bento-card__github-link">
+                        GitHub →
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </ParticleCard>
+            </RevealOnScroll>
           );
         })}
       </div>

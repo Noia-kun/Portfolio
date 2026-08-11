@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import ReCAPTCHA from "react-google-recaptcha";
 import { contactInfo } from "../data/contact";
+import RevealOnScroll from "./RevealOnScroll";
 
 const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
@@ -70,12 +71,15 @@ export default function Contact() {
 
   return (
     <section id="contact" className="mx-auto flex min-h-[100dvh] max-w-[720px] flex-col justify-center px-[var(--spacing-24)] py-[var(--spacing-80)]">
-      <h2 className="mb-[var(--spacing-40)] text-center font-[family-name:var(--font-display)] text-[36px] sm:text-[48px] md:text-[56px] font-bold text-[var(--color-text-primary)]">
-        Contact Me
-      </h2>
+      <RevealOnScroll>
+        <h2 className="mb-[var(--spacing-40)] text-center font-[family-name:var(--font-display)] text-[36px] sm:text-[48px] md:text-[56px] font-bold text-[var(--color-text-primary)]">
+          Contact Me
+        </h2>
+      </RevealOnScroll>
 
       {/* Phone + socials */}
-      <div className="mb-[var(--spacing-40)] flex flex-wrap justify-center gap-[var(--spacing-16)] font-[var(--font-body)] text-[var(--text-body-sm)] text-[var(--color-text-body)]">
+      <RevealOnScroll>
+        <div className="mb-[var(--spacing-40)] flex flex-wrap justify-center gap-[var(--spacing-16)] font-[var(--font-body)] text-[var(--text-body-sm)] text-[var(--color-text-body)]">
         <a href={`tel:${contactInfo.phone}`} className="hover:text-[var(--color-text-primary)]">
           {contactInfo.phone}
         </a>
@@ -87,10 +91,12 @@ export default function Contact() {
         <a href={contactInfo.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--color-text-primary)]">
           LinkedIn
         </a>
-      </div>
+        </div>
+      </RevealOnScroll>
 
       {/* Form */}
-      <form
+      <RevealOnScroll>
+        <form
         onSubmit={handleSubmit}
         className="flex flex-col gap-[var(--spacing-16)] rounded-[var(--radius-cards)] bg-[var(--color-ground)] p-[var(--spacing-32)]">
         <input
@@ -147,7 +153,8 @@ export default function Contact() {
             Please wait a minute before sending another message.
           </p>
         )}
-      </form>
+        </form>
+      </RevealOnScroll>
     </section>
   );
 }

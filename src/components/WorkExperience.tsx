@@ -1,15 +1,19 @@
 import { workExperience } from "../data/workExperience";
+import RevealOnScroll from "./RevealOnScroll";
 
 export default function WorkExperience() {
   const { role, company, period, bullets } = workExperience;
 
   return (
     <section id="experience" className="mx-auto flex min-h-[100dvh] max-w-[720px] flex-col justify-center px-[var(--spacing-24)] py-[var(--spacing-80)]">
-      <h2 className="mb-[var(--spacing-40)] text-center font-[family-name:var(--font-display)] text-[36px] sm:text-[48px] md:text-[56px] font-bold text-[var(--color-text-primary)]">
-        Work Experience
-      </h2>
+      <RevealOnScroll>
+        <h2 className="mb-[var(--spacing-40)] text-center font-[family-name:var(--font-display)] text-[36px] sm:text-[48px] md:text-[56px] font-bold text-[var(--color-text-primary)]">
+          Work Experience
+        </h2>
+      </RevealOnScroll>
 
-      <div className="rounded-[var(--radius-cards)] border border-[var(--color-border)] bg-[var(--color-carbon)]">
+      <RevealOnScroll>
+        <div className="rounded-[var(--radius-cards)] border border-[var(--color-border)] bg-[var(--color-carbon)]">
         {/* Title bar */}
         <div className="flex items-center gap-[var(--spacing-8)] border-b border-[var(--color-border)] px-[var(--spacing-16)] py-[var(--spacing-12)]">
           <span className="h-[10px] w-[10px] rounded-full bg-[#ff5f56]" />
@@ -58,7 +62,8 @@ export default function WorkExperience() {
             ))}
           </ul>
         </div>
-      </div>
+        </div>
+      </RevealOnScroll>
     </section>
   );
 }

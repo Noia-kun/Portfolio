@@ -1,11 +1,15 @@
 import { education } from "../data/education";
+import RevealOnScroll from "./RevealOnScroll";
 
 export default function Education() {
   return (
     <section id="education" className="mx-auto flex min-h-[100dvh] max-w-[720px] flex-col justify-center px-[var(--spacing-24)] py-[var(--spacing-80)]">
-      <h2 className="mb-[var(--spacing-40)] text-center font-[family-name:var(--font-display)] text-[36px] sm:text-[48px] md:text-[56px] font-bold text-[var(--color-text-primary)]">Education</h2>
+      <RevealOnScroll>
+        <h2 className="mb-[var(--spacing-40)] text-center font-[family-name:var(--font-display)] text-[36px] sm:text-[48px] md:text-[56px] font-bold text-[var(--color-text-primary)]">Education</h2>
+      </RevealOnScroll>
 
-      <div className="rounded-[var(--radius-cards)] bg-[var(--color-ground)] p-[var(--spacing-32)]">
+      <RevealOnScroll>
+        <div className="rounded-[var(--radius-cards)] bg-[var(--color-ground)] p-[var(--spacing-32)]">
         <h3 className="font-[family-name:var(--font-display)] text-[var(--text-heading-sm)] font-medium text-[var(--color-text-primary)]">
           {education.degree}
         </h3>
@@ -25,7 +29,8 @@ export default function Education() {
             Dean's Lister
           </span>
         </div>
-      </div>
+        </div>
+      </RevealOnScroll>
     </section>
   );
 }

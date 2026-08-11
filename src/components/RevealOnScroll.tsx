@@ -6,19 +6,23 @@ type Direction = "left" | "right" | "up";
 export default function RevealOnScroll({
   children,
   direction = "up",
-  threshold = 0.5,
+  threshold = 0.15,
+  rootMargin = "-64px 0px -10% 0px",
+  once = true,
 }: {
   children: ReactNode;
   direction?: Direction;
   threshold?: number;
+  rootMargin?: string;
+  once?: boolean;
 }) {
-  const { ref, isInView } = useInView(threshold);
+  const { ref, isInView } = useInView(threshold, rootMargin, once);
 
   const hiddenTransform =
     direction === "left"
-      ? "-translate-x-[40px]"
+      ? "translate-y-[24px] md:-translate-x-[40px] md:translate-y-0"
       : direction === "right"
-      ? "translate-x-[40px]"
+      ? "translate-y-[24px] md:translate-x-[40px] md:translate-y-0"
       : "translate-y-[24px]";
 
   return (

@@ -1,6 +1,7 @@
 import * as ThesvgIcons from "@thesvg/react";
 import { techRowOne, techRowTwo } from "../data/techStack";
 import type { TechStackItem } from "../types";
+import RevealOnScroll from "./RevealOnScroll";
 
 
 const iconMap = ThesvgIcons as unknown as Record<
@@ -45,11 +46,15 @@ function MarqueeRow({
 export default function TechStack() {
   return (
     <section id="techstack" className="flex min-h-[100dvh] flex-col justify-center py-[var(--spacing-80)]">
-      <h2 className="mb-[var(--spacing-40)] text-center font-[family-name:var(--font-display)] text-[36px] sm:text-[48px] md:text-[56px] font-bold text-[var(--color-text-primary)]">Arsenal - Tech Stack</h2>
-      <div className="flex flex-col gap-[var(--spacing-16)]">
-        <MarqueeRow items={techRowOne} direction="left" />
-        <MarqueeRow items={techRowTwo} direction="right" />
-      </div>
+      <RevealOnScroll>
+        <h2 className="mb-[var(--spacing-40)] text-center font-[family-name:var(--font-display)] text-[36px] sm:text-[48px] md:text-[56px] font-bold text-[var(--color-text-primary)]">Arsenal - Tech Stack</h2>
+      </RevealOnScroll>
+      <RevealOnScroll>
+        <div className="flex flex-col gap-[var(--spacing-16)]">
+          <MarqueeRow items={techRowOne} direction="left" />
+          <MarqueeRow items={techRowTwo} direction="right" />
+        </div>
+      </RevealOnScroll>
     </section>
   );
 }
