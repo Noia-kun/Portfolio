@@ -95,6 +95,38 @@ body {
   animation: marquee-right 30s linear infinite;
 }
 
+.marquee-viewport {
+  --marquee-fade-size: clamp(32px, 8vw, 96px);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 var(--marquee-fade-size),
+    #000 calc(100% - var(--marquee-fade-size)),
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 var(--marquee-fade-size),
+    #000 calc(100% - var(--marquee-fade-size)),
+    transparent
+  );
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.tech-stack-icon--light {
+  display: none;
+}
+
+.light .tech-stack-icon--dark {
+  display: none;
+}
+
+.light .tech-stack-icon--light {
+  display: block;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee-left,
   .animate-marquee-right {

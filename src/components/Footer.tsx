@@ -19,7 +19,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             aria-label="GitHub"
             className="text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-cyan)]">
-            <Github width={20} height={20} />
+            <Github variant="mono" width={20} height={20} />
           </a>
           <a href={contactInfo.linkedin}
             target="_blank"

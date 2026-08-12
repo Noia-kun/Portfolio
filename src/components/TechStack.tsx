@@ -4,20 +4,43 @@ import type { TechStackItem } from "../types";
 import RevealOnScroll from "./RevealOnScroll";
 
 
-const iconMap = ThesvgIcons as unknown as Record<
-  string,
-  React.ForwardRefExoticComponent<React.SVGProps<SVGSVGElement>>
+type TechIcon = React.ForwardRefExoticComponent<
+  React.SVGProps<SVGSVGElement> & { variant?: string }
 >;
+
+const iconMap = ThesvgIcons as unknown as Record<string, TechIcon>;
+
+const themeVariants: Record<string, { dark: string; light: string }> = {
+  React: { dark: "dark", light: "light" },
+  Eslint: { dark: "dark", light: "light" },
+  Mysql: { dark: "dark", light: "light" },
+  Php: { dark: "dark", light: "light" },
+  Openai: { dark: "dark", light: "light" },
+};
 
 function Pill({ item }: { item: TechStackItem }) {
   const Icon = iconMap[item.icon];
+  const variants = themeVariants[item.icon];
 
   return (
     <span
       title={item.name}
-      className="flex h-[88px] w-[88px] shrink-0 items-center justify-center rounded-[var(--radius-cards)] border border-[var(--color-border)] bg-[var(--color-carbon)]"
+      className="flex h-[88px] w-[88px] shrink-0 items-center justify-center"
     >
-      {Icon && <Icon width={44} height={44} />}
+      {Icon && variants && (
+        <>
+          <Icon variant={variants.dark} width={44} height={44} className="tech-stack-icon--dark" />
+          <Icon variant={variants.light} width={44} height={44} className="tech-stack-icon--light" />
+        </>
+      )}
+      {Icon && !variants && (
+        <Icon
+          variant={item.icon === "StyledComponents" ? "mono" : undefined}
+          width={44}
+          height={44}
+          className={item.icon === "StyledComponents" ? "text-[var(--color-text-primary)]" : undefined}
+        />
+      )}
     </span>
   );
 }
@@ -33,7 +56,7 @@ function MarqueeRow({
     direction === "left" ? "animate-marquee-left" : "animate-marquee-right";
 
   return (
-    <div className="overflow-hidden">
+    <div className="marquee-viewport overflow-hidden">
       <div className={`flex w-max gap-[var(--spacing-16)] ${animClass}`}>
         {[...items, ...items, ...items, ...items].map((item, i) => (
           <Pill key={`${item.name}-${i}`} item={item} />
