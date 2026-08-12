@@ -11,7 +11,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="mx-auto flex min-h-[100dvh] max-w-[1280px] flex-col-reverse items-center justify-center gap-[var(--spacing-8)] px-[var(--spacing-24)] py-[var(--spacing-48)] md:flex-row md:justify-between md:gap-[var(--spacing-48)] md:py-[var(--spacing-96)]"
+      className="mx-auto flex max-w-[1280px] flex-col-reverse items-center justify-center gap-[var(--spacing-8)] px-[var(--spacing-24)] py-[var(--spacing-48)] md:flex-row md:justify-between md:gap-[var(--spacing-48)] md:py-[var(--spacing-96)]"
     >
       {/* Left — text content */}
       <div className="flex max-w-[560px] flex-col items-center text-center md:items-start md:text-left">

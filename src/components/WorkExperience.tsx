@@ -5,7 +5,7 @@ export default function WorkExperience() {
   const { role, company, period, bullets } = workExperience;
 
   return (
-    <section id="experience" className="mx-auto flex min-h-[100dvh] max-w-[720px] flex-col justify-center px-[var(--spacing-24)] py-[var(--spacing-80)]">
+    <section id="experience" className="mx-auto flex max-w-[720px] flex-col justify-center px-[var(--spacing-24)] py-[var(--spacing-96)]">
       <RevealOnScroll>
         <h2 className="mb-[var(--spacing-40)] text-center font-[family-name:var(--font-display)] text-[36px] sm:text-[48px] md:text-[56px] font-bold text-[var(--color-text-primary)]">
           Work Experience

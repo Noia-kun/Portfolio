@@ -74,7 +74,7 @@ function MarqueeRow({
 
 export default function TechStack() {
   return (
-    <section id="techstack" className="flex min-h-[100dvh] flex-col justify-center py-[var(--spacing-80)]">
+    <section id="techstack" className="flex flex-col justify-center py-[var(--spacing-96)]">
       <RevealOnScroll>
         <h2 className="mb-[var(--spacing-40)] text-center font-[family-name:var(--font-display)] text-[36px] sm:text-[48px] md:text-[56px] font-bold text-[var(--color-text-primary)]">Arsenal - Tech Stack</h2>
       </RevealOnScroll>
