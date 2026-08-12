@@ -96,23 +96,35 @@ body {
 }
 
 .marquee-viewport {
-  --marquee-fade-size: clamp(32px, 8vw, 96px);
+  --marquee-inset: clamp(100px, 16vw, 260px);
+  --marquee-fade: clamp(100px, 22vw, 300px);
   -webkit-mask-image: linear-gradient(
-    to right,
-    transparent,
-    #000 var(--marquee-fade-size),
-    #000 calc(100% - var(--marquee-fade-size)),
-    transparent
-  );
+     to right,
+     transparent 0px,
+     transparent var(--marquee-inset),
+     black calc(var(--marquee-inset) + var(--marquee-fade)),
+     black calc(100% - var(--marquee-inset) - var(--marquee-fade)),
+     transparent calc(100% - var(--marquee-inset)),
+     transparent
+   );
   mask-image: linear-gradient(
-    to right,
-    transparent,
-    #000 var(--marquee-fade-size),
-    #000 calc(100% - var(--marquee-fade-size)),
-    transparent
-  );
+     to right,
+     transparent 0px,
+     transparent var(--marquee-inset),
+     black calc(var(--marquee-inset) + var(--marquee-fade)),
+     black calc(100% - var(--marquee-inset) - var(--marquee-fade)),
+     transparent calc(100% - var(--marquee-inset)),
+     transparent
+   );
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
+}
+
+@media (max-width: 425px) {
+  .marquee-viewport {
+    --marquee-inset: 12px;
+    --marquee-fade: 48px;
+  }
 }
 
 .tech-stack-icon--light {

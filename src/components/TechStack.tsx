@@ -38,7 +38,13 @@ function Pill({ item }: { item: TechStackItem }) {
           variant={item.icon === "StyledComponents" ? "mono" : undefined}
           width={44}
           height={44}
-          className={item.icon === "StyledComponents" ? "text-[var(--color-text-primary)]" : undefined}
+          className={
+            item.icon === "StyledComponents"
+              ? "text-[var(--color-text-primary)]"
+              : item.icon === "IntellijIdea" || item.icon === "Jetbrains"
+              ? "text-black"
+              : undefined
+          }
         />
       )}
     </span>
@@ -57,7 +63,7 @@ function MarqueeRow({
 
   return (
     <div className="marquee-viewport overflow-hidden">
-      <div className={`flex w-max gap-[var(--spacing-16)] ${animClass}`}>
+      <div className={`flex w-max gap-[var(--spacing-64)] ${animClass}`}>
         {[...items, ...items, ...items, ...items].map((item, i) => (
           <Pill key={`${item.name}-${i}`} item={item} />
         ))}
