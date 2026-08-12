@@ -1,4 +1,5 @@
-import { education } from "../data/education";
+import { education, educationDescription } from "../data/education";
+import nuLagunaLogo from "../assets/nu-laguna-logo.png";
 import RevealOnScroll from "./RevealOnScroll";
 
 export default function Education() {
@@ -9,26 +10,42 @@ export default function Education() {
       </RevealOnScroll>
 
       <RevealOnScroll>
-        <div className="rounded-[var(--radius-cards)] bg-[var(--color-ground)] p-[var(--spacing-32)]">
-        <h3 className="font-[family-name:var(--font-display)] text-[var(--text-heading-sm)] font-medium text-[var(--color-text-primary)]">
-          {education.degree}
-        </h3>
-        <p className="mt-[var(--spacing-8)] font-[var(--font-body)] text-[var(--text-body)] text-[var(--color-text-body)]">
-          {education.school} · {education.period}
-        </p>
+        <div
+          className="rounded-[var(--radius-cards)] bg-[var(--color-ground)] p-[var(--spacing-32)]"
+          style={{ border: "1px solid var(--color-cyan)" }}
+        >
+          <div className="flex items-start gap-[var(--spacing-24)]">
+            <img
+              src={nuLagunaLogo}
+              alt="National University Laguna seal"
+              className="h-[64px] w-[64px] shrink-0 object-contain"
+            />
 
-        {/* Extra display text, not part of the EducationItem type */}
-        <div className="mt-[var(--spacing-16)] flex flex-wrap items-center gap-[var(--spacing-12)]">
-          <span
-            className="rounded-[var(--radius-pills)] border border-[var(--color-border)] px-[var(--spacing-12)] py-[var(--spacing-4)] font-[var(--font-mono)] text-[var(--text-caption)] text-[var(--color-text-muted)]">
-            GPA: 3.44/4.0
-          </span>
-          <span
-            className="rounded-[var(--radius-pills)] px-[var(--spacing-12)] py-[var(--spacing-4)] font-[var(--font-mono)] text-[var(--text-caption)] font-medium"
-            style={{ backgroundColor: "var(--color-cyan-glow)", color: "var(--color-cyan)" }}>
-            Dean's Lister
-          </span>
-        </div>
+            <div>
+              <h3 className="font-[family-name:var(--font-display)] text-[var(--text-heading-sm)] font-medium text-[var(--color-text-primary)]">
+                {education.degree}
+              </h3>
+              <p className="mt-[var(--spacing-4)] font-[var(--font-body)] text-[var(--text-body)] text-[var(--color-text-body)]">
+                {education.school} · {education.period}
+              </p>
+            </div>
+          </div>
+
+          <p className="mt-[var(--spacing-24)] font-[var(--font-body)] text-[var(--text-body)] leading-[1.6] text-[var(--color-text-body)]">
+            {educationDescription}
+          </p>
+
+          <div className="mt-[var(--spacing-24)] flex flex-wrap items-center gap-[var(--spacing-12)]">
+            <span
+              className="rounded-[var(--radius-pills)] border border-[var(--color-border)] px-[var(--spacing-12)] py-[var(--spacing-4)] font-[var(--font-mono)] text-[var(--text-caption)] text-[var(--color-text-muted)]">
+              GPA: 3.44/4.0
+            </span>
+            <span
+              className="rounded-[var(--radius-pills)] px-[var(--spacing-12)] py-[var(--spacing-4)] font-[var(--font-mono)] text-[var(--text-caption)] font-medium"
+              style={{ backgroundColor: "var(--color-cyan-glow)", color: "var(--color-cyan)" }}>
+              Dean's Lister
+            </span>
+          </div>
         </div>
       </RevealOnScroll>
     </section>
