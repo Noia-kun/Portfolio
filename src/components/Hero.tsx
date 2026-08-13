@@ -1,4 +1,5 @@
 import logo from "../assets/logo.png";
+import heroPixelArt from "../assets/hero-pixel-art.webp";
 import { projects } from "../data/projects";
 import { techRowOne, techRowTwo } from "../data/techStack";
 import Github from "@thesvg/react/github";
@@ -110,7 +111,7 @@ export default function Hero() {
 
       {/* Right — illustration */}
       <div className="flex shrink-0 items-center justify-center">
-        <img src={logo} alt="NoiA character" className="h-[360px] w-[360px] object-contain md:h-[720px] md:w-[720px]" />
+        <img src={heroPixelArt} alt="Animated pixel-art developer holding a coffee" className="h-[360px] w-[360px] object-contain md:h-[720px] md:w-[720px]" />
       </div>
     </section>
   );
