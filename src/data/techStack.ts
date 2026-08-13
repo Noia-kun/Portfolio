@@ -12,19 +12,20 @@ export const techRowOne: TechStackItem[] = [
   { name: "CSS3", category: "language", icon: "Css3", color: "#1572B6" },
   { name: "C++", category: "language", icon: "CPlusplus", color: "#00599C" },
   { name: "Kotlin", category: "language", icon: "Kotlin", color: "#7F52FF" },
-  { name: "ESLint", category: "tool", icon: "Eslint", color: "#4B32C3" },
+  { name: "Python", category: "language", icon: "Python", color: "#3776AB" },
+  { name: "Java", category: "language", icon: "Java", color: "#437291" },
+  { name: "VB.NET", category: "language", icon: "Dotnet", color: "#512BD4" },
   { name: "Styled Components", category: "framework", icon: "StyledComponents", color: "#DB7093" },
 ];
 
 // Row 2 — scrolls left to right
 export const techRowTwo: TechStackItem[] = [
   { name: "MySQL", category: "database", icon: "Mysql", color: "#4479A1" },
-  { name: "Python", category: "language", icon: "Python", color: "#3776AB" },
-  { name: "Java", category: "language", icon: "Java", color: "#437291" },
-  { name: "VB.NET", category: "language", icon: "Dotnet", color: "#512BD4" },
+  { name: "VS Code", category: "tool", icon: "VisualStudioCode", color: "#007ACC" },
+  { name: "ESLint", category: "tool", icon: "Eslint", color: "#4B32C3" },
   { name: "Docker", category: "tool", icon: "Docker", color: "#2496ED" },
   { name: "Node.js", category: "tool", icon: "Nodejs", color: "#339933" },
-  { name: "Vite", category: "tool", icon: "Vite", color: "#646CFF" },
+  { name: "Vite", category: "tool", icon: "Vitejs", color: "#41D1FF" },
   { name: "Git", category: "tool", icon: "Git", color: "#F05032" },
   { name: "Prettier", category: "tool", icon: "Prettier", color: "#F7B93E" },
   { name: "PyTorch", category: "tool", icon: "Pytorch", color: "#EE4C2C" },
