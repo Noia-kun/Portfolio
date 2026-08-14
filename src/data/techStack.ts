@@ -21,11 +21,13 @@ export const techRowOne: TechStackItem[] = [
 // Row 2 — scrolls left to right
 export const techRowTwo: TechStackItem[] = [
   { name: "MySQL", category: "database", icon: "Mysql", color: "#4479A1" },
-  { name: "VS Code", category: "tool", icon: "VisualStudioCode", color: "#007ACC" },
+  { name: "VSCode", category: "tool", icon: "VisualStudioCode", color: "#007ACC" },
   { name: "ESLint", category: "tool", icon: "Eslint", color: "#4B32C3" },
   { name: "Docker", category: "tool", icon: "Docker", color: "#2496ED" },
   { name: "Node.js", category: "tool", icon: "Nodejs", color: "#339933" },
   { name: "Vite", category: "tool", icon: "Vitejs", color: "#41D1FF" },
+  { name: "npm", category: "tool", icon: "Npm", color: "#CB3837" },
+  { name: "Webpack", category: "tool", icon: "Webpack", color: "#8DD6F9" },
   { name: "Git", category: "tool", icon: "Git", color: "#F05032" },
   { name: "Prettier", category: "tool", icon: "Prettier", color: "#F7B93E" },
   { name: "PyTorch", category: "tool", icon: "Pytorch", color: "#EE4C2C" },
