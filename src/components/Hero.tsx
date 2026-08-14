@@ -3,6 +3,11 @@ import { projects } from "../data/projects";
 import { techRowOne, techRowTwo } from "../data/techStack";
 import Github from "@thesvg/react/github";
 import Linkedin from "@thesvg/react/linkedin";
+import Html5 from "@thesvg/react/html5";
+import Css3 from "@thesvg/react/css3";
+import Javascript from "@thesvg/react/javascript";
+import React from "@thesvg/react/react";
+import { CodeBracketIcon } from "@heroicons/react/24/outline";
 import { contactInfo } from "../data/contact";
 
 const techStackCount = techRowOne.length + techRowTwo.length;
@@ -109,8 +114,42 @@ export default function Hero() {
       </div>
 
       {/* Right — illustration */}
-      <div className="flex shrink-0 items-center justify-center">
-        <img src={heroPixelArt} alt="Animated pixel-art developer holding a coffee" className="h-[360px] w-[360px] object-contain md:h-[clamp(320px,38vw,560px)] md:w-[clamp(320px,38vw,560px)]" />
+      <div className="relative flex shrink-0 items-center justify-center">
+        {/* Ambient glow behind character */}
+        <div
+          className="absolute inset-0 -z-10 rounded-full blur-3xl"
+          style={{
+            background: "radial-gradient(circle, var(--color-cyan) 0%, transparent 70%)",
+            opacity: 1,
+          }}
+        />
+
+        <img
+          src={heroPixelArt}
+          alt="Animated pixel-art developer holding a coffee"
+          className="relative z-10 h-[360px] w-[360px] object-contain md:h-[clamp(320px,38vw,560px)] md:w-[clamp(320px,38vw,560px)]"
+        />
+
+        {/* Floating icon badges */}
+        <div className="absolute left-[5%] top-[8%] z-20 flex h-[40px] w-[40px] items-center justify-center rounded-[var(--radius-cards)] border border-[var(--color-border)] bg-[var(--color-carbon)] animate-float-1 md:h-[48px] md:w-[48px]">
+          <CodeBracketIcon width={20} height={20} className="text-[var(--color-cyan)]" />
+        </div>
+
+        <div className="absolute right-[2%] top-[12%] z-20 flex h-[40px] w-[40px] items-center justify-center rounded-[var(--radius-cards)] border border-[var(--color-border)] bg-[var(--color-carbon)] animate-float-2 md:h-[48px] md:w-[48px]">
+          <Html5 width={22} height={22} />
+        </div>
+
+        <div className="absolute left-[0%] top-[45%] z-20 flex h-[40px] w-[40px] items-center justify-center rounded-[var(--radius-cards)] border border-[var(--color-border)] bg-[var(--color-carbon)] animate-float-3 md:h-[48px] md:w-[48px]">
+          <Css3 width={22} height={22} />
+        </div>
+
+        <div className="absolute bottom-[10%] left-[8%] z-20 flex h-[40px] w-[40px] items-center justify-center rounded-[var(--radius-cards)] border border-[var(--color-border)] bg-[var(--color-carbon)] animate-float-4 md:h-[48px] md:w-[48px]">
+          <Javascript width={22} height={22} />
+        </div>
+
+        <div className="absolute bottom-[6%] right-[5%] z-20 flex h-[40px] w-[40px] items-center justify-center rounded-[var(--radius-cards)] border border-[var(--color-border)] bg-[var(--color-carbon)] animate-float-5 md:h-[48px] md:w-[48px]">
+          <React width={22} height={22} />
+        </div>
       </div>
     </section>
   );
