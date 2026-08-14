@@ -9,6 +9,7 @@ import Javascript from "@thesvg/react/javascript";
 import React from "@thesvg/react/react";
 import { CodeBracketIcon } from "@heroicons/react/24/outline";
 import { contactInfo } from "../data/contact";
+import { OrbitingIcon } from "./OrbitingIcon";
 
 const techStackCount = techRowOne.length + techRowTwo.length;
 
@@ -113,43 +114,44 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Right — illustration */}
+      {/* Right — illustration & 3D Orbiting icons */}
       <div className="relative flex shrink-0 items-center justify-center">
-        {/* Ambient glow behind character */}
+        {/* Ambient cyan glow */}
         <div
-          className="absolute inset-0 -z-10 rounded-full blur-3xl"
+          className="absolute inset-0 -z-10 rounded-full blur-3xl pointer-events-none"
           style={{
             background: "radial-gradient(circle, var(--color-cyan) 0%, transparent 70%)",
-            opacity: 1,
+            opacity: 0.8,
           }}
         />
 
+        {/* Pixel Art Hero Image */}
         <img
           src={heroPixelArt}
           alt="Animated pixel-art developer holding a coffee"
-          className="relative z-10 h-[360px] w-[360px] object-contain md:h-[clamp(320px,38vw,560px)] md:w-[clamp(320px,38vw,560px)]"
+          className="relative z-10 h-[360px] w-[360px] object-contain md:h-[clamp(320px,38vw,560px)] md:w-[clamp(320px,38vw,560px)] pointer-events-none"
         />
 
-        {/* Floating icon badges */}
-        <div className="absolute left-[5%] top-[8%] z-20 flex h-[40px] w-[40px] items-center justify-center rounded-[var(--radius-cards)] border border-[var(--color-border)] bg-[var(--color-carbon)] animate-float-1 md:h-[48px] md:w-[48px]">
+        {/* 3D Orbiting Icons */}
+        <OrbitingIcon index={0} total={5} duration={20}>
           <CodeBracketIcon width={20} height={20} className="text-[var(--color-cyan)]" />
-        </div>
+        </OrbitingIcon>
 
-        <div className="absolute right-[2%] top-[12%] z-20 flex h-[40px] w-[40px] items-center justify-center rounded-[var(--radius-cards)] border border-[var(--color-border)] bg-[var(--color-carbon)] animate-float-2 md:h-[48px] md:w-[48px]">
+        <OrbitingIcon index={1} total={5} duration={20}>
           <Html5 width={22} height={22} />
-        </div>
+        </OrbitingIcon>
 
-        <div className="absolute left-[0%] top-[45%] z-20 flex h-[40px] w-[40px] items-center justify-center rounded-[var(--radius-cards)] border border-[var(--color-border)] bg-[var(--color-carbon)] animate-float-3 md:h-[48px] md:w-[48px]">
+        <OrbitingIcon index={2} total={5} duration={20}>
           <Css3 width={22} height={22} />
-        </div>
+        </OrbitingIcon>
 
-        <div className="absolute bottom-[10%] left-[8%] z-20 flex h-[40px] w-[40px] items-center justify-center rounded-[var(--radius-cards)] border border-[var(--color-border)] bg-[var(--color-carbon)] animate-float-4 md:h-[48px] md:w-[48px]">
+        <OrbitingIcon index={3} total={5} duration={20}>
           <Javascript width={22} height={22} />
-        </div>
+        </OrbitingIcon>
 
-        <div className="absolute bottom-[6%] right-[5%] z-20 flex h-[40px] w-[40px] items-center justify-center rounded-[var(--radius-cards)] border border-[var(--color-border)] bg-[var(--color-carbon)] animate-float-5 md:h-[48px] md:w-[48px]">
+        <OrbitingIcon index={4} total={5} duration={20}>
           <React width={22} height={22} />
-        </div>
+        </OrbitingIcon>
       </div>
     </section>
   );

@@ -16,12 +16,16 @@ const themeVariants: Record<string, { dark: string; light: string }> = {
   Mysql: { dark: "dark", light: "light" },
   Php: { dark: "dark", light: "light" },
   Openai: { dark: "dark", light: "light" },
+  StyledComponents: { dark: "dark", light: "mono" },
 };
 
 function Pill({ item }: { item: TechStackItem }) {
   const Icon = iconMap[item.icon];
   const variants = themeVariants[item.icon];
 
+  const isJetbrainsOrIntellij =
+    item.icon === "IntellijIdea" || item.icon === "Jetbrains";
+    
   return (
     <span
       title={item.name}
@@ -35,13 +39,10 @@ function Pill({ item }: { item: TechStackItem }) {
       )}
       {Icon && !variants && (
         <Icon
-          variant={item.icon === "StyledComponents" ? "mono" : undefined}
           width={44}
           height={44}
           className={
-            item.icon === "StyledComponents"
-              ? "text-[var(--color-text-primary)]"
-              : item.icon === "IntellijIdea" || item.icon === "Jetbrains"
+            isJetbrainsOrIntellij
               ? "text-black"
               : undefined
           }
