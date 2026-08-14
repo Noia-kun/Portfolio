@@ -1,4 +1,3 @@
-import logo from "../assets/logo.png";
 import heroPixelArt from "../assets/hero-pixel-art.webp";
 import { projects } from "../data/projects";
 import { techRowOne, techRowTwo } from "../data/techStack";
@@ -12,7 +11,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="mx-auto flex max-w-[1280px] flex-col-reverse items-center justify-center gap-[var(--spacing-8)] px-[var(--spacing-24)] py-[var(--spacing-48)] md:flex-row md:justify-between md:gap-[var(--spacing-48)] md:py-[var(--spacing-96)]"
+      className="mx-auto flex max-w-[1280px] flex-col-reverse items-center justify-center gap-[var(--spacing-8)] px-[var(--spacing-24)] py-[var(--spacing-48)] md:flex-row md:justify-center md:gap-[clamp(24px,4vw,48px)] md:py-[var(--spacing-96)]"
     >
       {/* Left — text content */}
       <div className="flex max-w-[560px] flex-col items-center text-center md:items-start md:text-left">
@@ -111,7 +110,7 @@ export default function Hero() {
 
       {/* Right — illustration */}
       <div className="flex shrink-0 items-center justify-center">
-        <img src={heroPixelArt} alt="Animated pixel-art developer holding a coffee" className="h-[360px] w-[360px] object-contain md:h-[720px] md:w-[720px]" />
+        <img src={heroPixelArt} alt="Animated pixel-art developer holding a coffee" className="h-[360px] w-[360px] object-contain md:h-[clamp(320px,38vw,560px)] md:w-[clamp(320px,38vw,560px)]" />
       </div>
     </section>
   );
