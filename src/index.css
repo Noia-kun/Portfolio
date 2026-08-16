@@ -226,4 +226,87 @@ body {
   will-change: transform, opacity;
 }
 
+/* Soap Bubble Container */
+.soap-bubble {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.6),
+              inset 0 0 1px rgba(0, 0, 0, 0.15),
+              0 4px 12px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2px);
+  background: rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s ease;
+}
+
+/* Specular Glint Dots (Top-Left Reflection) */
+.soap-bubble::before {
+  content: '';
+  position: absolute;
+  top: 12%;
+  left: 18%;
+  width: 20%;
+  height: 20%;
+  border-radius: 50%;
+  background: #ffffff;
+  filter: blur(0.5px);
+  opacity: 0.85;
+  z-index: 10;
+}
+
+.soap-bubble::after {
+  content: '';
+  position: absolute;
+  top: 25%;
+  left: 35%;
+  width: 10%;
+  height: 10%;
+  border-radius: 50%;
+  background: #ffffff;
+  filter: blur(0.5px);
+  opacity: 0.6;
+  z-index: 10;
+}
+
+/* Iridescent Color Sheens */
+.soap-bubble .sheen-blue {
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  border-left: 4px solid #0fb4ff;
+  filter: blur(3px);
+  pointer-events: none;
+}
+
+.soap-bubble .sheen-pink {
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  border-right: 4px solid #ff4484;
+  filter: blur(3px);
+  pointer-events: none;
+}
+
+.soap-bubble .sheen-yellow {
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  border-top: 4px solid #ffeb3b;
+  filter: blur(3px);
+  pointer-events: none;
+}
+
+.soap-bubble .sheen-white {
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  border-bottom: 3px solid #ffffff;
+  filter: blur(2px);
+  transform: rotate(330deg);
+  pointer-events: none;
+}
 
