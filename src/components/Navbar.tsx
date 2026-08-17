@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import logo from "../assets/logo.png";
 import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 import { useTheme } from "../hooks/useTheme";
@@ -12,63 +12,116 @@ const links = [
 ];
 
 export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-carbon)]/80 backdrop-blur-md">
-      <div className="mx-auto flex h-[64px] max-w-[1280px] items-center justify-between px-[var(--spacing-24)]">
-        <a href="#home" className="flex items-center gap-[var(--spacing-8)]">
-          <img src={logo} alt="NoiA logo" className="h-[44px] w-[44px] object-contain" />
-          <span className="font-[family-name:var(--font-display)] text-[var(--text-body)] font-medium text-[var(--color-text-primary)]">
-            NoiA
-          </span>
-        </a>
-
-        {/* Desktop links */}
-        <div className="hidden items-center gap-[var(--spacing-32)] md:flex">
-          {links.map((link) => (
-            <a key={link.href} href={link.href}
-              className="font-[var(--font-body)] text-[var(--text-body-sm)] font-medium text-[var(--color-text-body)] transition-colors hover:text-[var(--color-cyan)]">
-              {link.label}
-            </a>
-          ))}
-        </div>
-
-        {/* Contact CTA */}
-        <a href="#contact" style={{ backgroundColor: "var(--color-cyan)", color: "var(--color-void)" }} className="hidden rounded-[var(--radius-pills)] px-[var(--spacing-16)] py-[var(--spacing-8)] font-[var(--font-body)] text-[var(--text-body-sm)] font-medium transition-opacity hover:opacity-90 md:block">Contact
-        </a>
-
-        <div className="flex items-center gap-[var(--spacing-16)]">
-        {/* Theme toggle */}
-        <button onClick={toggleTheme} aria-label="Toggle theme"
-            className="flex h-[36px] w-[36px] items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-carbon)] text-[var(--color-text-body)] transition-colors hover:border-[var(--color-cyan)] hover:text-[var(--color-cyan)]">
-            {theme === "dark" ? <SunIcon width={18} height={18} /> : <MoonIcon width={18} height={18} />}
-        </button>
-
-        {/* Mobile menu toggle */}
-        <button onClick={() => setMenuOpen(!menuOpen)}
-          className="text-[var(--color-text-primary)] md:hidden"
-          aria-label="Toggle menu">
-          {menuOpen ? "✕" : "☰"}
-        </button>
-        </div>
-      </div>
-
-      {/* Mobile menu */}
-      {menuOpen && (
-        <div className="flex flex-col gap-[var(--spacing-16)] border-t border-[var(--color-border)] bg-[var(--color-carbon)] px-[var(--spacing-24)] py-[var(--spacing-16)] md:hidden">
-          {links.map((link) => (
-            <a key={link.href} href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className="font-[var(--font-body)] text-[var(--text-body)] text-[var(--color-text-body)]">
-              {link.label}
-            </a>
-          ))}
-          <a href="#contact" onClick={() => setMenuOpen(false)} style={{backgroundColor: "var(--color-cyan)", color: "var(--color-void)" }} className="rounded-[var(--radius-pills)] px-[var(--spacing-16)] py-[var(--spacing-8)] text-center font-[var(--font-body)] text-[var(--text-body-sm)] font-medium">Contact
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pointer-events-none">
+      <nav
+        style={{
+          transition:
+            "border-color 200ms ease, background-color 200ms ease, box-shadow 400ms ease, width 400ms cubic-bezier(0.4,0,0.2,1), max-width 400ms cubic-bezier(0.4,0,0.2,1), padding 400ms cubic-bezier(0.4,0,0.2,1)",
+        }}
+        className={`pointer-events-auto relative flex h-[56px] items-center justify-between backdrop-blur-sm rounded-2xl ${
+          scrolled
+            ? "mt-3 w-[calc(100%-2rem)] max-w-[1020px] border border-[var(--color-border)] bg-[var(--color-carbon)]/75 shadow-xl px-6"
+            : "mt-3 w-full max-w-[1280px] border border-transparent bg-transparent shadow-none px-[var(--spacing-24)]"
+        }`}
+      >
+        <div className="mx-auto flex h-full w-full max-w-[1280px] items-center justify-between">
+          {/* Left: Brand Logo */}
+          <a href="#home" className="flex items-center gap-[var(--spacing-8)]">
+            <img
+              src={logo}
+              alt="NoiA logo"
+              className="h-[38px] w-[38px] object-contain transition-transform hover:scale-105"
+            />
+            <span className="font-[family-name:var(--font-display)] text-[var(--text-body)] font-medium text-[var(--color-text-primary)]">
+              NoiA
+            </span>
           </a>
+
+          {/* Right Group: Nav Links + Contact CTA + Theme Toggle */}
+          <div className="flex items-center gap-[var(--spacing-24)]">
+            {/* Clustered Desktop Links */}
+            <div className="hidden items-center gap-[var(--spacing-24)] md:flex">
+              {links.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="font-[var(--font-body)] text-[var(--text-body-sm)] font-medium text-[var(--color-text-body)] transition-colors hover:text-[var(--color-cyan)]"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+
+            {/* Contact CTA */}
+            <a
+              href="#contact"
+              style={{ backgroundColor: "var(--color-cyan)", color: "var(--color-void)" }}
+              className="hidden rounded-[var(--radius-pills)] px-[var(--spacing-16)] py-[var(--spacing-8)] font-[var(--font-body)] text-[var(--text-body-sm)] font-medium transition-opacity hover:opacity-90 md:block"
+            >
+              Contact
+            </a>
+
+            {/* Controls */}
+            <div className="flex items-center gap-[var(--spacing-16)]">
+              {/* Theme toggle */}
+              <button
+                onClick={toggleTheme}
+                aria-label="Toggle theme"
+                className="flex h-[36px] w-[36px] items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-carbon)] text-[var(--color-text-body)] transition-colors hover:border-[var(--color-cyan)] hover:text-[var(--color-cyan)]"
+              >
+                {theme === "dark" ? <SunIcon width={18} height={18} /> : <MoonIcon width={18} height={18} />}
+              </button>
+
+              {/* Mobile menu toggle */}
+              <button
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="text-[var(--color-text-primary)] md:hidden"
+                aria-label="Toggle menu"
+              >
+                {menuOpen ? "✕" : "☰"}
+              </button>
+            </div>
+          </div>
         </div>
-      )}
-    </nav>
+
+        {/* Mobile menu dropdown */}
+        {menuOpen && (
+          <div className="absolute top-full left-0 right-0 mt-2 flex flex-col gap-[var(--spacing-16)] rounded-2xl border border-[var(--color-border)] bg-[var(--color-carbon)] px-[var(--spacing-24)] py-[var(--spacing-16)] shadow-xl md:hidden">
+            {links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="font-[var(--font-body)] text-[var(--text-body)] text-[var(--color-text-body)]"
+              >
+                {link.label}
+              </a>
+            ))}
+            <a
+              href="#contact"
+              onClick={() => setMenuOpen(false)}
+              style={{ backgroundColor: "var(--color-cyan)", color: "var(--color-void)" }}
+              className="rounded-[var(--radius-pills)] px-[var(--spacing-16)] py-[var(--spacing-8)] text-center font-[var(--font-body)] text-[var(--text-body-sm)] font-medium"
+            >
+              Contact
+            </a>
+          </div>
+        )}
+      </nav>
+    </header>
   );
 }
