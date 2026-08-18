@@ -1,21 +1,27 @@
 import { useEffect, useState } from "react";
 
-type Theme = "dark" | "light";
+export type ThemeMode = "system" | "light" | "dark";
 
 export function useTheme() {
-  const [theme, setTheme] = useState<Theme>(() => {
+  const [mode, setMode] = useState<ThemeMode>(() => {
     const stored = localStorage.getItem("theme");
-    return stored === "light" ? "light" : "dark";
+    return stored === "light" || stored === "dark" || stored === "system"
+      ? stored
+      : "system";
   });
 
   useEffect(() => {
-    document.documentElement.classList.toggle("light", theme === "light");
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+    let isLight = false;
 
-  function toggleTheme() {
-    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
-  }
+    if (mode === "system") {
+      isLight = !window.matchMedia("(prefers-color-scheme: dark)").matches;
+    } else {
+      isLight = mode === "light";
+    }
 
-  return { theme, toggleTheme };
+    document.documentElement.classList.toggle("light", isLight);
+    localStorage.setItem("theme", mode);
+  }, [mode]);
+
+  return { mode, setMode };
 }

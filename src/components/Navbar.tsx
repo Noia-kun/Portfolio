@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import logo from "../assets/logo.png";
-import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
-import { useTheme } from "../hooks/useTheme";
+import {
+  SunIcon,
+  MoonIcon,
+  ComputerDesktopIcon,
+} from "@heroicons/react/24/outline";
+import { useTheme, type ThemeMode } from "../hooks/useTheme";
 
 const links = [
   { label: "Home", href: "#home" },
@@ -14,7 +18,7 @@ const links = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
+  const { mode, setMode } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -77,14 +81,51 @@ export default function Navbar() {
 
             {/* Controls */}
             <div className="flex items-center gap-[var(--spacing-16)]">
-              {/* Theme toggle */}
-              <button
-                onClick={toggleTheme}
-                aria-label="Toggle theme"
-                className="flex h-[36px] w-[36px] items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-carbon)] text-[var(--color-text-body)] transition-colors hover:border-[var(--color-cyan)] hover:text-[var(--color-cyan)]"
+              {/* 3-Segment Theme Control */}
+              <div
+                role="radiogroup"
+                aria-label="Theme mode"
+                className="relative flex items-center p-1 rounded-full border border-[var(--color-border)] bg-[var(--color-carbon)]/50 backdrop-blur-sm"
               >
-                {theme === "dark" ? <SunIcon width={18} height={18} /> : <MoonIcon width={18} height={18} />}
-              </button>
+                {/* Sliding Active Indicator Pill */}
+                <div
+                  className="absolute top-1 bottom-1 h-[34px] w-[34px] rounded-full bg-[var(--color-carbon)] border border-[var(--color-border)] shadow-sm transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]"
+                  style={{
+                    transform:
+                      mode === "system"
+                        ? "translateX(0px)"
+                        : mode === "light"
+                        ? "translateX(34px)"
+                        : "translateX(68px)",
+                  }}
+                />
+
+                {(
+                  [
+                    { id: "system", icon: ComputerDesktopIcon, label: "System theme" },
+                    { id: "light", icon: SunIcon, label: "Light theme" },
+                    { id: "dark", icon: MoonIcon, label: "Dark theme" },
+                  ] as const
+                ).map(({ id, icon: Icon, label }) => {
+                  const isActive = mode === id;
+                  return (
+                    <button
+                      key={id}
+                      onClick={() => setMode(id as ThemeMode)}
+                      aria-label={label}
+                      aria-checked={isActive}
+                      role="radio"
+                      className={`relative z-10 flex h-[34px] w-[34px] items-center justify-center rounded-full transition-colors duration-200 ${
+                        isActive
+                          ? "text-[var(--color-text-primary)]"
+                          : "text-[var(--color-text-body)] hover:text-[var(--color-text-primary)]"
+                      }`}
+                    >
+                      <Icon className="h-5 w-5" />
+                    </button>
+                  );
+                })}
+              </div>
 
               {/* Mobile menu toggle */}
               <button
