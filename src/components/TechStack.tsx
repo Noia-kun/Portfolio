@@ -3,7 +3,6 @@ import { techRowOne, techRowTwo } from "../data/techStack";
 import type { TechStackItem } from "../types";
 import RevealOnScroll from "./RevealOnScroll";
 
-
 type TechIcon = React.ForwardRefExoticComponent<
   React.SVGProps<SVGSVGElement> & { variant?: string }
 >;
@@ -146,27 +145,35 @@ function Pill({ item }: { item: TechStackItem }) {
 
   const isJetbrainsOrIntellij =
     item.icon === "IntellijIdea" || item.icon === "Jetbrains";
-    
+
   return (
     <span
       title={item.name}
-      className="flex h-[88px] w-[88px] shrink-0 items-center justify-center"
+      className="group/pill flex h-[88px] w-[88px] shrink-0 items-center justify-center rounded-2xl transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-[var(--color-carbon)] hover:shadow-[0_0_12px_var(--color-cyan-glow)]"
     >
       {Icon && variants && (
         <>
-          <Icon variant={variants.dark} width={44} height={44} className="tech-stack-icon--dark" />
-          <Icon variant={variants.light} width={44} height={44} className="tech-stack-icon--light" />
+          <Icon
+            variant={variants.dark}
+            width={44}
+            height={44}
+            className="tech-stack-icon--dark transition-transform duration-200 group-hover/pill:scale-[1.02]"
+          />
+          <Icon
+            variant={variants.light}
+            width={44}
+            height={44}
+            className="tech-stack-icon--light transition-transform duration-200 group-hover/pill:scale-[1.02]"
+          />
         </>
       )}
       {Icon && !variants && (
         <Icon
           width={44}
           height={44}
-          className={
-            isJetbrainsOrIntellij
-              ? "text-black"
-              : undefined
-          }
+          className={`transition-transform duration-200 group-hover/pill:scale-[1.02] ${
+            isJetbrainsOrIntellij ? "text-black" : ""
+          }`}
         />
       )}
     </span>
@@ -184,7 +191,7 @@ function MarqueeRow({
     direction === "left" ? "animate-marquee-left" : "animate-marquee-right";
 
   return (
-    <div className="marquee-viewport overflow-hidden">
+    <div className="marquee-viewport overflow-hidden py-2">
       <div className={`flex w-max gap-[var(--spacing-64)] ${animClass}`}>
         {[...items, ...items, ...items, ...items].map((item, i) => (
           <Pill key={`${item.name}-${i}`} item={item} />
@@ -196,10 +203,24 @@ function MarqueeRow({
 
 export default function TechStack() {
   return (
-    <section id="techstack" className="flex flex-col justify-center py-[var(--spacing-96)]">
+    <section id="techstack" className="relative overflow-hidden flex flex-col justify-center py-[var(--spacing-96)]">
+      {/* Static Grid + Noise Background Layer */}
+      <div className="tech-stack-bg pointer-events-none absolute inset-0 -z-10" />
+
       <RevealOnScroll>
-        <h2 className="mb-[var(--spacing-40)] text-center font-[family-name:var(--font-display)] text-[36px] sm:text-[48px] md:text-[56px] font-bold text-[var(--color-text-primary)]">Arsenal - Tech Stack</h2>
+        <div className="flex flex-col items-center mb-[var(--spacing-40)]">
+          <p className="font-[family-name:var(--font-mono)] text-[var(--text-caption)] uppercase tracking-[0.2em] text-[var(--color-cyan)] font-semibold mb-2">
+            TOOLS & TECHNOLOGIES
+          </p>
+          <h2 className="text-center font-[family-name:var(--font-display)] text-[36px] sm:text-[48px] md:text-[56px] font-bold text-[var(--color-text-primary)]">
+            The Arsenal
+          </h2>
+          <p className="max-w-xl mx-auto text-center font-[family-name:var(--font-mono)] text-[var(--text-body-sm)] sm:text-[var(--text-body)] text-[var(--color-text-body)] leading-relaxed">
+            From design to development, these are the instruments that empower my creative journey.
+          </p>
+        </div>
       </RevealOnScroll>
+
       <RevealOnScroll>
         <div className="flex flex-col gap-[var(--spacing-16)]">
           <MarqueeRow items={techRowOne} direction="left" />
