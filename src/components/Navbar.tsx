@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import logo from "../assets/logo.png";
 import {
   SunIcon,
@@ -8,17 +8,52 @@ import {
 import { useTheme, type ThemeMode } from "../hooks/useTheme";
 
 const links = [
-  { label: "Home", href: "#home" },
-  { label: "Tech Stack", href: "#techstack" },
-  { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Education", href: "#education" },
+  { id: "home", label: "Home", href: "#home" },
+  { id: "techstack", label: "Tech Stack", href: "#techstack" },
+  { id: "experience", label: "Experience", href: "#experience" },
+  { id: "projects", label: "Projects", href: "#projects" },
+  { id: "education", label: "Education", href: "#education" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { mode, setMode } = useTheme();
+
+  // Hover-only tracking
+  const [hoveredLinkId, setHoveredLinkId] = useState<string | null>(null);
+
+  // References for measurements
+  const navLinksRef = useRef<HTMLDivElement>(null);
+  const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
+
+  const [indicatorStyle, setIndicatorStyle] = useState({
+    width: 0,
+    height: 0,
+    left: 0,
+    top: 0,
+    opacity: 0,
+  });
+
+  // Calculate pill position relative to container
+  useEffect(() => {
+    if (!hoveredLinkId) {
+      setIndicatorStyle((prev) => ({ ...prev, opacity: 0 }));
+      return;
+    }
+
+    const targetEl = linkRefs.current[hoveredLinkId];
+
+    if (targetEl) {
+      setIndicatorStyle({
+        width: targetEl.offsetWidth,
+        height: targetEl.offsetHeight,
+        left: targetEl.offsetLeft,
+        top: targetEl.offsetTop,
+        opacity: 1,
+      });
+    }
+  }, [hoveredLinkId]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,12 +93,31 @@ export default function Navbar() {
           {/* Right Group: Nav Links + Contact CTA + Theme Toggle */}
           <div className="flex items-center gap-[var(--spacing-24)]">
             {/* Clustered Desktop Links */}
-            <div className="hidden items-center gap-[var(--spacing-24)] md:flex">
+            <div
+              ref={navLinksRef}
+              onMouseLeave={() => setHoveredLinkId(null)}
+              className="relative hidden items-center gap-[var(--spacing-24)] md:flex"
+            >
+              {/* Hover-Only Animated Indicator Pill */}
+              <div
+                className="absolute rounded-full bg-[var(--color-carbon)] border border-[var(--color-border)] shadow-sm pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]"
+                style={{
+                  width: `${indicatorStyle.width}px`,
+                  height: `${indicatorStyle.height}px`,
+                  transform: `translate(${indicatorStyle.left}px, ${indicatorStyle.top}px)`,
+                  opacity: indicatorStyle.opacity,
+                }}
+              />
+
               {links.map((link) => (
                 <a
-                  key={link.href}
+                  key={link.id}
                   href={link.href}
-                  className="font-[var(--font-body)] text-[var(--text-body-sm)] font-medium text-[var(--color-text-body)] transition-colors hover:text-[var(--color-cyan)]"
+                  ref={(el) => {
+                    linkRefs.current[link.id] = el;
+                  }}
+                  onMouseEnter={() => setHoveredLinkId(link.id)}
+                  className="relative z-10 px-3 py-1.5 font-[var(--font-body)] text-[var(--text-body-sm)] font-medium text-[var(--color-text-body)] transition-colors duration-200 hover:text-[var(--color-cyan)]"
                 >
                   {link.label}
                 </a>
@@ -73,7 +127,10 @@ export default function Navbar() {
             {/* Contact CTA */}
             <a
               href="#contact"
-              style={{ backgroundColor: "var(--color-cyan)", color: "var(--color-void)" }}
+              style={{
+                backgroundColor: "var(--color-cyan)",
+                color: "var(--color-void)",
+              }}
               className="hidden rounded-[var(--radius-pills)] px-[var(--spacing-16)] py-[var(--spacing-8)] font-[var(--font-body)] text-[var(--text-body-sm)] font-medium transition-opacity hover:opacity-90 md:block"
             >
               Contact
@@ -144,7 +201,7 @@ export default function Navbar() {
           <div className="absolute top-full left-0 right-0 mt-2 flex flex-col gap-[var(--spacing-16)] rounded-2xl border border-[var(--color-border)] bg-[var(--color-carbon)] px-[var(--spacing-24)] py-[var(--spacing-16)] shadow-xl md:hidden">
             {links.map((link) => (
               <a
-                key={link.href}
+                key={link.id}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
                 className="font-[var(--font-body)] text-[var(--text-body)] text-[var(--color-text-body)]"
@@ -155,7 +212,10 @@ export default function Navbar() {
             <a
               href="#contact"
               onClick={() => setMenuOpen(false)}
-              style={{ backgroundColor: "var(--color-cyan)", color: "var(--color-void)" }}
+              style={{
+                backgroundColor: "var(--color-cyan)",
+                color: "var(--color-void)",
+              }}
               className="rounded-[var(--radius-pills)] px-[var(--spacing-16)] py-[var(--spacing-8)] text-center font-[var(--font-body)] text-[var(--text-body-sm)] font-medium"
             >
               Contact
