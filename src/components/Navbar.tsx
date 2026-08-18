@@ -96,7 +96,7 @@ export default function Navbar() {
             <div
               ref={navLinksRef}
               onMouseLeave={() => setHoveredLinkId(null)}
-              className="relative hidden items-center gap-[var(--spacing-24)] md:flex"
+              className="relative hidden items-center gap-[var(--spacing-24)] lg:flex"
             >
               {/* Hover-Only Animated Indicator Pill */}
               <div
@@ -131,7 +131,7 @@ export default function Navbar() {
                 backgroundColor: "var(--color-cyan)",
                 color: "var(--color-void)",
               }}
-              className="hidden rounded-[var(--radius-pills)] px-[var(--spacing-16)] py-[var(--spacing-8)] font-[var(--font-body)] text-[var(--text-body-sm)] font-medium transition-opacity hover:opacity-90 md:block"
+              className="hidden rounded-[var(--radius-pills)] px-[var(--spacing-16)] py-[var(--spacing-8)] font-[var(--font-body)] text-[var(--text-body-sm)] font-medium transition-opacity hover:opacity-90 lg:block"
             >
               Contact
             </a>
@@ -184,10 +184,10 @@ export default function Navbar() {
                 })}
               </div>
 
-              {/* Mobile menu toggle */}
+              {/* Mobile/Tablet menu toggle button */}
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
-                className="text-[var(--color-text-primary)] md:hidden"
+                className="text-[var(--color-text-primary)] lg:hidden"
                 aria-label="Toggle menu"
               >
                 {menuOpen ? "✕" : "☰"}
@@ -196,9 +196,9 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile menu dropdown */}
+        {/* Mobile & Tablet menu dropdown */}
         {menuOpen && (
-          <div className="absolute top-full left-0 right-0 mt-2 flex flex-col gap-[var(--spacing-16)] rounded-2xl border border-[var(--color-border)] bg-[var(--color-carbon)] px-[var(--spacing-24)] py-[var(--spacing-16)] shadow-xl md:hidden">
+          <div className="absolute top-full left-0 right-0 mt-2 flex flex-col gap-[var(--spacing-16)] rounded-2xl border border-[var(--color-border)] bg-[var(--color-carbon)] px-[var(--spacing-24)] py-[var(--spacing-16)] shadow-xl lg:hidden">
             {links.map((link) => (
               <a
                 key={link.id}
