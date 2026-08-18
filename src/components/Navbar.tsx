@@ -127,21 +127,21 @@ export default function Navbar() {
 
             {/* Contact CTA */}
             <a
-  href="#contact"
-  className="group relative hidden lg:inline-flex items-center justify-center overflow-hidden rounded-full border-[3px] border-[var(--color-cyan)] bg-gradient-to-r from-[var(--color-cyan)] to-teal-600 px-5 py-2 font-[var(--font-body)] text-[var(--text-body-sm)] font-bold text-slate-950 transition-all duration-300 active:scale-95 shadow-sm"
->
-  {/* Expanding Background Circle */}
-  <span className="absolute -top-3 -right-3 z-0 h-[45px] w-[45px] rounded-full bg-[var(--color-carbon)] transition-transform duration-700 ease-out scale-0 group-hover:scale-[10] pointer-events-none" />
+              href="#contact"
+              className="group relative hidden lg:inline-flex items-center justify-center overflow-hidden rounded-full border-[3px] border-[var(--color-cyan)] bg-gradient-to-r from-[var(--color-cyan)] to-[var(--color-cyan-dark)] px-5 py-2 font-[var(--font-body)] text-[var(--text-body-sm)] font-bold text-[#0a1414] transition-all duration-300 active:scale-95 shadow-sm"
+            >
+              {/* Expanding Background Circle */}
+              <span className="absolute -top-3 -right-3 z-0 h-[45px] w-[45px] rounded-full bg-[var(--color-carbon)] transition-transform duration-700 ease-out scale-0 group-hover:scale-[10] pointer-events-none" />
 
-  {/* Button Content */}
-  <span className="relative z-10 flex items-center gap-2 transition-colors duration-300 group-hover:text-[var(--color-text-primary)]">
-    <span className="leading-none">Contact</span>
-    <ArrowRightIcon 
-      className="h-5 w-5 shrink-0 transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1.5" 
-      strokeWidth={2.5}
-    />
-  </span>
-</a>
+              {/* Button Content */}
+              <span className="relative z-10 flex items-center gap-2 transition-colors duration-300 group-hover:text-[var(--color-text-primary)]">
+                <span className="leading-none">Contact</span>
+                <ArrowRightIcon 
+                  className="h-5 w-5 shrink-0 transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1.5" 
+                  strokeWidth={2.5}
+                />
+              </span>
+            </a>
 
             {/* Controls */}
             <div className="flex items-center gap-[var(--spacing-16)]">
