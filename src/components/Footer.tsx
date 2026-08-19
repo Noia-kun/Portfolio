@@ -18,14 +18,14 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-cyan)]">
+            className="text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-cyan-ink)]">
             <Github variant="mono" width={20} height={20} />
           </a>
           <a href={contactInfo.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
-            className="text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-cyan)]">
+            className="text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-cyan-ink)]">
             <Linkedin width={20} height={20} />
           </a>
         </div>

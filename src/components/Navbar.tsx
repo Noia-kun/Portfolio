@@ -118,7 +118,7 @@ export default function Navbar() {
                     linkRefs.current[link.id] = el;
                   }}
                   onMouseEnter={() => setHoveredLinkId(link.id)}
-                  className="relative z-10 px-3 py-1.5 font-[var(--font-body)] text-[var(--text-body-sm)] font-medium text-[var(--color-text-body)] transition-colors duration-200 hover:text-[var(--color-cyan)]"
+                  className="relative z-10 px-3 py-1.5 font-[var(--font-body)] text-[var(--text-body-sm)] font-medium text-[var(--color-text-body)] transition-colors duration-200 hover:text-[var(--color-cyan-ink)]"
                 >
                   {link.label}
                 </a>

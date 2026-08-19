@@ -42,7 +42,7 @@ export default function Education() {
             </span>
             <span
               className="rounded-[var(--radius-pills)] px-[var(--spacing-12)] py-[var(--spacing-4)] font-[var(--font-mono)] text-[var(--text-caption)] font-medium"
-              style={{ backgroundColor: "var(--color-cyan-glow)", color: "var(--color-cyan)" }}>
+              style={{ backgroundColor: "var(--color-cyan-glow)", color: "var(--color-cyan-ink)" }}>
               Dean's Lister
             </span>
           </div>

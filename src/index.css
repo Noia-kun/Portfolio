@@ -5,6 +5,7 @@
   --color-ground: #0f1c1c;
   --color-carbon: #16292a;
   --color-border: #1f3a3c;
+  --color-cyan-ink: var(--color-cyan);
 
   /* Text */
   --color-text-primary: #eafdfd;
@@ -57,11 +58,13 @@
 }
 
 .light {
-  --color-void: #F2F3F4; /* Was #f4fafa */
+  /* Surfaces (Light Theme) */
+  --color-void: #F2F3F4;
   --color-ground: #E3ECEC;
   --color-carbon: #D2E4E4;
   --color-border: #B8D3D3;
-
+  --color-cyan-ink: var(--color-cyan-dark);
+  /* Text */
   --color-text-primary: #0c2a2b;
   --color-text-body: #3c5c5d;
   --color-text-muted: #6d8a8b;

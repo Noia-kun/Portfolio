@@ -50,14 +50,14 @@ export default function Hero() {
         <div className="mt-[var(--spacing-32)] flex flex-wrap items-center justify-center gap-[var(--spacing-16)] md:justify-start">
           <a
             href="#projects"
-            style={{ backgroundColor: "var(--color-cyan)", color: "var(--color-void)" }}
+            style={{ backgroundColor: "var(--color-cyan-ink)", color: "var(--color-void)" }}
             className="rounded-[var(--radius-pills)] px-[var(--spacing-24)] py-[var(--spacing-12)] font-[var(--font-body)] text-[var(--text-body)] font-medium transition-transform hover:scale-105 active:scale-95"
           >
             View Projects
           </a>
           <a
             href="#contact"
-            className="font-[var(--font-body)] text-[var(--text-body)] font-medium text-[var(--color-text-primary)] transition-colors hover:text-[var(--color-cyan)]"
+            className="font-[var(--font-body)] text-[var(--text-body)] font-medium text-[var(--color-text-primary)] transition-colors hover:text-[var(--color-cyan-ink)]"
           >
             Contact Me →
           </a>

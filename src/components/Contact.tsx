@@ -139,7 +139,7 @@ export default function Contact() {
         </button>
 
         {status === "success" && (
-          <p className="text-[var(--text-body-sm)]" style={{ color: "var(--color-cyan)" }}>
+          <p className="text-[var(--text-body-sm)]" style={{ color: "var(--color-cyan-ink)" }}>
             Message sent — thanks for reaching out!
           </p>
         )}

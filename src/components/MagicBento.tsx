@@ -465,7 +465,7 @@ export default function MagicBento({
                   <p className="magic-bento-card__description">{project.description}</p>
                   <div className="magic-bento-card__links">
                     {project.liveUrl && (
-                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" style={{ color: `rgb(${glowColor})` }}>
+                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" style={{ color: "var(--color-cyan-ink)" }}>
                         Live →
                       </a>
                     )}

@@ -209,7 +209,7 @@ export default function TechStack() {
 
       <RevealOnScroll>
         <div className="flex flex-col items-center mb-[var(--spacing-40)]">
-          <p className="font-[family-name:var(--font-mono)] text-[var(--text-caption)] uppercase tracking-[0.2em] text-[var(--color-cyan)] font-semibold mb-2">
+          <p className="font-[family-name:var(--font-mono)] text-[var(--text-caption)] uppercase tracking-[0.2em] text-[var(--color-cyan-ink)] font-semibold mb-2">
             TOOLS & TECHNOLOGIES
           </p>
           <h2 className="text-center font-[family-name:var(--font-display)] text-[36px] sm:text-[48px] md:text-[56px] font-bold text-[var(--color-text-primary)]">
