@@ -57,10 +57,10 @@
 }
 
 .light {
-  --color-void: #f8fbf8; /* Was #f4fafa */
-  --color-ground: #eaf5f5;
-  --color-carbon: #dcecec;
-  --color-border: #c3dcdc;
+  --color-void: #F2F3F4; /* Was #f4fafa */
+  --color-ground: #E3ECEC;
+  --color-carbon: #D2E4E4;
+  --color-border: #B8D3D3;
 
   --color-text-primary: #0c2a2b;
   --color-text-body: #3c5c5d;
