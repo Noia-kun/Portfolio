@@ -4,6 +4,7 @@ import TechStack from './components/TechStack'
 import WorkExperience from './components/WorkExperience'
 import Projects from './components/Projects'
 import Education from './components/Education'
+import GitHubActivity from "./components/GitHubActivity";
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import { useLenis } from "./hooks/useLenis";
@@ -20,6 +21,7 @@ function App() {
         <WorkExperience />
         <Projects />
         <Education />
+        <GitHubActivity />
         <Contact />
         <Footer />
       </div>
