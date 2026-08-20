@@ -74,7 +74,8 @@ export default function Contact() {
         serviceId,
         templateId,
         {
-          from_name: formData.user_name,
+          name: formData.user_name,
+          email: formData.user_email,
           reply_to: formData.user_email,
           message: formData.message,
           "g-recaptcha-response": captchaToken,
