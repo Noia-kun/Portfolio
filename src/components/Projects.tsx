@@ -1,9 +1,31 @@
 import MagicBento from "./MagicBento";
 import ScreenshotShowcase from "./ScreenshotShowcase";
+import ShapeGrid from "./ShapeGrid";
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-[var(--spacing-80)]">
+    <section id="projects" className="relative overflow-hidden py-[var(--spacing-80)]">
+      {/* Background Grid */}
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 opacity-35"
+        style={{
+          WebkitMaskImage:
+            "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 4%, black 12%, black 88%, rgba(0,0,0,0.5) 96%, transparent 100%)",
+          maskImage:
+            "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 4%, black 12%, black 88%, rgba(0,0,0,0.5) 96%, transparent 100%)",
+        }}
+      >
+        <ShapeGrid
+          shape="square"
+          direction="diagonal"
+          speed={0.3}
+          squareSize={50}
+          borderColor="var(--color-border)"
+          hoverFillColor="var(--color-cyan-glow)"
+          voidColor="transparent"
+        />
+      </div>
+
       <div className="mx-auto flex max-w-[1000px] flex-col justify-center px-[var(--spacing-24)]">
         {/* Section Header Block */}
         <div className="flex flex-col items-center text-center mb-[var(--spacing-40)]">
@@ -31,7 +53,10 @@ export default function Projects() {
         />
       </div>
 
-      <ScreenshotShowcase />
+      {/* Added top margin space between Bento and Marquee */}
+      <div className="mt-[var(--spacing-40)] md:mt-[var(--spacing-64)]">
+        <ScreenshotShowcase />
+      </div>
 
       <div className="mt-[var(--spacing-24)] text-center">
         <a
