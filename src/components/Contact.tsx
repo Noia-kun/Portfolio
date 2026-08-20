@@ -1,10 +1,19 @@
 import React, { useState, useRef } from "react";
+import { contactInfo } from "../data/contact"; // Adjust relative path if contact.ts is located elsewhere
 import emailjs from "@emailjs/browser";
 import ReCAPTCHA from "react-google-recaptcha";
 import RevealOnScroll from "./RevealOnScroll";
-import { EnvelopeIcon, PhoneIcon, PaperAirplaneIcon, ChatBubbleLeftIcon } from "@heroicons/react/24/outline";
+import ElectricBorder from "./ElectricBorder";
+import {
+  EnvelopeIcon,
+  PhoneIcon,
+  MapPinIcon,
+  PaperAirplaneIcon,
+} from "@heroicons/react/24/outline";
 import Github from "@thesvg/react/github";
 import Linkedin from "@thesvg/react/linkedin";
+import Viber from "@thesvg/react/viber";
+import Whatsapp from "@thesvg/react/whatsapp";
 
 const THROTTLE_KEY = "contact_form_last_sent";
 const COOLDOWN_TIME = 60 * 1000; // 60 seconds throttle
@@ -65,7 +74,6 @@ export default function Contact() {
     setStatus({ type: null, msg: "" });
 
     try {
-      // EmailJS configuration variables
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || "";
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "";
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "";
@@ -83,7 +91,6 @@ export default function Contact() {
         publicKey
       );
 
-      // Save timestamp on successful send
       localStorage.setItem(THROTTLE_KEY, Date.now().toString());
 
       setStatus({
@@ -91,7 +98,6 @@ export default function Contact() {
         msg: "Thank you! Your message has been sent successfully.",
       });
 
-      // Clear form
       setFormData({ user_name: "", user_email: "", message: "" });
       if (recaptchaRef.current) {
         recaptchaRef.current.reset();
@@ -129,130 +135,134 @@ export default function Contact() {
         </div>
 
         {/* Two Column Layout Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          
-          {/* LEFT COLUMN: Contact Info & Direct Links */}
-          <div className="lg:col-span-5 flex flex-col justify-between space-y-8 h-full bg-[var(--color-carbon)] p-6 sm:p-8 rounded-[20px] border border-[var(--color-border)] shadow-sm">
-            <div>
-              <h3 className="font-[family-name:var(--font-display)] text-[22px] font-bold text-[var(--color-text-primary)] mb-3">
-                Let's talk business
-              </h3>
-              <p className="font-[family-name:var(--font-mono)] text-[var(--text-body-sm)] text-[var(--color-text-body)] leading-relaxed mb-8">
-                I'm open to freelance opportunities, full-time engineering roles, and technical collaborations.
-              </p>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+          {/* LEFT COLUMN: Contact Info inside Animated Electric Border */}
+          <ElectricBorder
+            color="#06b6d4"
+            borderRadius={20}
+            className="lg:col-span-5 h-full p-2"
+          >
+            <div className="flex flex-col justify-between space-y-8 h-full bg-[var(--color-carbon)] p-7 sm:p-9 rounded-[16px] border border-[var(--color-border)] shadow-sm">
+              <div>
+                <h3 className="font-[family-name:var(--font-display)] text-[22px] font-bold text-[var(--color-text-primary)] mb-3">
+                  Let's talk business
+                </h3>
+                <p className="font-[family-name:var(--font-mono)] text-[var(--text-body-sm)] text-[var(--color-text-body)] leading-relaxed mb-8">
+                  I'm open to freelance opportunities, full-time engineering
+                  roles, and technical collaborations.
+                </p>
 
-              {/* Direct Links List */}
-              <div className="space-y-4">
-                {/* Email */}
-                <a
-                  href="mailto:richwellerod@gmail.com"
-                  className="flex items-center gap-4 group p-2 -ml-2 rounded-lg transition-colors hover:bg-[var(--color-void)]/40"
-                >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-carbon)] text-[var(--color-text-primary)] transition-all group-hover:border-[var(--color-cyan-ink)] group-hover:text-[var(--color-cyan-ink)] group-hover:shadow-[0_0_12px_var(--color-cyan-glow)]">
-                    <EnvelopeIcon className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-wider text-[var(--color-text-body)]">
-                      Email
-                    </p>
-                    <p className="font-[family-name:var(--font-mono)] text-sm text-[var(--color-text-primary)] group-hover:text-[var(--color-cyan-ink)] transition-colors">
-                      richwellerod@gmail.com
-                    </p>
-                  </div>
-                </a>
+                {/* Direct Links List */}
+                <div className="space-y-4">
+                  {/* Email */}
+                  <a
+                    href={`mailto:${contactInfo.email}`}
+                    className="flex items-center gap-4 group p-2 -ml-2 rounded-lg transition-colors hover:bg-[var(--color-void)]/40"
+                  >
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-carbon)] text-[var(--color-text-primary)] transition-all group-hover:border-[var(--color-cyan-ink)] group-hover:text-[var(--color-cyan-ink)] group-hover:shadow-[0_0_12px_var(--color-cyan-glow)]">
+                      <EnvelopeIcon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-wider text-[var(--color-text-body)]">
+                        Email
+                      </p>
+                      <p className="font-[family-name:var(--font-mono)] text-sm text-[var(--color-text-primary)] group-hover:text-[var(--color-cyan-ink)] transition-colors">
+                        {contactInfo.email}
+                      </p>
+                    </div>
+                  </a>
 
-                {/* Phone */}
-                <a
-                  href="tel:+639278660076"
-                  className="flex items-center gap-4 group p-2 -ml-2 rounded-lg transition-colors hover:bg-[var(--color-void)]/40"
-                >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-carbon)] text-[var(--color-text-primary)] transition-all group-hover:border-[var(--color-cyan-ink)] group-hover:text-[var(--color-cyan-ink)] group-hover:shadow-[0_0_12px_var(--color-cyan-glow)]">
-                    <PhoneIcon className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-wider text-[var(--color-text-body)]">
-                      Phone / Mobile
-                    </p>
-                    <p className="font-[family-name:var(--font-mono)] text-sm text-[var(--color-text-primary)] group-hover:text-[var(--color-cyan-ink)] transition-colors">
-                      +63 927 866 0076
-                    </p>
-                  </div>
-                </a>
+                  {/* Phone */}
+                  <a
+                    href={`tel:${contactInfo.phone}`}
+                    className="flex items-center gap-4 group p-2 -ml-2 rounded-lg transition-colors hover:bg-[var(--color-void)]/40"
+                  >
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-carbon)] text-[var(--color-text-primary)] transition-all group-hover:border-[var(--color-cyan-ink)] group-hover:text-[var(--color-cyan-ink)] group-hover:shadow-[0_0_12px_var(--color-cyan-glow)]">
+                      <PhoneIcon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-wider text-[var(--color-text-body)]">
+                        Phone / Mobile
+                      </p>
+                      <p className="font-[family-name:var(--font-mono)] text-sm text-[var(--color-text-primary)] group-hover:text-[var(--color-cyan-ink)] transition-colors">
+                        {contactInfo.phone}
+                      </p>
+                    </div>
+                  </a>
 
-                {/* Viber */}
-                <a
-                  href="viber://chat?number=639278660076"
-                  className="flex items-center gap-4 group p-2 -ml-2 rounded-lg transition-colors hover:bg-[var(--color-void)]/40"
-                >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-carbon)] text-[var(--color-text-primary)] transition-all group-hover:border-[var(--color-cyan-ink)] group-hover:text-[var(--color-cyan-ink)] group-hover:shadow-[0_0_12px_var(--color-cyan-glow)]">
-                    <ChatBubbleLeftIcon className="h-5 w-5" />
+                  {/* Location */}
+                  <div className="flex items-center gap-4 p-2 -ml-2">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-carbon)] text-[var(--color-text-primary)]">
+                      <MapPinIcon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-wider text-[var(--color-text-body)]">
+                        Location
+                      </p>
+                      <p className="font-[family-name:var(--font-mono)] text-sm text-[var(--color-text-primary)]">
+                        Calamba, Laguna, Philippines
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-wider text-[var(--color-text-body)]">
-                      Viber
-                    </p>
-                    <p className="font-[family-name:var(--font-mono)] text-sm text-[var(--color-text-primary)] group-hover:text-[var(--color-cyan-ink)] transition-colors">
-                      Richwelle Rod Remetio
-                    </p>
-                  </div>
-                </a>
+                </div>
+              </div>
 
-                {/* WhatsApp */}
-                <a
-                  href="https://wa.me/639278660076"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-4 group p-2 -ml-2 rounded-lg transition-colors hover:bg-[var(--color-void)]/40"
-                >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-carbon)] text-[var(--color-text-primary)] transition-all group-hover:border-[var(--color-cyan-ink)] group-hover:text-[var(--color-cyan-ink)] group-hover:shadow-[0_0_12px_var(--color-cyan-glow)]">
-                    <ChatBubbleLeftIcon className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-wider text-[var(--color-text-body)]">
-                      WhatsApp
-                    </p>
-                    <p className="font-[family-name:var(--font-mono)] text-sm text-[var(--color-text-primary)] group-hover:text-[var(--color-cyan-ink)] transition-colors">
-                      Richwelle Remetio
-                    </p>
-                  </div>
-                </a>
+              {/* Social Badges Row */}
+              <div className="pt-6 border-t border-[var(--color-border)]">
+                <h3 className="font-[family-name:var(--font-display)] text-[22px] font-bold text-[var(--color-text-primary)] mb-4">
+                  Connect with Me
+                </h3>
+                <div className="flex items-center gap-3">
+                  {/* GitHub */}
+                  <a
+                    href={contactInfo.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub Profile"
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-carbon)] text-[var(--color-text-primary)] transition-all hover:border-[var(--color-cyan-ink)] hover:text-[var(--color-cyan-ink)] hover:shadow-[0_0_12px_var(--color-cyan-glow)]"
+                  >
+                    <Github variant="mono" className="h-5 w-5" />
+                  </a>
+
+                  {/* LinkedIn */}
+                  <a
+                    href={contactInfo.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn Profile"
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-carbon)] text-[var(--color-text-primary)] transition-all hover:border-[var(--color-cyan-ink)] hover:text-[var(--color-cyan-ink)] hover:shadow-[0_0_12px_var(--color-cyan-glow)]"
+                  >
+                    <Linkedin className="h-5 w-5" />
+                  </a>
+
+                  {/* Viber */}
+                  <a
+                    href={`viber://chat?number=${contactInfo.phone.replace(/[^0-9]/g, "")}`}
+                    aria-label="Viber Chat"
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-carbon)] text-[var(--color-text-primary)] transition-all hover:border-[var(--color-cyan-ink)] hover:text-[var(--color-cyan-ink)] hover:shadow-[0_0_12px_var(--color-cyan-glow)]"
+                  >
+                    <Viber className="h-5 w-5" />
+                  </a>
+
+                  {/* WhatsApp */}
+                  <a
+                    href={`https://wa.me/${contactInfo.phone.replace(/[^0-9]/g, "")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="WhatsApp Chat"
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-carbon)] text-[var(--color-text-primary)] transition-all hover:border-[var(--color-cyan-ink)] hover:text-[var(--color-cyan-ink)] hover:shadow-[0_0_12px_var(--color-cyan-glow)]"
+                  >
+                    <Whatsapp className="h-5 w-5" />
+                  </a>
+                </div>
               </div>
             </div>
+          </ElectricBorder>
 
-            {/* Social Badges Row */}
-            <div className="pt-6 border-t border-[var(--color-border)]">
-              <p className="font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-wider text-[var(--color-text-body)] mb-3">
-                Social Links
-              </p>
-              <div className="flex items-center gap-3">
-                <a
-                  href="https://github.com/Noia-kun"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="GitHub Profile"
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-carbon)] text-[var(--color-text-primary)] transition-all hover:border-[var(--color-cyan-ink)] hover:text-[var(--color-cyan-ink)] hover:shadow-[0_0_12px_var(--color-cyan-glow)]"
-                >
-                  <Github variant="mono" className="h-5 w-5" />
-                </a>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn Profile"
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-carbon)] text-[var(--color-text-primary)] transition-all hover:border-[var(--color-cyan-ink)] hover:text-[var(--color-cyan-ink)] hover:shadow-[0_0_12px_var(--color-cyan-glow)]"
-                >
-                  <Linkedin className="h-5 w-5" />
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* RIGHT COLUMN: Form with Uiverse.io Adapted Glow Effect */}
-          <div className="lg:col-span-7">
-            {/* Outer Gradient Container (uiverse form-card1 glow effect) */}
-            <div className="group/card rounded-[22px] bg-gradient-to-br from-[var(--color-cyan-ink)] via-[var(--color-cyan-subtle)] to-[var(--color-cyan-ink)] p-[2px] transition-all duration-300 hover:shadow-[0_0_30px_rgba(82,225,254,0.35)]">
-              {/* Inner Scaling Container (uiverse form-card2 scale effect) */}
-              <div className="rounded-[20px] bg-[var(--color-carbon)] p-6 sm:p-8 transition-transform duration-200 group-hover/card:scale-[0.995]">
+          {/* RIGHT COLUMN: Form with Uiverse.io Glow Effect */}
+          <div className="lg:col-span-7 h-full">
+            <div className="group/card rounded-[22px] bg-gradient-to-br from-[var(--color-cyan-ink)] via-[var(--color-cyan-subtle)] to-[var(--color-cyan-ink)] p-[2px] transition-all duration-300 hover:shadow-[0_0_30px_rgba(82,225,254,0.35)] h-full">
+              <div className="rounded-[20px] bg-[var(--color-carbon)] p-6 sm:p-8 transition-transform duration-200 group-hover/card:scale-[0.995] h-full flex flex-col justify-between">
                 <form
                   ref={formRef}
                   onSubmit={handleSubmit}
@@ -339,7 +349,6 @@ export default function Contact() {
               </div>
             </div>
           </div>
-
         </div>
       </RevealOnScroll>
     </section>
