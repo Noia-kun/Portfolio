@@ -262,11 +262,11 @@ export default function Contact() {
           {/* RIGHT COLUMN: Form with Uiverse.io Glow Effect */}
           <div className="lg:col-span-7 h-full">
             <div className="group/card rounded-[22px] bg-gradient-to-br from-[var(--color-cyan-ink)] via-[var(--color-cyan-subtle)] to-[var(--color-cyan-ink)] p-[2px] transition-all duration-300 hover:shadow-[0_0_30px_rgba(82,225,254,0.35)] h-full">
-              <div className="rounded-[20px] bg-[var(--color-carbon)] p-6 sm:p-8 transition-transform duration-200 group-hover/card:scale-[0.995] h-full flex flex-col justify-between">
+              <div className="rounded-[20px] bg-[var(--color-carbon)] p-6 sm:p-8 md:p-10 transition-transform duration-200 group-hover/card:scale-[0.995] h-full flex flex-col justify-between">
                 <form
                   ref={formRef}
                   onSubmit={handleSubmit}
-                  className="flex flex-col gap-5"
+                  className="flex flex-col gap-5 md:gap-6"
                 >
                   <p className="font-[family-name:var(--font-mono)] text-center text-[var(--color-cyan-ink)] font-semibold text-lg mb-1">
                     Get In Touch
@@ -311,14 +311,16 @@ export default function Contact() {
                     />
                   </div>
 
-                  {/* reCAPTCHA Widget */}
-                  <div className="flex justify-center my-1 overflow-x-auto">
-                    <ReCAPTCHA
-                      ref={recaptchaRef}
-                      sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY || ""}
-                      onChange={handleCaptchaChange}
-                      theme="dark"
-                    />
+                  {/* Responsive reCAPTCHA Widget */}
+                  <div className="flex justify-center my-1 w-full overflow-hidden">
+                    <div className="transform scale-[0.80] xs:scale-[0.88] sm:scale-100 origin-center transition-transform">
+                      <ReCAPTCHA
+                        ref={recaptchaRef}
+                        sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY || ""}
+                        onChange={handleCaptchaChange}
+                        theme="dark"
+                      />
+                    </div>
                   </div>
 
                   {/* Status Banner */}
