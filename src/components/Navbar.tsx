@@ -80,16 +80,16 @@ export default function Navbar() {
       >
         <div className="mx-auto flex h-full w-full max-w-[1280px] items-center justify-between">
           {/* Left: Brand Logo */}
-          <a href="#home" className="flex items-center gap-[var(--spacing-8)]">
-            <img
-              src={logo}
-              alt="NoiA logo"
-              className="h-[38px] w-[38px] object-contain transition-transform hover:scale-105"
-            />
-            <span className="font-[family-name:var(--font-display)] text-[var(--text-body)] font-medium text-[var(--color-text-primary)]">
-              NoiA
-            </span>
-          </a>
+          <a href="#home" className="flex items-center -ml-2 sm:-ml-3 group">
+  <img
+    src={logo}
+    alt="NoiA logo"
+    className="h-[52px] w-[52px] sm:h-[64px] sm:w-[64px] object-contain shrink-0 -mr-2 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:rotate-[30deg] group-hover:scale-105 active:rotate-0"
+  />
+  <span className="font-[family-name:var(--font-display)] text-[var(--text-body)] font-medium text-[var(--color-text-primary)]">
+    NoiA
+  </span>
+</a>
 
           {/* Right Group: Nav Links + Contact CTA + Theme Toggle */}
           <div className="flex items-center gap-[var(--spacing-24)]">
