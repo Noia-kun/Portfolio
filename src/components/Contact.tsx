@@ -313,7 +313,7 @@ export default function Contact() {
 
                   {/* Responsive reCAPTCHA Widget */}
                   <div className="flex justify-center my-1 w-full overflow-hidden">
-                    <div className="transform scale-[0.80] xs:scale-[0.88] sm:scale-100 origin-center transition-transform">
+                    <div className="transform scale-[0.85] sm:scale-100 origin-center transition-transform">
                       <ReCAPTCHA
                         ref={recaptchaRef}
                         sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY || ""}
