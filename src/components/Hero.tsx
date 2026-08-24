@@ -11,6 +11,7 @@ import { CodeBracketIcon } from "@heroicons/react/24/outline";
 import { contactInfo } from "../data/contact";
 import { OrbitingIcon } from "./OrbitingIcon";
 import WebThreads from "./WebThreads";
+import TrueFocus from './TrueFocus';
 
 const techStackCount = techRowOne.length + techRowTwo.length;
 
@@ -61,9 +62,19 @@ export default function Hero() {
           </h1>
 
           <div className="mt-[var(--spacing-16)] font-[var(--font-body)] text-[var(--text-body)] text-[var(--color-text-body)]">
-            <p>
-              Hi, I'm <span className="font-bold text-[var(--color-text-primary)]">NoiA</span>
-            </p>
+            <div className="flex items-center gap-1.5 flex-wrap">
+              <span>Hi, I'm</span>
+              <TrueFocus
+                sentence="RR but you can call me NoiA"
+                targetIndices={[0, 6]} // Index 0 is "RR", Index 6 is "NoiA"
+                blurAmount={3}
+                borderColor="var(--color-cyan)"
+                glowColor="var(--color-cyan-glow)"
+                animationDuration={0.6}
+                pauseBetweenAnimations={1.2}
+              />
+            </div>
+
             <p className="mt-[var(--spacing-4)]">
               Aspiring <span className="font-semibold text-[var(--color-text-primary)]">Front-End / Full-Stack Developer</span>
             </p>
