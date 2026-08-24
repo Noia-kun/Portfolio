@@ -18,10 +18,16 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative w-full overflow-hidden"
+      className="relative w-full"
     >
       {/* Background WebThreads Layer */}
-      <div className="absolute inset-0 pointer-events-none z-0">
+      <div 
+        className="absolute -top-[64px] inset-x-0 bottom-[-200px] pointer-events-none overflow-hidden z-0"
+        style={{
+          WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+          maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+        }}
+      >
         <WebThreads
           color1="var(--color-primary)"
           color2="var(--color-cyan)"
