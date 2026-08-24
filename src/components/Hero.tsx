@@ -12,6 +12,7 @@ import { contactInfo } from "../data/contact";
 import { OrbitingIcon } from "./OrbitingIcon";
 import WebThreads from "./WebThreads";
 import TrueFocus from './TrueFocus';
+import TextType from './TextType';
 
 const techStackCount = techRowOne.length + techRowTwo.length;
 
@@ -75,9 +76,21 @@ export default function Hero() {
               />
             </div>
 
-            <p className="mt-[var(--spacing-4)]">
-              Aspiring <span className="font-semibold text-[var(--color-text-primary)]">Front-End / Full-Stack Developer</span>
-            </p>
+            {/* Dynamic Role Line */}
+            <div className="mt-[var(--spacing-4)] flex items-center gap-0.5 flex-wrap">
+              <TextType
+                text={["PHP", "React", "Front-End", "Back-End", "Full Stack", "Software"]}
+                typingSpeed={70}
+                deletingSpeed={35}
+                pauseDuration={1800}
+                loop={true}
+                showCursor={true}
+                cursorCharacter="_"
+                cursorClassName="text-[var(--color-cyan)] font-bold ml-0"
+                className="font-semibold text-[var(--color-text-primary)] inline-block"
+              />
+              <span className="font-semibold text-[var(--color-text-primary)] ml-1">Developer</span>
+            </div>
           </div>
 
           <p className="mt-[var(--spacing-16)] font-[var(--font-body)] text-[var(--text-body)] leading-[1.6] text-[var(--color-text-body)]">
