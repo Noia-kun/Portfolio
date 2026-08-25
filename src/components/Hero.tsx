@@ -13,6 +13,7 @@ import { OrbitingIcon } from "./OrbitingIcon";
 import WebThreads from "./WebThreads";
 import TrueFocus from './TrueFocus';
 import TextType from './TextType';
+import { ArrowRightIcon } from "@heroicons/react/24/solid";
 
 const techStackCount = techRowOne.length + techRowTwo.length;
 
@@ -103,10 +104,21 @@ export default function Hero() {
           <div className="mt-[var(--spacing-32)] flex flex-wrap items-center justify-center gap-[var(--spacing-16)] md:justify-start">
             <a
               href="#projects"
-              style={{ backgroundColor: "var(--color-cyan-ink)", color: "var(--color-void)" }}
-              className="rounded-[var(--radius-pills)] px-[var(--spacing-24)] py-[var(--spacing-12)] font-[var(--font-body)] text-[var(--text-body)] font-medium transition-transform hover:scale-105 active:scale-95"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-[100px] border-2 border-transparent bg-inherit px-6 py-2.5 font-[var(--font-body)] text-[15px] font-semibold text-[var(--color-cyan-ink)] shadow-[0_0_0_2px_var(--color-cyan-ink)] transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] hover:rounded-[12px] hover:shadow-[0_0_0_12px_transparent] active:scale-95 active:shadow-[0_0_0_4px_var(--color-cyan-ink)]"
             >
-              View Projects
+              {/* Left Arrow (arr-2): enters from off-screen left (-left-10) to left-3.5 */}
+              <ArrowRightIcon className="pointer-events-none absolute -left-10 z-10 h-5 w-5 text-[var(--color-cyan-ink)] transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:left-3.5 group-hover:text-[var(--color-void)]" />
+
+              {/* Button Text: inline-block enables transform to shift right (+translate-x-5) */}
+              <span className="relative z-10 inline-block transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-5 group-hover:text-[var(--color-void)]">
+                View Projects
+              </span>
+
+              {/* Expanding Center Circle Fill */}
+              <span aria-hidden="true" className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-cyan-ink)] opacity-0 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:h-[220px] group-hover:w-[220px] group-hover:opacity-100" />
+
+              {/* Right Arrow (arr-1): slides off-screen right (+translate-x-10) */}
+              <ArrowRightIcon className="relative z-10 h-5 w-5 text-[var(--color-cyan-ink)] transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-10 group-hover:opacity-0 group-hover:text-[var(--color-void)]" />
             </a>
             <a
               href="#contact"
