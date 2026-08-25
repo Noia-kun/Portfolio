@@ -110,9 +110,19 @@ export default function Hero() {
             </a>
             <a
               href="#contact"
-              className="font-[var(--font-body)] text-[var(--text-body)] font-medium text-[var(--color-text-primary)] transition-colors hover:text-[var(--color-cyan-ink)]"
+              data-text="Contact Me →"
+              className="group relative inline-flex font-[var(--font-body)] text-[var(--text-body)] font-medium tracking-wide text-transparent [-webkit-text-stroke:1px_var(--color-text-primary)] transition-all duration-500"
             >
-              Contact Me →
+              {/* Base outline layer */}
+              <span className="actual-text">&nbsp;Contact Me →&nbsp;</span>
+
+              {/* Hover color-fill sweep layer */}
+              <span
+                aria-hidden="true"
+                className="hover-text absolute inset-y-0 left-0 w-0 overflow-hidden whitespace-nowrap text-[var(--color-cyan-ink)] border-r-[3px] border-[var(--color-cyan-ink)] [-webkit-text-stroke:1px_var(--color-cyan-ink)] transition-[width] duration-500 ease-in-out group-hover:w-full group-hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.8)]"
+              >
+                &nbsp;Contact Me →&nbsp;
+              </span>
             </a>
           </div>
 
