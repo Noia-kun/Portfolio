@@ -1,5 +1,4 @@
 import heroPixelArt from "../assets/hero-pixel-art.webp";
-import { projects } from "../data/projects";
 import { techRowOne, techRowTwo } from "../data/techStack";
 import Github from "@thesvg/react/github";
 import Linkedin from "@thesvg/react/linkedin";
