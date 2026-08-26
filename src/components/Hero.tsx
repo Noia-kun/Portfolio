@@ -15,6 +15,7 @@ import TrueFocus from './TrueFocus';
 import TextType from './TextType';
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import DecryptedText from "./DecryptedText";
+import CountUp from "./CountUp";
 
 const techStackCount = techRowOne.length + techRowTwo.length;
 
@@ -162,25 +163,30 @@ export default function Hero() {
 
           {/* Stats */}
           <div className="mt-[var(--spacing-48)] flex gap-[var(--spacing-40)]">
+            {/* Projects: Counts DOWN from 15 to actual projects.length */}
             <div>
               <p className="font-[family-name:var(--font-display)] text-[var(--text-heading)] font-semibold text-[var(--color-text-primary)]">
-                {projects.length}+
+                <CountUp from={30} to={10} direction="up" duration={2} />+
               </p>
               <p className="font-[var(--font-body)] text-[var(--text-caption)] uppercase tracking-wide text-[var(--color-text-muted)]">
                 Projects
               </p>
             </div>
+
+            {/* Tech Stack: Counts UP from 0 to techStackCount */}
             <div>
               <p className="font-[family-name:var(--font-display)] text-[var(--text-heading)] font-semibold text-[var(--color-text-primary)]">
-                {techStackCount}+
+                <CountUp to={techStackCount} duration={2} />+
               </p>
               <p className="font-[var(--font-body)] text-[var(--text-caption)] uppercase tracking-wide text-[var(--color-text-muted)]">
                 Tech Stack
               </p>
             </div>
+
+            {/* Years Coding: Counts DOWN from 10 to 3 */}
             <div>
               <p className="font-[family-name:var(--font-display)] text-[var(--text-heading)] font-semibold text-[var(--color-text-primary)]">
-                3+
+                <CountUp from={30} to={5} direction="up" duration={1.5} />+
               </p>
               <p className="font-[var(--font-body)] text-[var(--text-caption)] uppercase tracking-wide text-[var(--color-text-muted)]">
                 Years Coding
