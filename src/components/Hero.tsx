@@ -195,23 +195,38 @@ export default function Hero() {
 
           {/* Socials */}
           <div className="mt-[var(--spacing-24)] flex gap-[var(--spacing-16)]">
+            {/* GitHub */}
             <a
               href={contactInfo.github}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="flex h-[36px] w-[36px] items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-carbon)] transition-colors hover:border-[var(--color-cyan)]"
+              className="group relative flex h-[42px] w-[42px] items-center justify-center overflow-hidden rounded-full border border-[var(--color-border)] bg-[var(--color-carbon)] transition-all duration-300 ease-out hover:scale-110 hover:rotate-2 hover:border-[var(--color-cyan)] active:scale-95 active:rotate-0"
             >
-              <Github variant="mono" width={16} height={16} className="text-[var(--color-text-primary)]" />
+              {/* Shimmer Light Sweep */}
+              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full" />
+
+              {/* Icon */}
+              <div className="relative z-10 flex items-center justify-center">
+                <Github variant="mono" width={24} height={24} className="text-[var(--color-text-primary)] transition-colors duration-300 group-hover:text-[var(--color-cyan)]" />
+              </div>
             </a>
+
+            {/* LinkedIn */}
             <a
               href={contactInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="flex h-[36px] w-[36px] items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-carbon)] transition-colors hover:border-[var(--color-cyan)]"
+              className="group relative flex h-[42px] w-[42px] items-center justify-center overflow-hidden rounded-full border border-[var(--color-border)] bg-[var(--color-carbon)] transition-all duration-300 ease-out hover:scale-110 hover:-rotate-2 hover:border-[var(--color-cyan)] active:scale-95 active:rotate-0"
             >
-              <Linkedin width={16} height={16} />
+              {/* Shimmer Light Sweep */}
+              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full" />
+
+              {/* Icon */}
+              <div className="relative z-10 flex items-center justify-center">
+                <Linkedin width={24} height={24} className="transition-colors duration-300 group-hover:text-[var(--color-cyan)]" />
+              </div>
             </a>
           </div>
         </div>
