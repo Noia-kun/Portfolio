@@ -14,6 +14,7 @@ import WebThreads from "./WebThreads";
 import TrueFocus from './TrueFocus';
 import TextType from './TextType';
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
+import DecryptedText from "./DecryptedText";
 
 const techStackCount = techRowOne.length + techRowTwo.length;
 
@@ -95,9 +96,30 @@ export default function Hero() {
           </div>
 
           <p className="mt-[var(--spacing-16)] font-[var(--font-body)] text-[var(--text-body)] leading-[1.6] text-[var(--color-text-body)]">
-            I turn messy problems into <span className="font-semibold text-[var(--color-text-primary)]">clean, working code</span> —
-            building <span className="font-semibold text-[var(--color-text-primary)]">production-ready web applications</span> with
-            modern technologies across both frontend and backend.
+            I turn{' '}
+            <DecryptedText
+              text="messy problems into "
+              speed={100}
+              maxIterations={8}
+              animateOn="view"
+              revealDirection="start"
+              parentClassName="inline"
+            />
+            <DecryptedText
+              text="clean, working code."
+              speed={100}
+              maxIterations={8}
+              animateOn="view"
+              revealDirection="start"
+              parentClassName="inline"
+              className="font-semibold text-[var(--color-text-primary)]"
+              encryptedClassName="font-semibold text-[var(--color-text-primary)]"
+            />{' '}
+            Building{' '}
+            <span className="font-semibold text-[var(--color-text-primary)]">
+              production-ready web applications
+            </span>{' '}
+            with modern technologies across both frontend and backend.
           </p>
 
           {/* CTAs */}
