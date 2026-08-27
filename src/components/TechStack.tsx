@@ -1,4 +1,37 @@
-import * as ThesvgIcons from "@thesvg/react";
+import ReactIcon from "@thesvg/react/react";
+import TypescriptIcon from "@thesvg/react/typescript";
+import JavascriptIcon from "@thesvg/react/javascript";
+import TailwindcssIcon from "@thesvg/react/tailwindcss";
+import LaravelIcon from "@thesvg/react/laravel";
+import PhpIcon from "@thesvg/react/php";
+import Html5Icon from "@thesvg/react/html5";
+import Css3Icon from "@thesvg/react/css3";
+import CPlusplusIcon from "@thesvg/react/cplusplus";
+import KotlinIcon from "@thesvg/react/kotlin";
+import PythonIcon from "@thesvg/react/python";
+import JavaIcon from "@thesvg/react/java";
+import DotnetIcon from "@thesvg/react/dotnet";
+import StyledcomponentsIcon from "@thesvg/react/styled-components";
+import MysqlIcon from "@thesvg/react/mysql";
+import EslintIcon from "@thesvg/react/eslint";
+import DockerIcon from "@thesvg/react/docker";
+import NodejsIcon from "@thesvg/react/nodejs";
+import VitejsIcon from "@thesvg/react/vitejs";
+import NpmIcon from "@thesvg/react/npm";
+import WebpackIcon from "@thesvg/react/webpack";
+import GitIcon from "@thesvg/react/git";
+import PrettierIcon from "@thesvg/react/prettier";
+import PytorchIcon from "@thesvg/react/pytorch";
+import PhotoshopIcon from "@thesvg/react/photoshop";
+import FigmaIcon from "@thesvg/react/figma";
+import DiscordIcon from "@thesvg/react/discord";
+import MicrosoftTeamsIcon from "@thesvg/react/microsoft-teams";
+import JetbrainsIcon from "@thesvg/react/jetbrains";
+import IntellijideaIcon from "@thesvg/react/intellij-idea";
+import ClaudeIcon from "@thesvg/react/claude";
+import GeminiIcon from "@thesvg/react/gemini";
+import DeepseekIcon from "@thesvg/react/deepseek";
+import OpenaiIcon from "@thesvg/react/openai";
 import { techRowOne, techRowTwo } from "../data/techStack";
 import type { TechStackItem } from "../types";
 import RevealOnScroll from "./RevealOnScroll";
@@ -126,8 +159,41 @@ const VSCodeIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const iconMap: Record<string, TechIcon> = {
-  ...(ThesvgIcons as unknown as Record<string, TechIcon>),
+  React: ReactIcon as unknown as TechIcon,
+  Typescript: TypescriptIcon as unknown as TechIcon,
+  Javascript: JavascriptIcon as unknown as TechIcon,
+  Tailwindcss: TailwindcssIcon as unknown as TechIcon,
+  Laravel: LaravelIcon as unknown as TechIcon,
+  Php: PhpIcon as unknown as TechIcon,
+  Html5: Html5Icon as unknown as TechIcon,
+  Css3: Css3Icon as unknown as TechIcon,
+  CPlusplus: CPlusplusIcon as unknown as TechIcon,
+  Kotlin: KotlinIcon as unknown as TechIcon,
+  Python: PythonIcon as unknown as TechIcon,
+  Java: JavaIcon as unknown as TechIcon,
+  Dotnet: DotnetIcon as unknown as TechIcon,
+  StyledComponents: StyledcomponentsIcon as unknown as TechIcon,
+  Mysql: MysqlIcon as unknown as TechIcon,
   VisualStudioCode: VSCodeIcon as unknown as TechIcon,
+  Eslint: EslintIcon as unknown as TechIcon,
+  Docker: DockerIcon as unknown as TechIcon,
+  Nodejs: NodejsIcon as unknown as TechIcon,
+  Vitejs: VitejsIcon as unknown as TechIcon,
+  Npm: NpmIcon as unknown as TechIcon,
+  Webpack: WebpackIcon as unknown as TechIcon,
+  Git: GitIcon as unknown as TechIcon,
+  Prettier: PrettierIcon as unknown as TechIcon,
+  Pytorch: PytorchIcon as unknown as TechIcon,
+  Photoshop: PhotoshopIcon as unknown as TechIcon,
+  Figma: FigmaIcon as unknown as TechIcon,
+  Discord: DiscordIcon as unknown as TechIcon,
+  MicrosoftTeams: MicrosoftTeamsIcon as unknown as TechIcon,
+  Jetbrains: JetbrainsIcon as unknown as TechIcon,
+  IntellijIdea: IntellijideaIcon as unknown as TechIcon,
+  Claude: ClaudeIcon as unknown as TechIcon,
+  Gemini: GeminiIcon as unknown as TechIcon,
+  Deepseek: DeepseekIcon as unknown as TechIcon,
+  Openai: OpenaiIcon as unknown as TechIcon,
 };
 
 const themeVariants: Record<string, { dark: string; light: string }> = {
