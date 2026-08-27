@@ -1,15 +1,15 @@
-import dtr1 from "../assets/screenshots/dtr-1.png";
-import mis1 from "../assets/screenshots/mis-1.png";
-import mis2 from "../assets/screenshots/mis-2.png";
-import mis3 from "../assets/screenshots/mis-3.png";
-import mis4 from "../assets/screenshots/mis-4.png";
-import mis5 from "../assets/screenshots/mis-5.png";
-import mis6 from "../assets/screenshots/mis-6.png";
-import mis7 from "../assets/screenshots/mis-7.png";
-import mis8 from "../assets/screenshots/mis-8.png";
-import mis9 from "../assets/screenshots/mis-9.png";
-import mis10 from "../assets/screenshots/mis-10.png";
-import weather1 from "../assets/screenshots/weather-1.png";
+import dtr1 from "../assets/screenshots/dtr-1.webp";
+import mis1 from "../assets/screenshots/mis-1.webp";
+import mis2 from "../assets/screenshots/mis-2.webp";
+import mis3 from "../assets/screenshots/mis-3.webp";
+import mis4 from "../assets/screenshots/mis-4.webp";
+import mis5 from "../assets/screenshots/mis-5.webp";
+import mis6 from "../assets/screenshots/mis-6.webp";
+import mis7 from "../assets/screenshots/mis-7.webp";
+import mis8 from "../assets/screenshots/mis-8.webp";
+import mis9 from "../assets/screenshots/mis-9.webp";
+import mis10 from "../assets/screenshots/mis-10.webp";
+import weather1 from "../assets/screenshots/weather-1.webp";
 
 export interface ScreenshotItem {
   id: string;

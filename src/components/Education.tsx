@@ -1,5 +1,5 @@
 import { education, educationDescription } from "../data/education";
-import nuLagunaLogo from "../assets/nu-laguna-logo.png";
+import nuLagunaLogo from "../assets/nu-laguna-logo.webp";
 import RevealOnScroll from "./RevealOnScroll";
 
 export default function Education() {
