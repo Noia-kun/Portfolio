@@ -218,36 +218,49 @@ export default function MagicBento({
 
           const stackItems = Array.isArray(project.stack) ? project.stack : [];
           const getTechColor = (tech: string) => {
-          const normalized = tech.toLowerCase().trim();
-          switch (normalized) {
-            case "react":
-            case "react.js":
-              return { bg: "rgba(97, 218, 251, 0.12)", border: "rgba(97, 218, 251, 0.3)", text: "#61dafb" };
-            case "python":
-              return { bg: "rgba(55, 118, 171, 0.15)", border: "rgba(255, 212, 59, 0.4)", text: "#ffd43b" };
-            case "fastapi":
-              return { bg: "rgba(5, 153, 139, 0.15)", border: "rgba(5, 153, 139, 0.4)", text: "#05998b" };
-            case "typescript":
-            case "ts":
-              return { bg: "rgba(49, 120, 198, 0.15)", border: "rgba(49, 120, 198, 0.4)", text: "#3178c6" };
-            case "javascript":
-            case "js":
-              return { bg: "rgba(247, 223, 30, 0.12)", border: "rgba(247, 223, 30, 0.35)", text: "#f7df1e" };
-            case "sqlite":
-              return { bg: "rgba(0, 59, 87, 0.2)", border: "rgba(15, 158, 222, 0.4)", text: "#0f9ede" };
-            case "html":
-            case "html5":
-              return { bg: "rgba(227, 76, 38, 0.15)", border: "rgba(227, 76, 38, 0.4)", text: "#e34c26" };
-            case "css":
-            case "css3":
-              return { bg: "rgba(38, 77, 228, 0.15)", border: "rgba(38, 77, 228, 0.4)", text: "#264de4" };
-            case "node":
-            case "node.js":
-              return { bg: "rgba(104, 160, 99, 0.15)", border: "rgba(104, 160, 99, 0.4)", text: "#68a063" };
-            default:
-              return { bg: "rgba(255, 255, 255, 0.06)", border: "rgba(255, 255, 255, 0.15)", text: "#e5e7eb" };
-          }
-        };
+            const normalized = tech.toLowerCase().trim();
+            switch (normalized) {
+              case "react":
+              case "react.js":
+                return "#00b4d8"; // Slightly deeper cyan for dual-theme contrast
+              case "python":
+                return "#3776ab";
+              case "fastapi":
+                return "#05998b";
+              case "typescript":
+              case "ts":
+                return "#3178c6";
+              case "javascript":
+              case "js":
+                return "#d4ac0d"; // Darker gold shade readable on light bg
+              case "php":
+                return "#777bb4";
+              case "laravel":
+                return "#ff2d20";
+              case "mysql":
+                return "#00758f";
+              case "webpack":
+                return "#1c78c0";
+              case "vb.net":
+              case "vb":
+                return "#68217a";
+              case "java":
+                return "#e06f1a";
+              case "sqlite":
+                return "#0f9ede";
+              case "html":
+              case "html5":
+                return "#e34c26";
+              case "css":
+              case "css3":
+                return "#264de4";
+              case "node":
+              case "node.js":
+                return "#53824f";
+              default:
+                return "var(--color-text-muted, #6b7280)";
+            }
+          };
           return (
             <RevealOnScroll key={index} direction={index % 2 === 0 ? "left" : "right"}>
               <CleanCard
@@ -308,16 +321,12 @@ export default function MagicBento({
                   {/* Stack Badges */}
                   <div className="magic-bento-card__tags">
                     {stackItems.map((tech, i) => {
-                      const colors = getTechColor(tech);
+                      const brandColor = getTechColor(tech);
                       return (
                         <span
                           key={i}
                           className="magic-bento-card__badge"
-                          style={{
-                            backgroundColor: colors.bg,
-                            borderColor: colors.border,
-                            color: colors.text,
-                          }}
+                          style={{ "--brand-color": brandColor } as React.CSSProperties}
                         >
                           {tech}
                         </span>

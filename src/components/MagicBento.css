@@ -22,7 +22,15 @@
 /* Fix for RevealOnScroll wrapping divs breaking grid stretch */
 .card-grid > * {
   display: flex;
+  flex-direction: column;
   height: 100%;
+}
+
+.card-grid > * > * {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
 
 /* 2. Standardized Card Component */
@@ -32,7 +40,8 @@
   justify-content: space-between;
   position: relative;
   width: 100%;
-  min-height: 280px; /* Forces uniform height across all 4 cards */
+  height: 100%; /* Changed from fixed min-height to full flex stretch */
+  min-height: 280px; /* Maintains baseline height */
   padding: 1.5em;
   border-radius: var(--radius-cards, 16px);
   border: 1px solid var(--color-border, rgba(255, 255, 255, 0.1));
@@ -184,6 +193,9 @@
   vertical-align: middle;
   animation: blink 1s step-end infinite;
 }
+.light .blinking-dash-cursor {
+  background-color: #0f172a;
+}
 
 /* Description Text (Clamped to 3 lines) */
 .magic-bento-card__description {
@@ -208,15 +220,39 @@
   margin-top: auto;
 }
 
-/* Dynamic Signature Badges */
+/* Dynamic Theme-Adaptive Tech Badges */
 .magic-bento-card__badge {
   font-family: var(--font-mono, monospace);
   font-size: 0.75rem;
-  font-weight: 500;
-  padding: 3px 8px;
+  font-weight: 600;
+  padding: 3px 10px;
   border-radius: 6px;
-  border: 1px solid transparent;
-  transition: transform 0.2s ease, filter 0.2s ease;
+  
+  /* Fallback color if variable is missing */
+  --brand: var(--brand-color, #52e1fe);
+
+  /* Background tint: mixes brand color with card background */
+  background-color: color-mix(in srgb, var(--brand) 12%, transparent);
+  
+  /* Border tint */
+  border: 1px solid color-mix(in srgb, var(--brand) 30%, transparent);
+  
+  /* Text color: adapts between light/dark theme variables */
+  color: var(--brand);
+  
+  transition: transform 0.2s ease, filter 0.2s ease, background-color 0.2s ease;
+}
+
+.magic-bento-card__badge:hover {
+  transform: translateY(-1px);
+  background-color: color-mix(in srgb, var(--brand) 22%, transparent);
+}
+
+/* Light Theme Enhancements */
+.light .magic-bento-card__badge {
+  color: color-mix(in srgb, var(--brand) 85%, #000 15%);
+  background-color: color-mix(in srgb, var(--brand) 10%, #fff 90%);
+  border-color: color-mix(in srgb, var(--brand) 25%, transparent);
 }
 
 .magic-bento-card__badge:hover {
