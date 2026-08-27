@@ -2,7 +2,7 @@
 
 My personal developer portfolio — built to showcase my work as I transition from PHP/Laravel toward React, TypeScript, and modern front-end development.
 
-**Live Demo:** _Coming soon (deploying to Vercel)_
+**Live Demo:** richwelleremetio.vercel.app
 
 ## Sections
 
