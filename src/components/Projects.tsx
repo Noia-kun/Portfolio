@@ -41,14 +41,9 @@ export default function Projects() {
         </div>
 
         <MagicBento
-          textAutoHide={true}
-          enableSpotlight={true}
+          enableSpotlight={false}
           enableBorderGlow={true}
-          enableTilt={true}
-          enableMagnetism={true}
-          clickEffect={true}
-          spotlightRadius={300}
-          particleCount={10}
+          spotlightRadius={600}
           glowColor="82, 225, 254"
         />
       </div>

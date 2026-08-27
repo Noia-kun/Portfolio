@@ -1,108 +1,16 @@
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* 1. Equal-size Grid Layout */
 .card-grid {
   display: grid;
-  gap: 1rem;
-  padding: 0;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
   max-width: 1000px;
   margin: 0 auto;
-}
-
-.magic-bento-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  min-height: 220px;
   width: 100%;
-  padding: 1.5em;
-  border-radius: var(--radius-cards);
-  border: 1px solid var(--color-border);
-  font-weight: 300;
-  overflow: hidden;
-  transition: all 0.3s ease;
-
-  --glow-x: 50%;
-  --glow-y: 50%;
-  --glow-intensity: 0;
-  --glow-radius: 200px;
-}
-
-.magic-bento-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-}
-
-.magic-bento-card__header,
-.magic-bento-card__content {
-  display: flex;
-  position: relative;
-  color: var(--color-text-primary);
-}
-
-.magic-bento-card__header {
-  gap: 0.75em;
-  justify-content: space-between;
-}
-
-.magic-bento-card__content {
-  flex-direction: column;
-}
-
-.magic-bento-card__label {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--color-text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.magic-bento-card__title {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 20px;
-  margin: 0.5em 0 0.25em;
-}
-
-.magic-bento-card__description {
-  font-size: 14px;
-  line-height: 1.4;
-  opacity: 0.85;
-  color: var(--color-text-body);
-}
-
-.magic-bento-card--text-autohide .magic-bento-card__title,
-.magic-bento-card--text-autohide .magic-bento-card__description {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.magic-bento-card--text-autohide .magic-bento-card__title {
-  -webkit-line-clamp: 1;
-  line-clamp: 1;
-}
-
-.magic-bento-card--text-autohide .magic-bento-card__description {
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-}
-
-.magic-bento-card__links {
-  display: flex;
-  gap: 1em;
-  margin-top: 1em;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.magic-bento-card__github-link {
-  color: var(--color-text-body);
-}
-
-@media (max-width: 599px) {
-  .card-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (min-width: 600px) {
@@ -111,6 +19,66 @@
   }
 }
 
+/* Fix for RevealOnScroll wrapping divs breaking grid stretch */
+.card-grid > * {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card-grid > * > * {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+/* 2. Standardized Card Component */
+.magic-bento-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+  height: 100%; /* Changed from fixed min-height to full flex stretch */
+  min-height: 280px; /* Maintains baseline height */
+  padding: 1.5em;
+  border-radius: var(--radius-cards, 16px);
+  border: 1px solid var(--color-border, rgba(255, 255, 255, 0.1));
+  background-color: var(--color-ground, #0c111d);
+  font-weight: 300;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-intensity: 0;
+  --glow-radius: 200px;
+}
+
+.magic-bento-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(82, 225, 254, 0.4);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3), 0 0 15px rgba(82, 225, 254, 0.15);
+}
+
+/* Background Glow Layer */
+.magic-bento-card__glow-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: calc(var(--glow-intensity) * 0.25);
+  background: radial-gradient(
+    circle at var(--glow-x) var(--glow-y),
+    rgba(var(--glow-color, 82, 225, 254), 0.6) 0%,
+    transparent 60%
+  );
+  transition: opacity 0.2s ease;
+}
+
+/* Border Glow Gradient */
 .magic-bento-card--border-glow::after {
   content: "";
   position: absolute;
@@ -118,8 +86,8 @@
   padding: 1px;
   background: radial-gradient(
     var(--glow-radius) circle at var(--glow-x) var(--glow-y),
-    rgba(var(--glow-color), calc(var(--glow-intensity) * 0.8)) 0%,
-    rgba(var(--glow-color), calc(var(--glow-intensity) * 0.4)) 30%,
+    rgba(var(--glow-color, 82, 225, 254), calc(var(--glow-intensity) * 0.8)) 0%,
+    rgba(var(--glow-color, 82, 225, 254), calc(var(--glow-intensity) * 0.4)) 30%,
     transparent 60%
   );
   border-radius: inherit;
@@ -133,23 +101,166 @@
   z-index: 1;
 }
 
-.particle-container {
-  position: relative;
-  overflow: hidden;
-}
-
-.particle::before {
-  content: "";
+/* Authentic UIverse Top-Right Corner Glow */
+.magic-bento-card__corner-glow {
   position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: rgba(82, 225, 254, 0.2);
-  border-radius: 50%;
-  z-index: -1;
+  top: 0;
+  right: 0;
+  width: 180px;
+  height: 180px;
+  /* Origin centered precisely at the top-right corner (100% 0%) */
+  background: radial-gradient(
+    circle at 100% 0%,
+    rgba(82, 225, 254, 0.4) 0%,
+    rgba(82, 225, 254, 0.18) 25%,
+    rgba(82, 225, 254, 0.05) 55%,
+    transparent 75%
+  );
+  border-top-right-radius: inherit; /* Matches card corner curve */
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.85;
+  transition: opacity 0.3s ease, filter 0.3s ease;
 }
 
+.magic-bento-card:hover .magic-bento-card__corner-glow {
+  opacity: 1;
+  filter: brightness(1.25);
+}
+
+/* 3. Card Sections Layout */
+.magic-bento-card__header {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 0.75rem;
+}
+
+.magic-bento-card__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.magic-bento-card__icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 8px;
+  color: var(--color-text-muted, #9ca3af);
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.magic-bento-card__icon-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #52e1fe;
+  transform: translateY(-2px);
+}
+
+.icon-svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Card Body Area */
+.magic-bento-card__body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+
+.magic-bento-card__title {
+  font-family: var(--font-mono, monospace);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text-primary, #f3f4f6);
+  margin: 0 0 0.5rem 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Dash Cursor Style */
+.blinking-dash-cursor {
+  display: inline-block;
+  width: 10px;
+  height: 3px;
+  background-color: #52e1fe;
+  margin-left: 6px;
+  vertical-align: middle;
+  animation: blink 1s step-end infinite;
+}
+.light .blinking-dash-cursor {
+  background-color: #0f172a;
+}
+
+/* Description Text (Clamped to 3 lines) */
+.magic-bento-card__description {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-text-body, #9ca3af);
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+}
+
+/* Tech Badges */
+.magic-bento-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+}
+
+/* Dynamic Theme-Adaptive Tech Badges */
+.magic-bento-card__badge {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 6px;
+  
+  /* Fallback color if variable is missing */
+  --brand: var(--brand-color, #52e1fe);
+
+  /* Background tint: mixes brand color with card background */
+  background-color: color-mix(in srgb, var(--brand) 12%, transparent);
+  
+  /* Border tint */
+  border: 1px solid color-mix(in srgb, var(--brand) 30%, transparent);
+  
+  /* Text color: adapts between light/dark theme variables */
+  color: var(--brand);
+  
+  transition: transform 0.2s ease, filter 0.2s ease, background-color 0.2s ease;
+}
+
+.magic-bento-card__badge:hover {
+  transform: translateY(-1px);
+  background-color: color-mix(in srgb, var(--brand) 22%, transparent);
+}
+
+/* Light Theme Enhancements */
+.light .magic-bento-card__badge {
+  color: color-mix(in srgb, var(--brand) 85%, #000 15%);
+  background-color: color-mix(in srgb, var(--brand) 10%, #fff 90%);
+  border-color: color-mix(in srgb, var(--brand) 25%, transparent);
+}
+
+.magic-bento-card__badge:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.2);
+}
+
+/* Global Utilities */
 .global-spotlight {
   mix-blend-mode: screen;
   will-change: transform, opacity;

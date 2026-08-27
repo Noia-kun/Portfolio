@@ -1,31 +1,12 @@
-import { useRef, useEffect, useCallback, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import "./MagicBento.css";
 import { projects } from "../data/projects";
 import RevealOnScroll from "./RevealOnScroll";
 
-const DEFAULT_PARTICLE_COUNT = 12;
 const DEFAULT_SPOTLIGHT_RADIUS = 300;
 const DEFAULT_GLOW_COLOR = "82, 225, 254"; // cyan
 const MOBILE_BREAKPOINT = 768;
-
-const createParticleElement = (x: number, y: number, color = DEFAULT_GLOW_COLOR) => {
-  const el = document.createElement("div");
-  el.className = "particle";
-  el.style.cssText = `
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: rgba(${color}, 1);
-    box-shadow: 0 0 6px rgba(${color}, 0.6);
-    pointer-events: none;
-    z-index: 100;
-    left: ${x}px;
-    top: ${y}px;
-  `;
-  return el;
-};
 
 const calculateSpotlightValues = (radius: number) => ({
   proximity: radius * 0.5,
@@ -49,230 +30,30 @@ const updateCardGlowProperties = (
   card.style.setProperty("--glow-radius", `${radius}px`);
 };
 
-function ParticleCard({
+/* Clean Card Wrapper - GSAP transforms removed so CSS hover states work seamlessly */
+function CleanCard({
   children,
   className = "",
-  disableAnimations = false,
   style,
-  particleCount = DEFAULT_PARTICLE_COUNT,
-  glowColor = DEFAULT_GLOW_COLOR,
-  enableTilt = true,
-  clickEffect = false,
-  enableMagnetism = false,
 }: {
   children: React.ReactNode;
   className?: string;
-  disableAnimations?: boolean;
   style?: React.CSSProperties;
-  particleCount?: number;
-  glowColor?: string;
-  enableTilt?: boolean;
-  clickEffect?: boolean;
-  enableMagnetism?: boolean;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const particlesRef = useRef<HTMLDivElement[]>([]);
-  const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
-  const isHoveredRef = useRef(false);
-  const memoizedParticles = useRef<HTMLDivElement[]>([]);
-  const particlesInitialized = useRef(false);
-  const magnetismAnimationRef = useRef<gsap.core.Tween | null>(null);
-
-  const initializeParticles = useCallback(() => {
-    if (particlesInitialized.current || !cardRef.current) return;
-
-    const { width, height } = cardRef.current.getBoundingClientRect();
-    memoizedParticles.current = Array.from({ length: particleCount }, () =>
-      createParticleElement(Math.random() * width, Math.random() * height, glowColor)
-    );
-    particlesInitialized.current = true;
-  }, [particleCount, glowColor]);
-
-  const clearAllParticles = useCallback(() => {
-    timeoutsRef.current.forEach(clearTimeout);
-    timeoutsRef.current = [];
-    magnetismAnimationRef.current?.kill();
-
-    particlesRef.current.forEach((particle) => {
-      gsap.to(particle, {
-        scale: 0,
-        opacity: 0,
-        duration: 0.3,
-        ease: "back.in(1.7)",
-        onComplete: () => {
-          particle.parentNode?.removeChild(particle);
-        },
-      });
-    });
-    particlesRef.current = [];
-  }, []);
-
-  const animateParticles = useCallback(() => {
-    if (!cardRef.current || !isHoveredRef.current) return;
-
-    if (!particlesInitialized.current) {
-      initializeParticles();
-    }
-
-    memoizedParticles.current.forEach((particle, index) => {
-      const timeoutId = setTimeout(() => {
-        if (!isHoveredRef.current || !cardRef.current) return;
-
-        const clone = particle.cloneNode(true) as HTMLDivElement;
-        cardRef.current.appendChild(clone);
-        particlesRef.current.push(clone);
-
-        gsap.fromTo(clone, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.7)" });
-
-        gsap.to(clone, {
-          x: (Math.random() - 0.5) * 100,
-          y: (Math.random() - 0.5) * 100,
-          rotation: Math.random() * 360,
-          duration: 2 + Math.random() * 2,
-          ease: "none",
-          repeat: -1,
-          yoyo: true,
-        });
-
-        gsap.to(clone, {
-          opacity: 0.3,
-          duration: 1.5,
-          ease: "power2.inOut",
-          repeat: -1,
-          yoyo: true,
-        });
-      }, index * 100);
-
-      timeoutsRef.current.push(timeoutId);
-    });
-  }, [initializeParticles]);
-
-  useEffect(() => {
-    if (disableAnimations || !cardRef.current) return;
-
-    const element = cardRef.current;
-
-    const handleMouseEnter = () => {
-      isHoveredRef.current = true;
-      animateParticles();
-
-      if (enableTilt) {
-        gsap.to(element, {
-          rotateX: 5,
-          rotateY: 5,
-          duration: 0.3,
-          ease: "power2.out",
-          transformPerspective: 1000,
-        });
-      }
-    };
-
-    const handleMouseLeave = () => {
-      isHoveredRef.current = false;
-      clearAllParticles();
-
-      if (enableTilt) {
-        gsap.to(element, { rotateX: 0, rotateY: 0, duration: 0.3, ease: "power2.out" });
-      }
-
-      if (enableMagnetism) {
-        gsap.to(element, { x: 0, y: 0, duration: 0.3, ease: "power2.out" });
-      }
-    };
-
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!enableTilt && !enableMagnetism) return;
-
-      const rect = element.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      if (enableTilt) {
-        const rotateX = ((y - centerY) / centerY) * -10;
-        const rotateY = ((x - centerX) / centerX) * 10;
-
-        gsap.to(element, {
-          rotateX,
-          rotateY,
-          duration: 0.1,
-          ease: "power2.out",
-          transformPerspective: 1000,
-        });
-      }
-
-      if (enableMagnetism) {
-        const magnetX = (x - centerX) * 0.05;
-        const magnetY = (y - centerY) * 0.05;
-
-        magnetismAnimationRef.current = gsap.to(element, {
-          x: magnetX,
-          y: magnetY,
-          duration: 0.3,
-          ease: "power2.out",
-        });
-      }
-    };
-
-    const handleClick = (e: MouseEvent) => {
-      if (!clickEffect) return;
-
-      const rect = element.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      const maxDistance = Math.max(
-        Math.hypot(x, y),
-        Math.hypot(x - rect.width, y),
-        Math.hypot(x, y - rect.height),
-        Math.hypot(x - rect.width, y - rect.height)
-      );
-
-      const ripple = document.createElement("div");
-      ripple.style.cssText = `
-        position: absolute;
-        width: ${maxDistance * 2}px;
-        height: ${maxDistance * 2}px;
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(${glowColor}, 0.4) 0%, rgba(${glowColor}, 0.2) 30%, transparent 70%);
-        left: ${x - maxDistance}px;
-        top: ${y - maxDistance}px;
-        pointer-events: none;
-        z-index: 1000;
-      `;
-
-      element.appendChild(ripple);
-
-      gsap.fromTo(
-        ripple,
-        { scale: 0, opacity: 1 },
-        { scale: 1, opacity: 0, duration: 0.8, ease: "power2.out", onComplete: () => ripple.remove() }
-      );
-    };
-
-    element.addEventListener("mouseenter", handleMouseEnter);
-    element.addEventListener("mouseleave", handleMouseLeave);
-    element.addEventListener("mousemove", handleMouseMove);
-    element.addEventListener("click", handleClick);
-
-    return () => {
-      isHoveredRef.current = false;
-      element.removeEventListener("mouseenter", handleMouseEnter);
-      element.removeEventListener("mouseleave", handleMouseLeave);
-      element.removeEventListener("mousemove", handleMouseMove);
-      element.removeEventListener("click", handleClick);
-      clearAllParticles();
-    };
-  }, [animateParticles, clearAllParticles, disableAnimations, enableTilt, enableMagnetism, clickEffect, glowColor]);
 
   return (
-    <div ref={cardRef} className={`${className} particle-container`} style={{ ...style, position: "relative", overflow: "hidden" }}>
+    <div
+      ref={cardRef}
+      className={`${className} uiverse-card-wrapper`}
+      style={{ ...style, position: "relative", overflow: "hidden" }}
+    >
       {children}
     </div>
   );
 }
 
+/* GlobalSpotlight - Retained for smooth cursor tracking across grid cards */
 function GlobalSpotlight({
   gridRef,
   disableAnimations = false,
@@ -401,27 +182,17 @@ const useMobileDetection = () => {
 };
 
 export default function MagicBento({
-  textAutoHide = true,
   enableSpotlight = true,
   enableBorderGlow = true,
   disableAnimations = false,
   spotlightRadius = DEFAULT_SPOTLIGHT_RADIUS,
-  particleCount = DEFAULT_PARTICLE_COUNT,
-  enableTilt = false,
   glowColor = DEFAULT_GLOW_COLOR,
-  clickEffect = true,
-  enableMagnetism = true,
 }: {
-  textAutoHide?: boolean;
   enableSpotlight?: boolean;
   enableBorderGlow?: boolean;
   disableAnimations?: boolean;
   spotlightRadius?: number;
-  particleCount?: number;
-  enableTilt?: boolean;
   glowColor?: string;
-  clickEffect?: boolean;
-  enableMagnetism?: boolean;
 }) {
   const gridRef = useRef<HTMLDivElement>(null);
   const isMobile = useMobileDetection();
@@ -441,42 +212,129 @@ export default function MagicBento({
 
       <div className="card-grid bento-section" ref={gridRef}>
         {projects.map((project, index) => {
-          const baseClassName = `magic-bento-card ${textAutoHide ? "magic-bento-card--text-autohide" : ""} ${
+          const baseClassName = `magic-bento-card ${
             enableBorderGlow ? "magic-bento-card--border-glow" : ""
           }`;
 
+          const stackItems = Array.isArray(project.stack) ? project.stack : [];
+          const getTechColor = (tech: string) => {
+            const normalized = tech.toLowerCase().trim();
+            switch (normalized) {
+              case "react":
+              case "react.js":
+                return "#00b4d8"; // Slightly deeper cyan for dual-theme contrast
+              case "python":
+                return "#3776ab";
+              case "fastapi":
+                return "#05998b";
+              case "typescript":
+              case "ts":
+                return "#3178c6";
+              case "javascript":
+              case "js":
+                return "#d4ac0d"; // Darker gold shade readable on light bg
+              case "php":
+                return "#777bb4";
+              case "laravel":
+                return "#ff2d20";
+              case "mysql":
+                return "#00758f";
+              case "webpack":
+                return "#1c78c0";
+              case "vb.net":
+              case "vb":
+                return "#68217a";
+              case "java":
+                return "#e06f1a";
+              case "sqlite":
+                return "#0f9ede";
+              case "html":
+              case "html5":
+                return "#e34c26";
+              case "css":
+              case "css3":
+                return "#264de4";
+              case "node":
+              case "node.js":
+                return "#53824f";
+              default:
+                return "var(--color-text-muted, #6b7280)";
+            }
+          };
           return (
             <RevealOnScroll key={index} direction={index % 2 === 0 ? "left" : "right"}>
-              <ParticleCard
+              <CleanCard
                 className={baseClassName}
-                style={{ backgroundColor: "var(--color-ground)", ["--glow-color" as string]: glowColor }}
-                disableAnimations={shouldDisableAnimations}
-                particleCount={particleCount}
-                glowColor={glowColor}
-                enableTilt={enableTilt}
-                clickEffect={clickEffect}
-                enableMagnetism={enableMagnetism}
+                style={{
+                  backgroundColor: "var(--color-ground)",
+                  ["--glow-color" as string]: glowColor,
+                }}
               >
+                {/* Permanent Top-Right Ambient Glow */}
+                <div className="magic-bento-card__corner-glow" />
+
+                {/* Dynamic Cursor-following Glow */}
+                <div className="magic-bento-card__glow-bg" />
+
+                {/* Card Content Header */}
                 <div className="magic-bento-card__header">
-                  <div className="magic-bento-card__label">{project.stack.join(' • ')}</div>
-                </div>
-                <div className="magic-bento-card__content">
-                  <h2 className="magic-bento-card__title">{project.title}</h2>
-                  <p className="magic-bento-card__description">{project.description}</p>
-                  <div className="magic-bento-card__links">
+                  <div className="magic-bento-card__actions">
                     {project.liveUrl && (
-                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" style={{ color: "var(--color-cyan-ink)" }}>
-                        Live →
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="magic-bento-card__icon-btn"
+                        aria-label={`Live site for ${project.title}`}
+                      >
+                        <svg className="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                          <polyline points="15 3 21 3 21 9" />
+                          <line x1="10" y1="14" x2="21" y2="3" />
+                        </svg>
                       </a>
                     )}
                     {project.githubUrl && (
-                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="magic-bento-card__github-link">
-                        GitHub →
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="magic-bento-card__icon-btn"
+                        aria-label={`GitHub repo for ${project.title}`}
+                      >
+                        <svg className="icon-svg" viewBox="0 0 16 16" fill="currentColor">
+                          <path fillRule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
+                        </svg>
                       </a>
                     )}
                   </div>
                 </div>
-              </ParticleCard>
+
+                {/* Main Card Body */}
+                <div className="magic-bento-card__body">
+                  <h3 className="magic-bento-card__title">
+                    {project.title}
+                    <span className="blinking-dash-cursor" />
+                  </h3>
+                  <p className="magic-bento-card__description">{project.description}</p>
+                  
+                  {/* Stack Badges */}
+                  <div className="magic-bento-card__tags">
+                    {stackItems.map((tech, i) => {
+                      const brandColor = getTechColor(tech);
+                      return (
+                        <span
+                          key={i}
+                          className="magic-bento-card__badge"
+                          style={{ "--brand-color": brandColor } as React.CSSProperties}
+                        >
+                          {tech}
+                        </span>
+                      );
+                    })}
+                  </div>
+                </div>
+              </CleanCard>
             </RevealOnScroll>
           );
         })}
