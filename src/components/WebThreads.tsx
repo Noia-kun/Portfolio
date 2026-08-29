@@ -31,7 +31,6 @@ export interface WebThreadsProps {
 const parseColorToRgb = (colorStr: string): [number, number, number] => {
   let color = colorStr.trim();
 
-  // Handle CSS variable tokens like var(--color-cyan)
   if (color.startsWith('var(')) {
     const varName = color.replace(/^var\((--[^,\)]+).*\)$/, '$1').trim();
     const computedColor = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
@@ -40,7 +39,6 @@ const parseColorToRgb = (colorStr: string): [number, number, number] => {
     }
   }
 
-  // Parse standard #RGB or #RRGGBB hex values
   if (color.startsWith('#')) {
     let hex = color.slice(1);
     if (hex.length === 3) {
@@ -56,11 +54,20 @@ const parseColorToRgb = (colorStr: string): [number, number, number] => {
     }
   }
 
-  // Fallback if token hasn't loaded or isn't valid hex
   return [0, 0.9, 1];
 };
 
 const FAN_MODE: Record<FanMode, number> = { center: 0, left: 1, right: 2 };
+
+// Helper to determine device tier config synchronously without React state
+const getDeviceTierConfig = (requestedThreadCount: number, requestedMouseInteraction: boolean) => {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  return {
+    dpr: isMobile ? 1.0 : Math.min(typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1, 1.5),
+    threadCount: isMobile ? 4 : requestedThreadCount,
+    mouseInteraction: isMobile ? false : requestedMouseInteraction
+  };
+};
 
 const vertex = `#version 300 es
 in vec2 position;
@@ -140,7 +147,6 @@ void main() {
 
     float g = glow(sdf, uFalloff, uGlow);
 
-    // Fade the glow out before it spreads too far
     if (sdf > 0.18) {
       g = 0.0;
     } else {
@@ -165,7 +171,6 @@ void main() {
   }
   col *= bright;
 
-  // Max color luminance determines transparency so dark values are never rendered
   float alpha = clamp(max(col.r, max(col.g, col.b)), 0.0, 1.0) * uOpacity;
 
   if (alpha < 0.005) {
@@ -188,7 +193,7 @@ const WebThreads: React.FC<WebThreadsProps> = ({
   color2 = '#FF9FFC',
   color3 = '#FFFFFF',
   speed = 0.2,
-  threadCount = 6,
+  threadCount = 5,
   frequency = 5.0,
   spread = 0.18,
   taper = 1.0,
@@ -210,6 +215,9 @@ const WebThreads: React.FC<WebThreadsProps> = ({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mouseRef = useRef<{ enabled: boolean; strength: number }>({ enabled: true, strength: 0.3 });
 
+  // Compute device tier properties once during initialization
+  const deviceConfig = getDeviceTierConfig(threadCount, mouseInteraction);
+
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -218,14 +226,13 @@ const WebThreads: React.FC<WebThreadsProps> = ({
       webgl: 2,
       alpha: true,
       premultipliedAlpha: false,
-      antialias: true,
-      dpr: Math.min(window.devicePixelRatio || 1, 2)
+      antialias: false,
+      dpr: deviceConfig.dpr
     });
 
     const gl = renderer.gl;
     gl.clearColor(0, 0, 0, 0);
 
-    // Use standard SRC_ALPHA blending
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
@@ -243,7 +250,7 @@ const WebThreads: React.FC<WebThreadsProps> = ({
         iTime: { value: 0 },
         iResolution: { value: new Float32Array([1, 1]) },
         uSpeed: { value: 0.2 },
-        uThreadCount: { value: 6 },
+        uThreadCount: { value: 5 },
         uFrequency: { value: 5.0 },
         uSpread: { value: 0.18 },
         uTaper: { value: 1.0 },
@@ -292,13 +299,14 @@ const WebThreads: React.FC<WebThreadsProps> = ({
     let targetActive = 0;
 
     const onMouseMove = (e: MouseEvent) => {
+      if (!mouseRef.current.enabled) return;
       const rect = canvas.getBoundingClientRect();
       targetMouse[0] = (e.clientX - rect.left) / rect.width;
       targetMouse[1] = 1.0 - (e.clientY - rect.top) / rect.height;
       targetActive = 1;
     };
     const onMouseEnter = () => {
-      targetActive = 1;
+      if (mouseRef.current.enabled) targetActive = 1;
     };
     const onMouseLeave = () => {
       targetActive = 0;
@@ -368,7 +376,7 @@ const WebThreads: React.FC<WebThreadsProps> = ({
       } catch {}
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
-  }, []);
+  }, []); // Mounts once cleanly
 
   useEffect(() => {
     const container = containerRef.current;
@@ -379,7 +387,7 @@ const WebThreads: React.FC<WebThreadsProps> = ({
     const u = program.uniforms as Record<string, { value: any }>;
 
     u.uSpeed.value = speed;
-    u.uThreadCount.value = Math.round(threadCount);
+    u.uThreadCount.value = Math.round(deviceConfig.threadCount);
     u.uFrequency.value = frequency;
     u.uSpread.value = spread;
     u.uTaper.value = taper;
@@ -394,6 +402,7 @@ const WebThreads: React.FC<WebThreadsProps> = ({
     u.uShimmer.value = shimmer ? 1.0 : 0.0;
     u.uGrain.value = grain ? 1.0 : 0.0;
     u.uGrainIntensity.value = grainIntensity;
+
     const c1 = u.uColor1.value as Float32Array;
     const rgb1 = parseColorToRgb(color1);
     c1[0] = rgb1[0]; c1[1] = rgb1[1]; c1[2] = rgb1[2];
@@ -405,9 +414,10 @@ const WebThreads: React.FC<WebThreadsProps> = ({
     const c3 = u.uColor3.value as Float32Array;
     const rgb3 = parseColorToRgb(color3);
     c3[0] = rgb3[0]; c3[1] = rgb3[1]; c3[2] = rgb3[2];
+
     u.uMouseStrength.value = mouseStrength;
-    u.uEnableMouse.value = mouseInteraction ? 1.0 : 0.0;
-    mouseRef.current.enabled = mouseInteraction;
+    u.uEnableMouse.value = deviceConfig.mouseInteraction ? 1.0 : 0.0;
+    mouseRef.current.enabled = deviceConfig.mouseInteraction;
     mouseRef.current.strength = mouseStrength;
   }, [
     color1,
