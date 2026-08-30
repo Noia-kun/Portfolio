@@ -32,9 +32,11 @@ import ClaudeIcon from "@thesvg/react/claude";
 import GeminiIcon from "@thesvg/react/gemini";
 import DeepseekIcon from "@thesvg/react/deepseek";
 import OpenaiIcon from "@thesvg/react/openai";
+import VercelIcon from "@thesvg/react/vercel";
 import { techRowOne, techRowTwo } from "../data/techStack";
 import type { TechStackItem } from "../types";
 import RevealOnScroll from "./RevealOnScroll";
+import { useEffect, useRef } from "react";
 
 type TechIcon = React.ForwardRefExoticComponent<
   React.SVGProps<SVGSVGElement> & { variant?: string }
@@ -194,6 +196,7 @@ const iconMap: Record<string, TechIcon> = {
   Gemini: GeminiIcon as unknown as TechIcon,
   Deepseek: DeepseekIcon as unknown as TechIcon,
   Openai: OpenaiIcon as unknown as TechIcon,
+  Vercel: VercelIcon as unknown as TechIcon,
 };
 
 const themeVariants: Record<string, { dark: string; light: string }> = {
@@ -202,6 +205,7 @@ const themeVariants: Record<string, { dark: string; light: string }> = {
   Mysql: { dark: "dark", light: "light" },
   Php: { dark: "dark", light: "light" },
   Openai: { dark: "dark", light: "light" },
+  Vercel: { dark: "dark", light: "light" },
   StyledComponents: { dark: "dark", light: "mono" },
 };
 
@@ -253,15 +257,54 @@ function MarqueeRow({
   items: TechStackItem[];
   direction: "left" | "right";
 }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const singleSetRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const updateDimensions = () => {
+      if (!singleSetRef.current || !containerRef.current) return;
+
+      // Measure full set width including item widths, inner gaps, and trailing gap
+      const singleSetWidth = singleSetRef.current.getBoundingClientRect().width;
+
+      containerRef.current.style.setProperty(
+        "--marquee-distance",
+        `${singleSetWidth}px`
+      );
+      containerRef.current.style.setProperty("--marquee-duration", "30s");
+    };
+
+    updateDimensions();
+
+    window.addEventListener("resize", updateDimensions);
+    return () => window.removeEventListener("resize", updateDimensions);
+  }, [items]);
+
   const animClass =
     direction === "left" ? "animate-marquee-left" : "animate-marquee-right";
 
   return (
     <div className="marquee-viewport overflow-hidden py-2">
-      <div className={`flex w-max gap-[var(--spacing-64)] ${animClass}`}>
-        {[...items, ...items, ...items, ...items].map((item, i) => (
-          <Pill key={`${item.name}-${i}`} item={item} />
-        ))}
+      <div ref={containerRef} className={`flex w-max ${animClass}`}>
+        {/* Set 1: Includes right padding equal to gap spacing to measure complete interval */}
+        <div
+          ref={singleSetRef}
+          className="flex shrink-0 gap-[var(--spacing-64)] pr-[var(--spacing-64)]"
+        >
+          {items.map((item, i) => (
+            <Pill key={`orig-${item.name}-${i}`} item={item} />
+          ))}
+        </div>
+
+        {/* Set 2: Duplicate set */}
+        <div
+          className="flex shrink-0 gap-[var(--spacing-64)] pr-[var(--spacing-64)]"
+          aria-hidden="true"
+        >
+          {items.map((item, i) => (
+            <Pill key={`dup-${item.name}-${i}`} item={item} />
+          ))}
+        </div>
       </div>
     </div>
   );
