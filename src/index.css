@@ -81,23 +81,30 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
+
 /* Tech Stack Marquee */
 @keyframes marquee-left {
   from { transform: translateX(0); }
-  to { transform: translateX(-25%); }
+  to { transform: translateX(calc(-1 * var(--marquee-distance, 0px))); }
 }
 
 @keyframes marquee-right {
-  from { transform: translateX(-25%); }
+  from { transform: translateX(calc(-1 * var(--marquee-distance, 0px))); }
   to { transform: translateX(0); }
 }
 
 .animate-marquee-left {
-  animation: marquee-left 30s linear infinite;
+  animation: marquee-left var(--marquee-duration, 30s) linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .animate-marquee-right {
-  animation: marquee-right 30s linear infinite;
+  animation: marquee-right var(--marquee-duration, 30s) linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .marquee-viewport {

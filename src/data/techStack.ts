@@ -29,6 +29,7 @@ export const techRowTwo: TechStackItem[] = [
   { name: "npm", category: "tool", icon: "Npm", color: "#CB3837" },
   { name: "Webpack", category: "tool", icon: "Webpack", color: "#8DD6F9" },
   { name: "Git", category: "tool", icon: "Git", color: "#F05032" },
+  { name: "Vercel", category: "tool", icon: "Vercel", color: "#000000" },
   { name: "Prettier", category: "tool", icon: "Prettier", color: "#F7B93E" },
   { name: "PyTorch", category: "tool", icon: "Pytorch", color: "#EE4C2C" },
   { name: "Photoshop", category: "tool", icon: "Photoshop", color: "#31A8FF" },
