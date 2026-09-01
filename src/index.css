@@ -334,3 +334,148 @@ body {
   pointer-events: none;
 }
 
+/* Box Shuffle Loader Styles */
+.box-shuffle-container {
+  width: 50px;
+  height: 50px;
+  position: relative;
+}
+
+.box-shuffle-box {
+  width: 14px;
+  height: 14px;
+  position: absolute;
+}
+
+.box-shuffle-box::before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: var(--color-cyan-ink);
+  opacity: 0.7;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.box-shuffle-box-1 { animation: moveBox-1 4s infinite; }
+.box-shuffle-box-2 { animation: moveBox-2 4s infinite; }
+.box-shuffle-box-3 { animation: moveBox-3 4s infinite; }
+.box-shuffle-box-4 { animation: moveBox-4 4s infinite; }
+.box-shuffle-box-5 { animation: moveBox-5 4s infinite; }
+.box-shuffle-box-6 { animation: moveBox-6 4s infinite; }
+.box-shuffle-box-7 { animation: moveBox-7 4s infinite; }
+.box-shuffle-box-8 { animation: moveBox-8 4s infinite; }
+.box-shuffle-box-9 { animation: moveBox-9 4s infinite; }
+
+@keyframes moveBox-1 {
+  0%, 100% { transform: translate(0, 0); }
+  12.5% { transform: translate(18px, 0); }
+  25% { transform: translate(36px, 0); }
+  37.5% { transform: translate(36px, 18px); }
+  50% { transform: translate(18px, 18px); }
+  62.5% { transform: translate(0, 18px); }
+  75% { transform: translate(0, 36px); }
+  87.5% { transform: translate(0, 18px); }
+}
+
+@keyframes moveBox-2 {
+  0%, 100% { transform: translate(18px, 0); }
+  12.5% { transform: translate(36px, 0); }
+  25% { transform: translate(36px, 18px); }
+  37.5% { transform: translate(18px, 18px); }
+  50% { transform: translate(0, 18px); }
+  62.5% { transform: translate(0, 0); }
+  75% { transform: translate(18px, 0); }
+  87.5% { transform: translate(36px, 0); }
+}
+
+@keyframes moveBox-3 {
+  0%, 100% { transform: translate(36px, 0); }
+  12.5% { transform: translate(36px, 18px); }
+  25% { transform: translate(18px, 18px); }
+  37.5% { transform: translate(0, 18px); }
+  50% { transform: translate(0, 36px); }
+  62.5% { transform: translate(18px, 36px); }
+  75% { transform: translate(36px, 36px); }
+  87.5% { transform: translate(36px, 18px); }
+}
+
+@keyframes moveBox-4 {
+  0%, 100% { transform: translate(0, 18px); }
+  12.5% { transform: translate(0, 0); }
+  25% { transform: translate(18px, 0); }
+  37.5% { transform: translate(36px, 0); }
+  50% { transform: translate(36px, 18px); }
+  62.5% { transform: translate(36px, 36px); }
+  75% { transform: translate(18px, 36px); }
+  87.5% { transform: translate(0, 36px); }
+}
+
+@keyframes moveBox-5 {
+  0%, 100% { transform: translate(18px, 18px); }
+  12.5% { transform: translate(18px, 36px); }
+  25% { transform: translate(0, 36px); }
+  37.5% { transform: translate(0, 18px); }
+  50% { transform: translate(18px, 0); }
+  62.5% { transform: translate(36px, 0); }
+  75% { transform: translate(36px, 18px); }
+  87.5% { transform: translate(18px, 18px); }
+}
+
+@keyframes moveBox-6 {
+  0%, 100% { transform: translate(36px, 18px); }
+  12.5% { transform: translate(36px, 36px); }
+  25% { transform: translate(18px, 36px); }
+  37.5% { transform: translate(18px, 18px); }
+  50% { transform: translate(18px, 36px); }
+  62.5% { transform: translate(0, 36px); }
+  75% { transform: translate(0, 18px); }
+  87.5% { transform: translate(18px, 0); }
+}
+
+@keyframes moveBox-7 {
+  0%, 100% { transform: translate(0, 36px); }
+  12.5% { transform: translate(18px, 36px); }
+  25% { transform: translate(36px, 36px); }
+  37.5% { transform: translate(36px, 18px); }
+  50% { transform: translate(36px, 0); }
+  62.5% { transform: translate(18px, 0); }
+  75% { transform: translate(0, 0); }
+  87.5% { transform: translate(0, 18px); }
+}
+
+@keyframes moveBox-8 {
+  0%, 100% { transform: translate(18px, 36px); }
+  12.5% { transform: translate(0, 36px); }
+  25% { transform: translate(0, 18px); }
+  37.5% { transform: translate(0, 0); }
+  50% { transform: translate(18px, 0); }
+  62.5% { transform: translate(18px, 18px); }
+  75% { transform: translate(18px, 36px); }
+  87.5% { transform: translate(36px, 36px); }
+}
+
+@keyframes moveBox-9 {
+  0%, 100% { transform: translate(36px, 36px); }
+  12.5% { transform: translate(36px, 18px); }
+  25% { transform: translate(36px, 0); }
+  37.5% { transform: translate(18px, 0); }
+  50% { transform: translate(0, 0); }
+  62.5% { transform: translate(0, 18px); }
+  75% { transform: translate(18px, 18px); }
+  87.5% { transform: translate(18px, 36px); }
+}
+
+/* Indeterminate Loading Bar */
+@keyframes indeterminate-sweep {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-indeterminate {
+  animation: indeterminate-sweep 1.6s ease-in-out infinite;
+}
+
