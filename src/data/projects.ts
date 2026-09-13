@@ -17,12 +17,12 @@ export const projects: Project[] = [
     liveUrl: "https://noia-kun.github.io/Weather-App/",
   },
   {
-    title: "Restaurant Page",
+    title: "D'Saints Landing Page",
     description:
-        "Single-page restaurant site with tabbed navigation between Home, Menu, and Contact — swapped in and out of one container without reloading. Built entirely with vanilla JS ES Modules and bundled with Webpack 5.",
-    stack: ["HTML5", "CSS3", "JavaScript", "Webpack 5"],
-    githubUrl: "https://github.com/Noia-kun/restaurant-page-practice",
-    liveUrl: "https://noia-kun.github.io/restaurant-page-practice/",
+      "Landing page for D'Saints, a Filipino artisan dessert brand established in 2020, based in Doha, Qatar. Built with TanStack and a Lovable-generated design, showcasing their sweets and pastry offerings.",
+    stack: ["React", "TanStack Start", "TanStack Router", "Tailwind CSS", "Framer Motion", "Vite", "Cloudflare Workers"],
+    githubUrl: "https://github.com/Noia-kun/dsaints-landing-page",
+    liveUrl: "https://dsaints-landing-page.richwellerod.workers.dev",
   },
   {
     title: "Vehicle Parking System",
