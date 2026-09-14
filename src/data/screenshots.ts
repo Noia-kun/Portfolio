@@ -10,6 +10,10 @@ import mis8 from "../assets/screenshots/mis-8.webp";
 import mis9 from "../assets/screenshots/mis-9.webp";
 import mis10 from "../assets/screenshots/mis-10.webp";
 import weather1 from "../assets/screenshots/weather-1.webp";
+import dsaints1 from "../assets/screenshots/dsaints-1.webp";
+import dsaints2 from "../assets/screenshots/dsaints-2.webp";
+import dsaints3 from "../assets/screenshots/dsaints-3.webp";
+import dsaints4 from "../assets/screenshots/dsaints-4.webp";
 
 export interface ScreenshotItem {
   id: string;
@@ -90,5 +94,29 @@ export const screenshots: ScreenshotItem[] = [
     image: weather1,
     alt: "Weather App forecast dashboard",
     title: "Weather App",
+  },
+  {
+    id: "dsaints-1",
+    image: dsaints1,
+    alt: "D'Saints Landing Page — hero section",
+    title: "D'Saints Landing Page",
+  },
+  {
+    id: "dsaints-2",
+    image: dsaints2,
+    alt: "D'Saints Landing Page — cake section",
+    title: "D'Saints Landing Page",
+  },
+  {
+    id: "dsaints-3",
+    image: dsaints3,
+    alt: "D'Saints Landing Page — cookie section",
+    title: "D'Saints Landing Page",
+  },
+  {
+    id: "dsaints-4",
+    image: dsaints4,
+    alt: "D'Saints Landing Page — footer section",
+    title: "D'Saints Landing Page",
   },
 ];
