@@ -257,6 +257,20 @@ export default function MagicBento({
               case "node":
               case "node.js":
                 return "#53824f";
+              case "tailwind css":
+              case "tailwindcss":
+              case "tailwind":
+                return "#06b6d4"; // Tailwind's official cyan
+              case "vite":
+                return "#a855f7"; // Purple, close to Vite's brand gradient (yellow-to-purple), picked for solid readability as a flat badge color
+              case "tanstack start":
+              case "tanstack router":
+              case "tanstack query":
+              case "tanstack":
+                return "#6BDAFF"; // From TanStack's actual gradient logo, more visible than their flat black brand mark
+              case "cloudflare workers":
+              case "cloudflare":
+                return "#F38020"; // Cloudflare's official orange
               default:
                 return "var(--color-text-muted, #6b7280)";
             }
