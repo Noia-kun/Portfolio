@@ -25,10 +25,11 @@ export const projects: Project[] = [
     liveUrl: "https://dsaints-landing-page.richwellerod.workers.dev",
   },
   {
-    title: "Vehicle Parking System",
+    title: "Portfolio",
     description:
-      "A parking management system handling slot allocation and dynamic fee calculation based on duration and vehicle type.",
-    stack: ["Java", "VB.NET"],
-    githubUrl: "https://github.com/Noia-kun/Vehicle-Parking-App",
+      "This very portfolio, a React and TypeScript site built from the ground up with a custom design system, animated interactions, and a working contact pipeline, refined section by section as I learned the stack.",
+    stack: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+    githubUrl: "https://github.com/Noia-kun/Portfolio",
+    liveUrl: "https://richwelleremetio.vercel.app",
   },
 ];
