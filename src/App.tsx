@@ -10,6 +10,7 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import Loader from './components/Loader'
 import { useLenis } from "./hooks/useLenis";
+import ParallaxNodes from "./components/ParallaxNodes";
 
 function App() {
   useLenis();
@@ -36,11 +37,17 @@ function App() {
       <div className="pt-[64px]">
         <Hero />
         <TechStack />
-        <WorkExperience />
+        <div className="relative overflow-hidden">
+          <ParallaxNodes />
+          <WorkExperience />
+        </div>
         <Projects />
-        <Education />
-        <GitHubActivity />
-        <Contact />
+        <div className="relative overflow-hidden">
+          <ParallaxNodes />
+          <Education />
+          <GitHubActivity />
+          <Contact />
+        </div>
         <Footer />
       </div>
     </div>
