@@ -1,6 +1,6 @@
 # Portfolio
 
-My personal developer portfolio — built to showcase my work as I transition from PHP/Laravel toward React, TypeScript, and modern front-end development.
+My personal developer portfolio — built to showcase my work as I expand my skills from PHP/Laravel into React, TypeScript, and modern front-end development.
 
 **Live Demo:** [richwelleremetio.vercel.app](https://richwelleremetio.vercel.app)
 
@@ -8,11 +8,12 @@ My personal developer portfolio — built to showcase my work as I transition fr
 
 - **Hero** — animated pixel-art character, WebThreads glowing background, True Focus name emphasis, typing role animation, decrypted-text intro, orbiting tech icons, count-up stats
 - **Tech Stack** — animated dual-row infinite marquee of real brand logos across languages, frameworks, and tools
-- **Work Experience** — IT Assistant/Programmer role at Caritas Don Bosco School, styled as a code-window terminal with a typewriter effect
-- **Projects** — MIS Office Inventory System, Vehicle Parking System, Weather App, Restaurant Page, shown as interactive spotlight/glow cards plus a screenshot showcase carousel
+- **Work Experience** — IT Assistant/Programmer role at Caritas Don Bosco School, styled as a code-window terminal with a typewriter effect, set against an ambient parallax node-graph background
+- **Projects** — MIS Office Inventory System, Weather App, D'Saints Landing Page, and this Portfolio itself, shown as interactive spotlight/glow cards plus a screenshot showcase carousel
 - **Education** — BS Computer Science, NU Laguna
 - **GitHub Activity** — live contribution heatmap, themed to match the site's cyan accent
 - **Contact** — two-column layout with a working contact form (EmailJS + reCAPTCHA), plus phone, email, Viber, WhatsApp, GitHub, and LinkedIn
+- Education, GitHub Activity, and Contact also share the ambient parallax node-graph background
 
 ## Tech Stack
 
