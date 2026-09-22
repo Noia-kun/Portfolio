@@ -7,6 +7,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useTheme, type ThemeMode } from "../hooks/useTheme";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import { getLenis } from "../hooks/useLenis";
 
 const links = [
   { id: "home", label: "Home", href: "#home" },
@@ -27,6 +28,14 @@ export default function Navbar() {
   // References for measurements
   const navLinksRef = useRef<HTMLDivElement>(null);
   const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      getLenis()?.scrollTo(target as HTMLElement, { offset: -64 });
+    }
+    setMenuOpen(false);
+  };
 
   const [indicatorStyle, setIndicatorStyle] = useState({
     width: 0,
@@ -80,16 +89,16 @@ export default function Navbar() {
       >
         <div className="mx-auto flex h-full w-full max-w-[1280px] items-center justify-between">
           {/* Left: Brand Logo */}
-          <a href="#home" className="flex items-center -ml-2 sm:-ml-3 group">
-  <img
-    src={logo}
-    alt="NoiA logo"
-    className="h-[52px] w-[52px] sm:h-[64px] sm:w-[64px] object-contain shrink-0 -mr-2 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:rotate-[30deg] group-hover:scale-105 active:rotate-0"
-  />
-  <span className="font-[family-name:var(--font-display)] text-[var(--text-body)] font-medium text-[var(--color-text-primary)]">
-    NoiA
-  </span>
-</a>
+          <a href="#home" onClick={(e) => handleNavClick(e, "#home")} className="flex items-center -ml-2 sm:-ml-3 group">
+            <img
+              src={logo}
+              alt="NoiA logo"
+              className="h-[52px] w-[52px] sm:h-[64px] sm:w-[64px] object-contain shrink-0 -mr-2 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:rotate-[30deg] group-hover:scale-105 active:rotate-0"
+            />
+            <span className="font-[family-name:var(--font-display)] text-[var(--text-body)] font-medium text-[var(--color-text-primary)]">
+              NoiA
+            </span>
+          </a>
 
           {/* Right Group: Nav Links + Contact CTA + Theme Toggle */}
           <div className="flex items-center gap-[var(--spacing-24)]">
@@ -114,6 +123,7 @@ export default function Navbar() {
                 <a
                   key={link.id}
                   href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   ref={(el) => {
                     linkRefs.current[link.id] = el;
                   }}
@@ -128,6 +138,7 @@ export default function Navbar() {
             {/* Contact CTA */}
             <a
               href="#contact"
+              onClick={(e) => handleNavClick(e, "#contact")}
               className="group relative hidden lg:inline-flex items-center justify-center overflow-hidden rounded-full border-[3px] border-[var(--color-cyan)] bg-gradient-to-r from-[var(--color-cyan)] to-[var(--color-cyan-dark)] px-5 py-2 font-[var(--font-body)] text-[var(--text-body-sm)] font-bold text-[#0a1414] transition-all duration-300 active:scale-95 shadow-sm"
             >
               {/* Expanding Background Circle */}
@@ -210,7 +221,7 @@ export default function Navbar() {
               <a
                 key={link.id}
                 href={link.href}
-                onClick={() => setMenuOpen(false)}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="font-[var(--font-body)] text-[var(--text-body)] text-[var(--color-text-body)]"
               >
                 {link.label}
@@ -218,7 +229,7 @@ export default function Navbar() {
             ))}
             <a
               href="#contact"
-              onClick={() => setMenuOpen(false)}
+              onClick={(e) => handleNavClick(e, "#contact")}
               style={{
                 backgroundColor: "var(--color-cyan)",
                 color: "var(--color-void)",
