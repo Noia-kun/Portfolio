@@ -15,10 +15,18 @@ import TextType from './TextType';
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import DecryptedText from "./DecryptedText";
 import CountUp from "./CountUp";
+import { getLenis } from "../hooks/useLenis";
 
 const techStackCount = techRowOne.length + techRowTwo.length;
 
 export default function Hero() {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      getLenis()?.scrollTo(target as HTMLElement, { offset: -64 });
+    }
+  };
   return (
     <section
       id="home"
@@ -125,7 +133,8 @@ export default function Hero() {
           {/* CTAs */}
           <div className="mt-[var(--spacing-32)] flex flex-wrap items-center justify-center gap-[var(--spacing-16)] md:justify-start">
             <a
-              href="#projects"
+              href="#projects" 
+              onClick={(e) => handleNavClick(e, "#projects")}
               className="group relative inline-flex items-center gap-2 overflow-hidden rounded-[100px] border-2 border-transparent bg-inherit px-6 py-2.5 font-[var(--font-body)] text-[15px] font-semibold text-[var(--color-cyan-ink)] shadow-[0_0_0_2px_var(--color-cyan-ink)] transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] hover:rounded-[12px] hover:shadow-[0_0_0_12px_transparent] active:scale-95 active:shadow-[0_0_0_4px_var(--color-cyan-ink)]"
             >
               {/* Left Arrow (arr-2): enters from off-screen left (-left-10) to left-3.5 */}
@@ -144,6 +153,7 @@ export default function Hero() {
             </a>
             <a
               href="#contact"
+              onClick={(e) => handleNavClick(e, "#contact")}
               data-text="Contact Me →"
               className="group relative inline-flex font-[var(--font-body)] text-[var(--text-body)] font-medium tracking-wide text-transparent [-webkit-text-stroke:1px_var(--color-text-primary)] transition-all duration-500"
             >
