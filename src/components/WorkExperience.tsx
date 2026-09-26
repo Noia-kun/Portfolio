@@ -88,12 +88,12 @@ export default function WorkExperience() {
       </RevealOnScroll>
 
       <RevealOnScroll>
-        <div ref={cardRef} className="rounded-[var(--radius-cards)] border border-[var(--color-border)] bg-[var(--color-carbon)]">
+        <div ref={cardRef} className="rounded-[var(--radius-cards)] border border-[var(--color-border)] bg-[var(--color-carbon)] overflow-hidden">
           {/* Title bar */}
-          <div className="flex items-center gap-[var(--spacing-8)] border-b border-[var(--color-border)] px-[var(--spacing-16)] py-[var(--spacing-12)]">
-            <span className="h-[10px] w-[10px] rounded-full bg-[#ff5f56]" />
-            <span className="h-[10px] w-[10px] rounded-full bg-[#ffbd2e]" />
-            <span className="h-[10px] w-[10px] rounded-full bg-[#27c93f]" />
+          <div className="flex items-center gap-[var(--spacing-8)] border-b border-[var(--color-border)] bg-[var(--color-ground)] px-[var(--spacing-16)] py-[var(--spacing-12)]">
+            <span className="terminal-dot h-[10px] w-[10px] rounded-full bg-[#ff5f56]" />
+            <span className="terminal-dot h-[10px] w-[10px] rounded-full bg-[#ffbd2e]" />
+            <span className="terminal-dot h-[10px] w-[10px] rounded-full bg-[#27c93f]" />
             <span className="ml-auto font-[family-name:var(--font-mono)] text-[var(--text-caption)] text-[var(--color-text-muted)]">
               experience.json
             </span>
