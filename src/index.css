@@ -479,3 +479,12 @@ body {
   animation: indeterminate-sweep 1.6s ease-in-out infinite;
 }
 
+/* Terminal Dots (Red, Yellow, Green) */
+.terminal-dot {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+.light .terminal-dot {
+  filter: saturate(0.85) brightness(0.95);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+}
