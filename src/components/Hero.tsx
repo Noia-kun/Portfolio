@@ -256,6 +256,8 @@ export default function Hero() {
           <img
             src={heroPixelArt}
             alt="Animated pixel-art developer holding a coffee"
+            width={560}
+            height={560}
             className="relative z-10 h-[360px] w-[360px] object-contain md:h-[clamp(320px,38vw,560px)] md:w-[clamp(320px,38vw,560px)] pointer-events-none"
           />
 
