@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { useInView } from "../hooks/useInView";
 import { contactInfo } from "../data/contact"; // Adjust relative path if contact.ts is located elsewhere
 import emailjs from "@emailjs/browser";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -19,6 +20,7 @@ const THROTTLE_KEY = "contact_form_last_sent";
 const COOLDOWN_TIME = 60 * 1000; // 60 seconds throttle
 
 export default function Contact() {
+  const { ref: sectionRef, isInView } = useInView(0.1, "200px", true);
   const formRef = useRef<HTMLFormElement>(null);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
 
@@ -117,6 +119,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
+      ref={sectionRef}
       className="mx-auto max-w-[1100px] px-[var(--spacing-24)] py-[var(--spacing-80)]"
     >
       <RevealOnScroll>
@@ -314,12 +317,14 @@ export default function Contact() {
                   {/* Responsive reCAPTCHA Widget */}
                   <div className="flex justify-center my-1 w-full overflow-hidden">
                     <div className="transform scale-[0.85] sm:scale-100 origin-center transition-transform">
+                    {isInView && (  
                       <ReCAPTCHA
                         ref={recaptchaRef}
                         sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY || ""}
                         onChange={handleCaptchaChange}
                         theme="dark"
                       />
+                    )}
                     </div>
                   </div>
 
