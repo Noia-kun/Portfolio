@@ -277,8 +277,10 @@ export default function Contact() {
 
                   {/* Name Input */}
                   <div className="flex items-center rounded-xl bg-[var(--color-carbon)] p-2.5 transition-all shadow-[inset_2px_4px_8px_rgba(0,0,0,0.3)] border border-[var(--color-border)] focus-within:border-[var(--color-cyan-ink)]">
+                    <label htmlFor="user_name" className="sr-only">Name</label>
                     <input
                       required
+                      id="user_name"
                       type="text"
                       name="user_name"
                       placeholder="Name"
@@ -290,8 +292,10 @@ export default function Contact() {
 
                   {/* Email Input */}
                   <div className="flex items-center rounded-xl bg-[var(--color-carbon)] p-2.5 transition-all shadow-[inset_2px_4px_8px_rgba(0,0,0,0.3)] border border-[var(--color-border)] focus-within:border-[var(--color-cyan-ink)]">
+                    <label htmlFor="user_email" className="sr-only">Email</label>
                     <input
                       required
+                      id="user_email"
                       type="email"
                       name="user_email"
                       placeholder="Email"
@@ -303,8 +307,10 @@ export default function Contact() {
 
                   {/* Message Input */}
                   <div className="flex items-center rounded-xl bg-[var(--color-carbon)] p-2.5 transition-all shadow-[inset_2px_4px_8px_rgba(0,0,0,0.3)] border border-[var(--color-border)] focus-within:border-[var(--color-cyan-ink)]">
+                    <label htmlFor="message" className="sr-only">Message</label>
                     <textarea
                       required
+                      id="message"
                       rows={4}
                       name="message"
                       placeholder="Message"
