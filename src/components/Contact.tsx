@@ -277,8 +277,10 @@ export default function Contact() {
 
                   {/* Name Input */}
                   <div className="flex items-center rounded-xl bg-[var(--color-carbon)] p-2.5 transition-all shadow-[inset_2px_4px_8px_rgba(0,0,0,0.3)] border border-[var(--color-border)] focus-within:border-[var(--color-cyan-ink)]">
+                    <label htmlFor="user_name" className="sr-only">Name</label>
                     <input
                       required
+                      id="user_name"
                       type="text"
                       name="user_name"
                       placeholder="Name"
@@ -290,8 +292,10 @@ export default function Contact() {
 
                   {/* Email Input */}
                   <div className="flex items-center rounded-xl bg-[var(--color-carbon)] p-2.5 transition-all shadow-[inset_2px_4px_8px_rgba(0,0,0,0.3)] border border-[var(--color-border)] focus-within:border-[var(--color-cyan-ink)]">
+                    <label htmlFor="user_email" className="sr-only">Email</label>
                     <input
                       required
+                      id="user_email"
                       type="email"
                       name="user_email"
                       placeholder="Email"
@@ -303,8 +307,10 @@ export default function Contact() {
 
                   {/* Message Input */}
                   <div className="flex items-center rounded-xl bg-[var(--color-carbon)] p-2.5 transition-all shadow-[inset_2px_4px_8px_rgba(0,0,0,0.3)] border border-[var(--color-border)] focus-within:border-[var(--color-cyan-ink)]">
+                    <label htmlFor="message" className="sr-only">Message</label>
                     <textarea
                       required
+                      id="message"
                       rows={4}
                       name="message"
                       placeholder="Message"
@@ -331,6 +337,8 @@ export default function Contact() {
                   {/* Status Banner */}
                   {status.msg && (
                     <div
+                      role={status.type === "error" ? "alert" : "status"}
+                      aria-live={status.type === "error" ? "assertive" : "polite"}
                       className={`p-3 rounded-lg text-center font-[family-name:var(--font-mono)] text-xs transition-all ${
                         status.type === "success"
                           ? "bg-[var(--color-cyan-subtle)] text-[var(--color-cyan-ink)] border border-[var(--color-cyan-ink)]"
