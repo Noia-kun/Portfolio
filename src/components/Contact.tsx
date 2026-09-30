@@ -337,6 +337,8 @@ export default function Contact() {
                   {/* Status Banner */}
                   {status.msg && (
                     <div
+                      role={status.type === "error" ? "alert" : "status"}
+                      aria-live={status.type === "error" ? "assertive" : "polite"}
                       className={`p-3 rounded-lg text-center font-[family-name:var(--font-mono)] text-xs transition-all ${
                         status.type === "success"
                           ? "bg-[var(--color-cyan-subtle)] text-[var(--color-cyan-ink)] border border-[var(--color-cyan-ink)]"
