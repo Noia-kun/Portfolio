@@ -12,8 +12,16 @@ My personal developer portfolio — built to showcase my work as I expand my ski
 - **Projects** — MIS Office Inventory System, Weather App, D'Saints Landing Page, and this Portfolio itself, shown as interactive spotlight/glow cards plus a screenshot showcase carousel
 - **Education** — BS Computer Science, NU Laguna
 - **GitHub Activity** — live contribution heatmap, themed to match the site's cyan accent
-- **Contact** — two-column layout with a working contact form (EmailJS + reCAPTCHA), plus phone, email, Viber, WhatsApp, GitHub, and LinkedIn
-- Education, GitHub Activity, and Contact also share the ambient parallax node-graph background
+- **Contact** — two-column layout with a working contact form (EmailJS + lazy-loaded reCAPTCHA), plus phone, email, Viber, WhatsApp, GitHub, and LinkedIn
+- Work Experience, Education, GitHub Activity, and Contact share an ambient parallax node-graph background
+
+## Performance, Accessibility & SEO
+
+- Lazy-loaded reCAPTCHA (only mounts near the Contact section)
+- Scroll navigation (navbar, Hero CTAs) interrupts in-flight Lenis scroll instead of racing it
+- Accessible form labels (`sr-only`) and status banner with `role="alert"`/`role="status"` for screen readers
+- Meta description, canonical URL, Open Graph and Twitter card tags
+- `robots.txt` and `sitemap.xml`, submitted to Google Search Console
 
 ## Tech Stack
 
