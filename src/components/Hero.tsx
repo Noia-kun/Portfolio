@@ -13,6 +13,7 @@ import WebThreads from "./WebThreads";
 import TrueFocus from './TrueFocus';
 import TextType from './TextType';
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
+import { ArrowDownTrayIcon } from "@heroicons/react/24/outline";
 import DecryptedText from "./DecryptedText";
 import CountUp from "./CountUp";
 import { getLenis } from "../hooks/useLenis";
@@ -150,6 +151,14 @@ export default function Hero() {
 
               {/* Right Arrow (arr-1): slides off-screen right (+translate-x-10) */}
               <ArrowRightIcon className="relative z-10 h-5 w-5 text-[var(--color-cyan-ink)] transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-10 group-hover:opacity-0 group-hover:text-[var(--color-void)]" />
+            </a>
+            <a
+              href="/resume-richwelle-remetio.pdf"
+              download
+              className="group relative inline-flex items-center gap-2 rounded-[100px] border-2 border-[var(--color-border)] px-6 py-2.5 font-[var(--font-body)] text-[15px] font-semibold text-[var(--color-text-primary)] transition-all duration-300 hover:border-[var(--color-cyan-ink)] hover:text-[var(--color-cyan-ink)]"
+            >
+              <ArrowDownTrayIcon className="h-5 w-5" />
+              <span>Resume</span>
             </a>
             <a
               href="#contact"
