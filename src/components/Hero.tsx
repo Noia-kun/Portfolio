@@ -155,7 +155,7 @@ export default function Hero() {
             <a
               href="/resume-richwelle-remetio.pdf"
               download
-              className="group relative inline-flex items-center gap-2 rounded-[100px] border-2 border-[var(--color-border)] px-6 py-2.5 font-[var(--font-body)] text-[15px] font-semibold text-[var(--color-text-primary)] transition-all duration-300 hover:border-[var(--color-cyan-ink)] hover:text-[var(--color-cyan-ink)]"
+              className="group relative inline-flex items-center gap-2 rounded-[100px] border-2 border-[var(--color-text-muted)] bg-transparent px-6 py-2.5 font-[var(--font-body)] text-[15px] font-semibold text-[var(--color-text-primary)] transition-all duration-300 hover:border-[var(--color-cyan-ink)] hover:text-[var(--color-cyan-ink)]"
             >
               <ArrowDownTrayIcon className="h-5 w-5" />
               <span>Resume</span>
