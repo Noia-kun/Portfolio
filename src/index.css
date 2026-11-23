@@ -73,6 +73,9 @@
 html {
   overflow-x: hidden;
 }
+html:not(.light) .tech-icon--invert-dark {
+  filter: invert(1);
+}
 
 body {
   background: var(--color-void);
