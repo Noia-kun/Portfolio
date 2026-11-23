@@ -33,6 +33,8 @@ import GeminiIcon from "@thesvg/react/gemini";
 import DeepseekIcon from "@thesvg/react/deepseek";
 import OpenaiIcon from "@thesvg/react/openai";
 import VercelIcon from "@thesvg/react/vercel";
+import ExpoIcon from "@thesvg/react/expo";
+import PnpmIcon from "@thesvg/react/pnpm";
 import { techRowOne, techRowTwo } from "../data/techStack";
 import type { TechStackItem } from "../types";
 import RevealOnScroll from "./RevealOnScroll";
@@ -197,6 +199,8 @@ const iconMap: Record<string, TechIcon> = {
   Deepseek: DeepseekIcon as unknown as TechIcon,
   Openai: OpenaiIcon as unknown as TechIcon,
   Vercel: VercelIcon as unknown as TechIcon,
+  Expo: ExpoIcon as unknown as TechIcon,
+  Pnpm: PnpmIcon as unknown as TechIcon,
 };
 
 const themeVariants: Record<string, { dark: string; light: string }> = {
@@ -207,6 +211,7 @@ const themeVariants: Record<string, { dark: string; light: string }> = {
   Openai: { dark: "dark", light: "light" },
   Vercel: { dark: "dark", light: "light" },
   StyledComponents: { dark: "dark", light: "mono" },
+  Pnpm: { dark: "dark", light: "light" },
 };
 
 function Pill({ item }: { item: TechStackItem }) {
@@ -243,7 +248,7 @@ function Pill({ item }: { item: TechStackItem }) {
           height={44}
           className={`transition-transform duration-200 group-hover/pill:scale-[1.02] ${
             isJetbrainsOrIntellij ? "text-black" : ""
-          }`}
+          } ${item.icon === "Expo" ? "tech-icon--invert-dark" : ""}`}
         />
       )}
     </span>
