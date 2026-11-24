@@ -222,6 +222,7 @@ export default function MagicBento({
             switch (normalized) {
               case "react":
               case "react.js":
+              case "react native":
                 return "#00b4d8"; // Slightly deeper cyan for dual-theme contrast
               case "python":
                 return "#3776ab";
@@ -261,6 +262,8 @@ export default function MagicBento({
               case "tailwindcss":
               case "tailwind":
                 return "#06b6d4"; // Tailwind's official cyan
+              case "nativewind":
+                return "#0ea5e9";
               case "vite":
                 return "#a855f7"; // Purple, close to Vite's brand gradient (yellow-to-purple), picked for solid readability as a flat badge color
               case "tanstack start":

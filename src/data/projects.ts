@@ -25,6 +25,13 @@ export const projects: Project[] = [
     liveUrl: "https://dsaints-landing-page.richwellerod.workers.dev",
   },
   {
+  title: "DigiGet Budget Tracker",
+  description:
+    "Offline-first mobile income and expense tracker with categories, monthly summaries, multi-currency display with cached exchange rates, daily reminders, and JSON backup/restore. All data stays on the device.",
+  stack: ["React Native", "Expo", "TypeScript", "NativeWind"],
+  githubUrl: "https://github.com/Noia-kun/DigiGet-Budget-Tracker-App",
+  },
+  {
     title: "Portfolio",
     description:
       "This very portfolio, a React and TypeScript site built from the ground up with a custom design system, animated interactions, and a working contact pipeline, refined section by section as I learned the stack.",
