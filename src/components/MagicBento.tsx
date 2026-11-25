@@ -274,6 +274,10 @@ export default function MagicBento({
               case "cloudflare workers":
               case "cloudflare":
                 return "#F38020"; // Cloudflare's official orange
+              case "vercel":
+                return "var(--color-text-primary)";
+              case "emailjs":
+                return "#f97316";
               default:
                 return "var(--color-text-muted, #6b7280)";
             }
