@@ -35,7 +35,7 @@ export const projects: Project[] = [
     title: "Portfolio",
     description:
       "This very portfolio, a React and TypeScript site built from the ground up with a custom design system, animated interactions, and a working contact pipeline, refined section by section as I learned the stack.",
-    stack: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+    stack: ["React", "TypeScript", "Tailwind CSS", "Vite", "EmailJS", "Vercel"],
     githubUrl: "https://github.com/Noia-kun/Portfolio",
     liveUrl: "https://richwelleremetio.vercel.app",
   },
